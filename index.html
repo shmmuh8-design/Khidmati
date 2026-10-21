@@ -1,0 +1,288 @@
+<title>خدماتي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column (phone-first) — hero, 3 numbered steps, results list. Cool slate ground, cobalt for action, amber for "available now". */
+:root{
+  --bg:#eef2f5; --surface:#ffffff; --sunk:#e4e9ee; --line:#d3dbe2; --fg:#132029; --muted:#5b6b78;
+  --cobalt:#1d56c9; --cobalt-ink:#ffffff; --cobalt-soft:#e2ebfb;
+  --amber:#b86e00; --amber-soft:#fdf0d9; --ok:#1f7a4a; --ok-soft:#dff2e7; --bad:#b4313b; --bad-soft:#f9e1e3;
+  --wa:#1f9d55; --star:#e0a100;
+  --display:"Alexandria","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic","SF Arabic","Geeza Pro",Tahoma,system-ui,sans-serif;
+  --r:16px; --shadow:0 1px 2px rgba(19,32,41,.06),0 10px 26px rgba(19,32,41,.08);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e151b; --surface:#16212a; --sunk:#111a21; --line:#263541; --fg:#e8eff4; --muted:#93a4b1;
+  --cobalt:#6f9bf2; --cobalt-ink:#0d1620; --cobalt-soft:#1b2c48; --amber:#f0b24f; --amber-soft:#3a2c14;
+  --ok:#69c795; --ok-soft:#173326; --bad:#f08890; --bad-soft:#3d1c20; --wa:#3cc177; --star:#f3c34a;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 28px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e151b; --surface:#16212a; --sunk:#111a21; --line:#263541; --fg:#e8eff4; --muted:#93a4b1;
+  --cobalt:#6f9bf2; --cobalt-ink:#0d1620; --cobalt-soft:#1b2c48; --amber:#f0b24f; --amber-soft:#3a2c14;
+  --ok:#69c795; --ok-soft:#173326; --bad:#f08890; --bad-soft:#3d1c20; --wa:#3cc177; --star:#f3c34a;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 28px rgba(0,0,0,.35); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.65 var(--body)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+h1,h2,h3{margin:0;text-wrap:balance}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+
+.top{display:flex;align-items:center;gap:10px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:8px;font:800 1.35rem var(--display);color:var(--cobalt)}
+.logo svg{width:34px;height:34px}
+.top .sp{flex:1}
+.demo{font-size:.72rem;font-weight:700;background:var(--amber-soft);color:var(--amber);padding:2px 9px;border-radius:999px}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;background:var(--cobalt);color:var(--cobalt-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.btn.ghost{background:var(--surface);color:var(--fg);border:1px solid var(--line)}
+.btn.soft{background:var(--cobalt-soft);color:var(--cobalt)}
+.btn.wa{background:var(--wa);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:7px 12px;font-size:.85rem;border-radius:10px}
+.linkb{border:0;background:none;padding:4px 2px;color:var(--muted);font-size:.8rem;text-decoration:underline;text-underline-offset:3px}
+
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;box-shadow:var(--shadow)}
+.hero h1{font:800 clamp(1.5rem,5vw,2.1rem)/1.25 var(--display)}
+.hero p{margin:6px 0 0;color:var(--muted)}
+.hero .art{width:118px;height:118px;max-width:100%}
+.facts{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:.82rem;color:var(--muted)}
+.facts b{color:var(--fg)}
+
+.step{margin-top:20px}
+.step h2{font:700 1.02rem var(--display);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.step h2 i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--cobalt);color:var(--cobalt-ink);display:grid;place-items:center;font-size:.8rem}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.cat{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:600;font-size:.86rem}
+.cat span{font-size:1.6rem;line-height:1}
+.cat[aria-pressed="true"]{border-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt);box-shadow:inset 0 0 0 1px var(--cobalt)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.in{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 12px;min-width:0}
+textarea.in{min-height:84px;resize:vertical}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600;font-size:.86rem;color:var(--muted)}
+.chip[aria-pressed="true"]{border-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.photo{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.photo img{width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.hint{font-size:.8rem;color:var(--muted)}
+
+.reshead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 10px}
+.reshead h2{font:700 1.05rem var(--display);flex:1}
+.toggle{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align-items:start}
+.card.busy{opacity:.62}
+.av{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font:800 1.1rem var(--display);color:#fff;grid-row:span 2}
+.card h3{min-width:0;font-size:1rem;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.meta{font-size:.8rem;color:var(--muted);line-height:1.6}
+.fee{text-align:end;grid-row:span 2}
+.fee b{display:block;font:800 1.15rem var(--display);color:var(--fg)}
+.fee small{font-size:.72rem;color:var(--muted)}
+.pill{display:inline-block;font-size:.7rem;font-weight:700;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.amber{background:var(--amber-soft);color:var(--amber)}.pill.bad{background:var(--bad-soft);color:var(--bad)}.pill.cob{background:var(--cobalt-soft);color:var(--cobalt)}
+.stars{color:var(--star);font-weight:700;font-size:.82rem}
+.acts{grid-column:1 / -1;display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.acts .btn.wa{flex:1;min-width:160px}
+.acts .sp{flex:1}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:22px;text-align:center;color:var(--muted)}
+
+.join{margin-top:24px;background:var(--cobalt-soft);border-radius:20px;padding:18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.join div{flex:1;min-width:200px}
+.join h3{font:700 1.05rem var(--display);color:var(--cobalt)}
+.join p{margin:4px 0 0;font-size:.88rem;color:var(--muted)}
+footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
+
+.scrim{position:fixed;inset:0;z-index:50;background:rgba(10,18,24,.5);display:grid;place-items:end center;padding:max(16px,env(safe-area-inset-top,0px)) max(0px,env(safe-area-inset-right,0px)) 0 max(0px,env(safe-area-inset-left,0px))}
+.sheet{background:var(--surface);width:min(620px,100%);max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:20px max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow)}
+.sheet h3{font:700 1.15rem var(--display)}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:.8rem;font-weight:600;color:var(--muted)}
+.multi{display:flex;flex-wrap:wrap;gap:6px}
+.sheet .end{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.rate{display:flex;gap:6px;justify-content:center;font-size:2rem}
+.rate button{border:0;background:none;color:var(--line);padding:0 2px}
+.rate button.on{color:var(--star)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(30px);opacity:0;transition:.25s;background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:600;z-index:60;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:520px){.hero{grid-template-columns:1fr}.hero .art{display:none}.row2{grid-template-columns:1fr}.card{grid-template-columns:auto minmax(0,1fr)}.card .av{grid-row:1 / 3;grid-column:1}.card h3{grid-column:2;grid-row:1;min-width:0}.fee{grid-column:2;grid-row:2;text-align:start;display:flex;gap:6px;align-items:baseline}.fee b{display:inline}.card .meta{grid-column:1 / -1}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M38.5 15a10 10 0 0 0-9.3 13.6L15.8 42a3.6 3.6 0 0 0 5.1 5.1l13.4-13.4A10 10 0 0 0 47.9 24l-6 6-5.4-1-1-5.4 6-6a10 10 0 0 0-3-2.6z" fill="#fff"/></svg>خدماتي</div>
+    <span class="demo">تجريبي</span><span class="sp"></span>
+    <button class="btn ghost sm" id="joinTop" type="button">🧰 أنا مقدّم خدمة</button>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>فنّي لين باب بيتك، الحين</h1>
+      <p>مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، وكلّم أقرب مؤسسة صيانة مرخّصة على الواتساب مباشرة.</p>
+      <div class="facts"><span>✓ <b>مؤسسات مرخّصة</b> بسجل تجاري</span><span>⭐ <b>تقييمات</b> من الزبائن</span><span>💬 <b>بدون وسيط</b></span></div>
+    </div>
+    <svg class="art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="var(--cobalt-soft)"/><rect x="30" y="38" width="60" height="22" rx="6" fill="var(--surface)" stroke="var(--cobalt)" stroke-width="3"/><path d="M38 52h44" stroke="var(--cobalt)" stroke-width="3" stroke-linecap="round"/><path d="M44 66c0 6-4 8-4 14M60 66c0 6-4 8-4 14M76 66c0 6-4 8-4 14" stroke="var(--cobalt)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/><circle cx="84" cy="44" r="3" fill="var(--amber)"/></svg>
+  </section>
+
+  <section class="step"><h2><i>1</i>شو تحتاج؟</h2><div class="cats" id="cats"></div></section>
+
+  <section class="step"><h2><i>2</i>وين؟</h2>
+    <div class="row2"><select class="in" id="gov" aria-label="المحافظة"></select><select class="in" id="area" aria-label="الولاية"></select></div>
+  </section>
+
+  <section class="step"><h2><i>3</i>اشرح المشكلة <span class="hint" style="font-weight:400">(اختياري)</span></h2>
+    <textarea class="in" id="desc" placeholder="مثال: المكيف في غرفة النوم يشتغل بس ما يبرّد، ويطلع منه صوت"></textarea>
+    <div class="chips" id="when" style="margin-top:10px"></div>
+    <div class="photo"><label class="btn ghost sm" for="pic">📷 صورة العطل</label><input type="file" id="pic" accept="image/*" hidden><img id="picPrev" alt="" hidden><span class="hint" id="picHint">الصورة ترسلها بعدين في محادثة الواتساب نفسها.</span></div>
+  </section>
+
+  <div class="reshead"><h2 id="resTitle">مقدّمو الخدمة</h2><label class="toggle"><input type="checkbox" id="nowOnly"> 🟢 المتوفرين الحين بس</label></div>
+  <div class="list" id="list"></div>
+
+  <section class="join"><div><h3>عندك مؤسسة صيانة؟</h3><p>سجّل مؤسستك وتوصلك طلبات الزبائن في ولاياتك على الواتساب مباشرة. التسجيل للمؤسسات المرخّصة بسجل تجاري.</p></div><button class="btn" id="joinBtn" type="button">سجّل مؤسستك</button></section>
+  <footer>خدماتي · سلطنة عُمان · نسخة تجريبية: الأسماء والأرقام أمثلة</footer>
+</div>
+<div class="toast" id="toast"></div>
+<div id="root"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const el = (t, a = {}, ...k) => { const e = document.createElement(t); for(const [x, v] of Object.entries(a)){ if(x === 'class') e.className = v; else if(x === 'text') e.textContent = v; else if(x.startsWith('on')) e[x] = v; else if(v !== false && v != null) e.setAttribute(x, v === true ? '' : v); } k.flat().forEach(c => c != null && e.append(c)); return e; };
+const store = { get(k, d){ try{ const v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; }catch(e){ return d; } }, set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} } };
+function toast(t){ const e = $('toast'); e.textContent = t; e.classList.add('show'); clearTimeout(e._t); e._t = setTimeout(() => e.classList.remove('show'), 2600); }
+const normPhone = p => { let d = String(p || '').replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/\D/g, ''); if(d.startsWith('00')) d = d.slice(2); if(/^[79]\d{7}$/.test(d)) d = '968' + d; return d; };
+
+const GOV = {"مسقط": ["مسقط", "مطرح", "بوشر", "السيب", "العامرات", "قريات"], "ظفار": ["صلالة", "طاقة", "مرباط", "رخيوت", "ثمريت", "ضلكوت", "المزيونة", "مقشن", "شليم وجزر الحلانيات", "سدح"], "مسندم": ["خصب", "دبا", "بخا", "مدحاء"], "البريمي": ["البريمي", "محضة", "السنينة"], "الداخلية": ["نزوى", "بهلاء", "منح", "الحمراء", "أدم", "إزكي", "سمائل", "بدبد", "الجبل الأخضر"], "شمال الباطنة": ["صحار", "شناص", "لوى", "صحم", "الخابورة", "السويق"], "جنوب الباطنة": ["الرستاق", "العوابي", "نخل", "وادي المعاول", "بركاء", "المصنعة"], "جنوب الشرقية": ["صور", "الكامل والوافي", "جعلان بني بو حسن", "جعلان بني بو علي", "مصيرة"], "شمال الشرقية": ["إبراء", "المضيبي", "بدية", "القابل", "وادي بني خالد", "دماء والطائيين"], "الظاهرة": ["عبري", "ينقل", "ضنك"], "الوسطى": ["هيماء", "محوت", "الدقم", "الجازر"]};
+const CATS = [ ['ac','❄️','مكيفات'], ['elec','⚡','كهرباء'], ['plumb','🚿','سباكة'], ['carp','🪚','نجارة'], ['paint','🎨','صباغة'], ['clean','🧹','تنظيف'], ['pest','🐜','مكافحة حشرات'], ['sat','📡','ستلايت وكاميرات'], ['lock','🔑','أقفال'], ['reno','🏗️','ترميم'] ];
+const catName = id => (CATS.find(c => c[0] === id) || [, , id])[2];
+const WHEN = [ ['now','🚨 الحين'], ['today','اليوم'], ['later','موعد لاحق'] ];
+const TINT = ['#1d56c9','#1f7a4a','#b86e00','#7a3fb8','#b4313b','#0f7d8c'];
+
+// sample providers (marked demo)
+const DEMO = [
+  { id:'d1', name:'مؤسسة البرودة الذهبية', cats:['ac'], areas:['gov:مسقط'], fee:5, rating:4.8, votes:63, now:true, hours:'7 الصبح – 11 الليل', phone:'90000001', note:'تعبئة فريون، تنظيف، صيانة سبليت ووندو' },
+  { id:'d10', name:'تبريد السيب المتكامل', cats:['ac'], areas:['السيب','العامرات','بوشر'], fee:3, rating:4.5, votes:38, now:false, hours:'8 الصبح – 10 الليل', phone:'90000010', note:'تركيب وفك ونقل مكيفات، كمبروسرات' },
+  { id:'d11', name:'برد الخوض', cats:['ac','elec'], areas:['السيب'], fee:4, rating:4.1, votes:9, now:true, hours:'9 الصبح – 12 الليل', phone:'90000011', note:'' },
+  { id:'d2', name:'النور للكهرباء والإنارة', cats:['elec','sat'], areas:['السيب','العامرات','بوشر'], fee:4, rating:4.6, votes:28, now:true, hours:'8 الصبح – 10 الليل', phone:'90000002', note:'تمديدات، لوحات، قواطع، كاميرات مراقبة' },
+  { id:'d3', name:'الخليج للأدوات الصحية', cats:['plumb'], areas:['gov:مسقط'], fee:5, rating:4.4, votes:41, now:false, hours:'7 الصبح – 9 الليل', phone:'90000003', note:'تسريبات، سخانات، مضخات، كشف تسرب' },
+  { id:'d4', name:'لمسة نظافة', cats:['clean','pest'], areas:['gov:مسقط','بركاء'], fee:0, rating:4.9, votes:112, now:true, hours:'كل يوم', phone:'90000004', note:'تنظيف فلل وشقق، تعقيم، مكافحة صراصير وبق' },
+  { id:'d5', name:'ورشة الأخشاب الحديثة', cats:['carp','reno'], areas:['مطرح','مسقط','بوشر'], fee:6, rating:4.3, votes:17, now:false, hours:'8 الصبح – 6 المسا', phone:'90000005', note:'أبواب، خزائن، مطابخ، تصليح أثاث' },
+  { id:'d6', name:'ألوان صحار', cats:['paint','reno'], areas:['gov:شمال الباطنة'], fee:3, rating:4.7, votes:35, now:true, hours:'7 الصبح – 7 المسا', phone:'90000006', note:'صباغة داخلية وخارجية، جبس، ورق جدران' },
+  { id:'d7', name:'صلالة كول', cats:['ac','elec'], areas:['gov:ظفار'], fee:5, rating:4.5, votes:22, now:true, hours:'24 ساعة في الخريف', phone:'90000007', note:'' },
+  { id:'d8', name:'مفاتيح الأمان', cats:['lock'], areas:['gov:مسقط'], fee:7, rating:4.8, votes:54, now:true, hours:'24 ساعة', phone:'90000008', note:'فتح أبواب سيارات وبيوت، تبديل أقفال' },
+  { id:'d9', name:'نزوى للصيانة العامة', cats:['ac','plumb','elec','paint'], areas:['gov:الداخلية'], fee:4, rating:4.2, votes:19, now:false, hours:'7 الصبح – 10 الليل', phone:'90000009', note:'' },
+];
+
+const S = Object.assign({ cat:'ac', gov:'مسقط', area:'السيب', when:'now' }, store.get('kh-s', {}));
+let PROVIDERS = DEMO.concat(store.get('kh-mine', []));
+const covers = p => p.areas.includes(S.area) || p.areas.includes('gov:' + S.gov);
+const areaText = p => p.areas.map(a => a.startsWith('gov:') ? 'كل ' + a.slice(4) : a).join('، ');
+const ratingOf = p => { const mine = store.get('kh-rate', {})[p.id]; if(!mine) return { r:p.rating, v:p.votes }; const v = p.votes + 1; return { r:(p.rating * p.votes + mine) / v, v }; };
+const save = () => store.set('kh-s', S);
+
+/* step 1 */
+function drawCats(){ $('cats').replaceChildren(...CATS.map(([id, ic, n]) => el('button', { class:'cat', type:'button', 'aria-pressed':String(S.cat === id), onclick:() => { S.cat = id; save(); drawCats(); drawList(); } }, el('span', { text:ic }), n))); }
+/* step 2 */
+function drawGov(){
+  $('gov').replaceChildren(...Object.keys(GOV).map(g => el('option', { value:g, text:g, selected:g === S.gov })));
+  if(!GOV[S.gov].includes(S.area)) S.area = GOV[S.gov][0];
+  $('area').replaceChildren(...GOV[S.gov].map(a => el('option', { value:a, text:a, selected:a === S.area })));
+}
+$('gov').onchange = () => { S.gov = $('gov').value; S.area = GOV[S.gov][0]; save(); drawGov(); drawList(); };
+$('area').onchange = () => { S.area = $('area').value; save(); drawList(); };
+/* step 3 */
+function drawWhen(){ $('when').replaceChildren(...WHEN.map(([id, n]) => el('button', { class:'chip', type:'button', 'aria-pressed':String(S.when === id), text:n, onclick:() => { S.when = id; save(); drawWhen(); } }))); }
+$('pic').onchange = () => { const f = $('pic').files[0]; if(!f) return; const r = new FileReader(); r.onload = () => { $('picPrev').src = r.result; $('picPrev').hidden = false; $('picHint').textContent = '✓ جاهزة. لما ينفتح الواتساب، أرفقها في المحادثة 📎'; }; r.readAsDataURL(f); };
+$('nowOnly').onchange = () => drawList();
+
+/* results */
+function drawList(){
+  const hidden = new Set(store.get('kh-hidden', []));
+  let L = PROVIDERS.filter(p => p.cats.includes(S.cat) && covers(p) && !hidden.has(p.id));
+  if($('nowOnly').checked) L = L.filter(p => p.now);
+  L.sort((a, b) => (b.now - a.now) || (ratingOf(b).r - ratingOf(a).r));
+  $('resTitle').textContent = catName(S.cat) + ' في ' + S.area + (L.length ? ' (' + L.length + ')' : '');
+  const box = $('list'); box.replaceChildren();
+  if(!L.length) box.append(el('div', { class:'empty', text:'ما فيه مقدّم خدمة مسجّل لـ«' + catName(S.cat) + '» في ' + S.area + ' حاليًا. جرّب ولاية قريبة، أو شيل فلتر «المتوفرين الحين».' }));
+  L.forEach((p, i) => {
+    const rt = ratingOf(p), init = p.name.replace(/^(مؤسسة|ورشة)\s+/, '').trim()[0];
+    box.append(el('article', { class:'card' + (p.now ? '' : ' busy') },
+      el('div', { class:'av', style:'background:' + TINT[i % TINT.length], text:init }),
+      el('h3', {}, p.name, el('span', { class:'pill cob', text:'✓ مرخّصة' }), p.now ? el('span', { class:'pill ok', text:'🟢 متوفر الحين' }) : el('span', { class:'pill amber', text:'مشغول' })),
+      el('div', { class:'fee' }, el('b', { class:'num', text:p.fee ? p.fee + ' ر.ع' : 'مجانًا' }), el('small', { text:'الكشفية' })),
+      el('div', { class:'meta' }, el('span', { class:'stars', text:'★ ' + rt.r.toFixed(1) }), ' (' + rt.v + ' تقييم) · ' + p.cats.map(catName).join('، ') + ' · يغطي: ' + areaText(p) + (p.hours ? ' · ' + p.hours : '') + (p.note ? ' · ' + p.note : '')),
+      el('div', { class:'acts' },
+        el('a', { class:'btn wa', href:waLink(p), target:'_blank', rel:'noopener', onclick:e => { e.currentTarget.href = waLink(p); setTimeout(() => askRate(p), 1500); } }, '💬 اطلب بالواتساب'),
+        el('span', { class:'sp' }),
+        el('button', { class:'linkb', type:'button', text:'⭐ قيّم', onclick:() => askRate(p) }),
+        el('button', { class:'linkb', type:'button', text:'🚩 إبلاغ', onclick:() => report(p) }),
+        el('button', { class:'linkb', type:'button', text:'🚫 إخفاء', onclick:() => { const h = store.get('kh-hidden', []); h.push(p.id); store.set('kh-hidden', h); drawList(); toast('انخفى ' + p.name); } }))));
+  });
+  if(hidden.size) box.append(el('button', { class:'linkb', type:'button', style:'align-self:center', text:'إظهار المخفيين (' + hidden.size + ')', onclick:() => { store.set('kh-hidden', []); drawList(); } }));
+}
+function waText(p){
+  const when = (WHEN.find(w => w[0] === S.when) || [, ''])[1].replace('🚨 ', '');
+  const body = ['• الخدمة: ' + catName(S.cat), '• المنطقة: ' + S.area + '، ' + S.gov, '• الوقت: ' + when];
+  if($('desc').value.trim()) body.push('• المشكلة: ' + $('desc').value.trim());
+  if(!$('picPrev').hidden) body.push('• بأرسل لكم صورة العطل الحين 📷');
+  return ['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰', '', ...body, '', 'كم الكشفية والوقت المتوقع للوصول؟'].join('\n');
+}
+function waLink(p){ return 'https://wa.me/' + normPhone(p.phone) + '?text=' + encodeURIComponent(waText(p)); }
+
+/* sheets */
+function sheet(build){ const s = el('div', { class:'scrim' }), b = el('div', { class:'sheet', role:'dialog', 'aria-modal':'true' }); const close = () => s.remove(); s.onclick = e => { if(e.target === s) close(); }; build(b, close); s.append(b); $('root').append(s); }
+function askRate(p){
+  const mine = store.get('kh-rate', {}); let v = mine[p.id] || 0;
+  sheet((b, close) => {
+    const stars = el('div', { class:'rate' });
+    const draw = () => stars.replaceChildren(...[1,2,3,4,5].map(n => el('button', { type:'button', class:n <= v ? 'on' : '', 'aria-label':n + ' نجوم', text:'★', onclick:() => { v = n; draw(); } })));
+    draw();
+    b.append(el('h3', { text:'كيف كانت خدمة ' + p.name + '؟' }), el('p', { class:'hint', style:'margin:0', text:'تقييمك يساعد غيرك يختار صح. قيّم بعد ما تخلص الخدمة.' }), stars,
+      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'بعدين', onclick:close }), el('button', { class:'btn', type:'button', text:'حفظ التقييم', onclick:() => { if(!v) return toast('اختار عدد النجوم'); mine[p.id] = v; store.set('kh-rate', mine); close(); drawList(); toast('شكرًا على تقييمك ⭐'); } })));
+  });
+}
+function report(p){
+  sheet((b, close) => {
+    const why = el('textarea', { class:'in', id:'repWhy', placeholder:'مثال: ما التزم بالموعد، سعر مبالغ فيه، رقم غلط…' });
+    b.append(el('h3', { text:'إبلاغ عن ' + p.name }), why, el('p', { class:'hint', style:'margin:0', text:'البلاغ يوصل لإدارة خدماتي على الواتساب، ونراجعه خلال 24 ساعة.' }),
+      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'إلغاء', onclick:close }),
+        el('a', { class:'btn', target:'_blank', rel:'noopener', href:'#', text:'أرسل البلاغ', onclick:e => { e.currentTarget.href = 'https://wa.me/96894005400?text=' + encodeURIComponent('🚩 بلاغ في خدماتي\n• المؤسسة: ' + p.name + '\n• السبب: ' + (why.value.trim() || 'بدون تفاصيل')); setTimeout(close, 300); } })));
+  });
+}
+function join(){
+  const pick = { cats:new Set(), areas:new Set() };
+  sheet((b, close) => {
+    const I = (id, ph, extra = {}) => el('input', { class:'in', id, placeholder:ph, ...extra });
+    const f = { name:I('jName', 'مثال: مؤسسة البرودة الذهبية'), cr:I('jCr', 'رقم السجل التجاري', { inputmode:'numeric', dir:'ltr' }), phone:I('jPhone', '9XXXXXXX', { inputmode:'tel', dir:'ltr' }), fee:I('jFee', '0 = مجانًا', { inputmode:'decimal' }), hours:I('jHours', 'مثال: 7 الصبح – 10 الليل'), note:I('jNote', 'شو تسوون بالضبط؟') };
+    const fld = (l, i) => el('div', { class:'field' }, el('label', { for:i.id, text:l }), i);
+    const catBox = el('div', { class:'multi' }, CATS.map(([id, ic, n]) => el('button', { class:'chip', type:'button', 'aria-pressed':'false', text:ic + ' ' + n, onclick:e => { pick.cats.has(id) ? pick.cats.delete(id) : pick.cats.add(id); e.currentTarget.setAttribute('aria-pressed', String(pick.cats.has(id))); } })));
+    const gsel = el('select', { class:'in', id:'jGov' }, Object.keys(GOV).map(g => el('option', { value:g, text:g })));
+    const areaBox = el('div', { class:'multi' });
+    const drawAreas = () => areaBox.replaceChildren(...['gov:' + gsel.value, ...GOV[gsel.value]].map(a => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.areas.has(a)), text:a.startsWith('gov:') ? 'كل ' + a.slice(4) : a, onclick:e => { pick.areas.has(a) ? pick.areas.delete(a) : pick.areas.add(a); e.currentTarget.setAttribute('aria-pressed', String(pick.areas.has(a))); } })));
+    gsel.onchange = drawAreas; drawAreas();
+    b.append(el('h3', { text:'🧰 سجّل مؤسستك' }), el('p', { class:'hint', style:'margin:0', text:'التسجيل للمؤسسات المرخّصة بس. بعد التسجيل تظهر للزبائن في ولاياتك على طول.' }),
+      fld('اسم المؤسسة', f.name), el('div', { class:'row2' }, fld('السجل التجاري', f.cr), fld('رقم الواتساب', f.phone)),
+      el('div', { class:'field' }, el('label', { text:'الخدمات اللي تقدمونها' }), catBox),
+      el('div', { class:'field' }, el('label', { for:'jGov', text:'المحافظة والولايات اللي توصلونها' }), gsel, areaBox),
+      el('div', { class:'row2' }, fld('الكشفية (ر.ع)', f.fee), fld('أوقات الدوام', f.hours)), fld('ملاحظة (اختياري)', f.note),
+      el('p', { class:'hint', style:'margin:0', text:'بالتسجيل تأكد إن بياناتك صحيحة، وإن أي مخالفة أو بلاغات متكررة تؤدي لحذف المؤسسة.' }),
+      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'إلغاء', onclick:close }), el('button', { class:'btn', type:'button', text:'سجّل وابدأ', onclick:() => {
+        if(!f.name.value.trim()) return toast('اكتب اسم المؤسسة');
+        if(f.cr.value.replace(/\D/g, '').length < 5) return toast('اكتب رقم السجل التجاري');
+        if(normPhone(f.phone.value).length < 11) return toast('رقم الواتساب لازم 8 أرقام');
+        if(!pick.cats.size) return toast('اختار خدمة وحدة على الأقل');
+        if(!pick.areas.size) return toast('اختار ولاية وحدة على الأقل');
+        const p = { id:'m' + Date.now(), name:f.name.value.trim(), cats:[...pick.cats], areas:[...pick.areas], fee:parseFloat(f.fee.value) || 0, rating:5, votes:0, now:true, hours:f.hours.value.trim(), phone:f.phone.value.trim(), note:f.note.value.trim(), cr:f.cr.value.trim() };
+        const mine = store.get('kh-mine', []); mine.push(p); store.set('kh-mine', mine); PROVIDERS = DEMO.concat(mine);
+        close(); S.cat = p.cats[0]; const a = p.areas[0]; if(a.startsWith('gov:')){ S.gov = a.slice(4); S.area = GOV[S.gov][0]; } else { S.gov = Object.keys(GOV).find(g => GOV[g].includes(a)); S.area = a; }
+        save(); drawCats(); drawGov(); drawList(); toast('تم ✅ مؤسستك ظاهرة الحين للزبائن'); window.scrollTo({ top:$('list').offsetTop - 80, behavior:'smooth' }); } })));
+  });
+}
+$('joinBtn').onclick = join; $('joinTop').onclick = join;
+
+drawCats(); drawGov(); drawWhen(); drawList();
+</script>
