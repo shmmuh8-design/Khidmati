@@ -65,7 +65,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .linkb{border:0;background:none;padding:4px 2px;color:var(--muted);font-size:.8rem;text-decoration:underline;text-underline-offset:3px}
 
 .hero{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;box-shadow:var(--shadow)}
-.hero h1{font:800 clamp(1.5rem,5vw,2.1rem)/1.25 var(--display)}
+.hero h1{font:800 clamp(2.1rem,8vw,2.9rem)/1.2 var(--display)}
 .hero p{margin:6px 0 0;color:var(--muted)}
 .hero .art{width:118px;height:118px;max-width:100%}
 .facts{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:.82rem;color:var(--muted)}
@@ -155,7 +155,7 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
 
   <section class="hero">
     <div>
-      <h1 data-t="h1">فنّي لين باب بيتك، الحين</h1>
+      <h1 data-t="h1">فنّي إلى باب بيتك</h1>
       <p data-t="lead">مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.</p>
       <div class="facts"><span data-t="f1">✓ مؤسسات مرخّصة بسجل تجاري</span><span data-t="f2">⭐ تقييمات من الزبائن</span><span data-t="f3">💬 بدون وسيط</span></div>
     </div>
@@ -197,7 +197,7 @@ const CONTACT = window.KH_CONTACT || 'design.omani1@gmail.com';
 let LANG = store.get('kh-lang', '') || ((navigator.language || 'ar').toLowerCase().startsWith('ar') ? 'ar' : 'en');
 const T = {
   brand:['خدماتي','Khidmati'], joinTop:['🧰 أنا مقدّم خدمة','🧰 I’m a provider'],
-  h1:['فنّي لين باب بيتك، الحين','A technician at your door, now'],
+  h1:['فنّي إلى باب بيتك','A technician to your door'],
   lead:['مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.','AC broken? Water leaking? Pick the service and your area, then call the nearest licensed maintenance company directly.'],
   f1:['✓ مؤسسات مرخّصة بسجل تجاري','✓ Licensed companies (CR)'], f2:['⭐ تقييمات من الزبائن','⭐ Customer ratings'], f3:['💬 بدون وسيط','💬 No middleman'],
   s1:['شو تحتاج؟','What do you need?'], s2:['وين؟','Where?'], s3:['اشرح المشكلة','Describe the problem'], opt:['(اختياري)','(optional)'],
