@@ -122,7 +122,7 @@ function paint(){
     if(r.reports) h.append(mk('span', 'pill bad', '🚩 ' + r.reports));
     const line = (k, v, node) => { const x = mk('div', 'row'); x.append(mk('b', '', k + ': '), node || document.createTextNode(v)); return x; };
     const tel = mk('a', 'tel', '+' + r.phone); tel.href = 'tel:+' + r.phone;
-    a.append(h, line('الجوال', '', tel), line('السجل التجاري', r.cr), line('الخدمات', r.cats.map(c => CATS[c] || c).join('، ')), line('المناطق', areaText(r.areas)),
+    a.append(h, line('الجوال', '', tel), line('السجل التجاري', r.cr), ...(r.email ? [line('الإيميل', r.email)] : []), line('الخدمات', r.cats.map(c => CATS[c] || c).join('، ')), line('المناطق', areaText(r.areas)),
       line('ينتهي', fDate(r.active_until)), line('التقييم', r.votes ? '★ ' + (+r.rating).toFixed(1) + ' (' + r.votes + ')' : 'ما فيه'), line('سجّل', fDate(r.created_at)));
     const acts = mk('div', 'acts');
     const btn = (txt, cls, fn) => { const b = mk('button', 'btn ' + cls, txt); b.type = 'button'; b.onclick = async () => { b.disabled = true; try{ await fn(b); await load(); }catch(e){ if(e.message !== '-') toast(e.message); } b.disabled = false; }; acts.append(b); };

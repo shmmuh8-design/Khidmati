@@ -219,7 +219,7 @@ const T = {
   favEmpty:['ما عندك مؤسسات في المفضلة. اضغط «☆ حفظ» تحت أي مؤسسة.','No favorites yet. Tap “☆ Save” under any company.'],
   histEmpty:['ما تواصلت مع أي مؤسسة للحين. أي مؤسسة تتصل فيها أو تراسلها بتطلع هنا.','You haven’t contacted anyone yet. Companies you call or message will show here.'],
   histClear:['امسح السجل','Clear history'], close:['إغلاق','Close'], gone:['(ما عادت ظاهرة)','(no longer listed)'],
-  via_call:['اتصال','Call'], via_sms:['رسالة','SMS'], via_wa:['واتساب','WhatsApp'],
+  via_call:['اتصال','Call'], via_sms:['رسالة','SMS'], via_wa:['واتساب','WhatsApp'], via_mail:['إيميل','Email'],
   rateQ:n => (LANG === 'ar' ? 'كيف كانت خدمة ' : 'How was ') + n + (LANG === 'ar' ? '؟' : '’s service?'), rateHint:['تقييمك يساعد غيرك يختار صح. قيّم بعد ما تخلص الخدمة.','Your rating helps others choose. Rate after the job is done.'],
   later:['بعدين','Later'], saveRate:['حفظ التقييم','Save rating'], pickStars:['اختار عدد النجوم','Pick the number of stars'], thanksRate:['شكرًا على تقييمك ⭐','Thanks for rating ⭐'],
   repH:n => (LANG === 'ar' ? 'إبلاغ عن ' : 'Report ') + n, repPh:['مثال: ما التزم بالموعد، سعر مبالغ فيه، رقم غلط…','e.g. missed the appointment, overpriced, wrong number…'], repHint:['البلاغ يوصل لإدارة خدماتي ونراجعه خلال 24 ساعة. وتقدر تخفي المؤسسة عندك بزر «إخفاء».','Reports go to the Khidmati team and are reviewed within 24 hours. You can also hide the company with “Hide”.'],
@@ -228,7 +228,7 @@ const T = {
   // provider
   pHome:['🧰 أنا مقدّم خدمة','🧰 I’m a service provider'], pHomeP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company and customers in your areas call you directly. '],
   pNew:['سجّل مؤسستك (جديد)','List your company (new)'], pLogin:['مسجّل من قبل؟ ادخل','Already listed? Log in'],
-  fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'],
+  fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'], fEmail:['الإيميل (اختياري)','Email (optional)'], eEmail:['الإيميل مو صحيح','That email doesn’t look right'], mail:['📧 إيميل','📧 Email'], subj:['طلب خدمة من تطبيق خدماتي','Service request via Khidmati'],
   fCats:['الخدمات اللي تقدمونها','Services you offer'], fAreas:['المحافظة والولايات اللي توصلونها (تقدر تختار من أكثر من محافظة)','Governorate and wilayats you cover (you can pick from several governorates)'],
   fFee:['رسوم الفحص (ر.ع)','Inspection fee (OMR)'], fFeePh:['0 = مجانًا','0 = free'], fHours:['أوقات الدوام','Working hours'], fHoursPh:['مثال: 7 الصبح – 10 الليل','e.g. 7am – 10pm'], fNote:['ملاحظة (اختياري)','Note (optional)'], fNotePh:['شو تسوون بالضبط؟','What exactly do you do?'],
   picked:['المختار: ','Selected: '], regH:['🧰 سجّل مؤسستك','🧰 List your company'], editH:['✏️ عدّل بيانات مؤسستك','✏️ Edit your company'],
@@ -293,7 +293,7 @@ async function refresh(){
 /* ---------------- المفضلة وطلباتي (محفوظة في الجوال) ---------------- */
 let FAV = store.get('kh-fav', []);    // [{id,name,phone,cats,areas}]
 let HIST = store.get('kh-hist', []);  // [{id,name,phone,cat,area,via,at}]
-const snap = p => ({ id:p.id, name:p.name, phone:p.phone, cats:p.cats, areas:p.areas });
+const snap = p => ({ id:p.id, name:p.name, phone:p.phone, email:p.email || null, cats:p.cats, areas:p.areas });
 const isFav = id => FAV.some(f => f.id === id);
 function toggleFav(p){
   if(isFav(p.id)){ FAV = FAV.filter(f => f.id !== p.id); toast(t('favDel')); }
@@ -343,6 +343,7 @@ function contactBtns(p, after){
     el('a', { class:'btn call', href:'tel:+' + normPhone(p.phone), onclick:() => { logContact(p, 'call'); if(after) after(); } }, t('call')),
     el('a', { class:'btn ghost', href:'#', onclick:e => { e.currentTarget.href = smsLink(p); logContact(p, 'sms'); if(after) after(); } }, t('sms')),
     el('a', { class:'btn wa', href:'#', target:'_blank', rel:'noopener', onclick:e => { e.currentTarget.href = waLink(p); logContact(p, 'wa'); if(after) after(); } }, t('wa')),
+    p.email ? el('a', { class:'btn ghost', href:'#', onclick:e => { e.currentTarget.href = 'mailto:' + p.email + '?subject=' + encodeURIComponent(t('subj')) + '&body=' + encodeURIComponent(msgText()); logContact(p, 'mail'); if(after) after(); } }, t('mail')) : null,
   ];
 }
 
@@ -442,9 +443,9 @@ const fld = (l, i) => el('div', { class:'field' }, el('label', { for:i.id, text:
 function providerForm(b, close, acct){
   const pick = { cats:new Set(acct ? acct.cats : []), areas:new Set(acct ? acct.areas : []) };
   const I = (id, ph, extra = {}) => el('input', { class:'in', id, placeholder:ph, ...extra });
-  const f = { name:I('jName', t('fNamePh'), { maxlength:70 }), cr:I('jCr', t('fCrPh'), { inputmode:'numeric', dir:'ltr', maxlength:12 }), phone:I('jPhone', '9XXXXXXX', { inputmode:'tel', dir:'ltr', maxlength:15 }),
+  const f = { name:I('jName', t('fNamePh'), { maxlength:70 }), cr:I('jCr', t('fCrPh'), { inputmode:'numeric', dir:'ltr', maxlength:12 }), phone:I('jPhone', '9XXXXXXX', { inputmode:'tel', dir:'ltr', maxlength:15 }), email:I('jEmail', 'name@example.com', { type:'email', inputmode:'email', dir:'ltr', maxlength:120, autocomplete:'email', autocapitalize:'off' }),
     fee:I('jFee', t('fFeePh'), { inputmode:'decimal' }), hours:I('jHours', t('fHoursPh'), { maxlength:60 }), note:I('jNote', t('fNotePh'), { maxlength:160 }) };
-  if(acct){ f.name.value = acct.name; f.cr.value = acct.cr; f.cr.disabled = true; f.phone.value = String(acct.phone).replace(/^968/, ''); f.phone.disabled = true; f.fee.value = +acct.fee || ''; f.hours.value = acct.hours || ''; f.note.value = acct.note || ''; }
+  if(acct){ f.name.value = acct.name; f.cr.value = acct.cr; f.cr.disabled = true; f.phone.value = String(acct.phone).replace(/^968/, ''); f.phone.disabled = true; f.fee.value = +acct.fee || ''; f.email.value = acct.email || ''; f.hours.value = acct.hours || ''; f.note.value = acct.note || ''; }
   const catBox = el('div', { class:'multi' }, CATS.map(([id, ic]) => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.cats.has(id)), text:ic + ' ' + catName(id), onclick:e => { pick.cats.has(id) ? pick.cats.delete(id) : pick.cats.add(id); e.currentTarget.setAttribute('aria-pressed', String(pick.cats.has(id))); } })));
   const first = [...pick.areas][0], g0 = first ? (first.startsWith('gov:') ? first.slice(4) : Object.keys(GOV).find(g => GOV[g].includes(first))) : 'مسقط';
   const gsel = el('select', { class:'in', id:'jGov' }, Object.keys(GOV).map(g => el('option', { value:g, text:place(g), selected:g === g0 })));
@@ -455,7 +456,7 @@ function providerForm(b, close, acct){
   gsel.onchange = drawAreas; drawAreas();
   b.append(el('h3', { text:t(acct ? 'editH' : 'regH') }));
   if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:t('regP') + t(NATIVE ? 'trialApp' : 'trialWeb') }));
-  b.append(fld(t('fName'), f.name), el('div', { class:'row2' }, fld(t('fCr'), f.cr), fld(t('fPhone'), f.phone)),
+  b.append(fld(t('fName'), f.name), el('div', { class:'row2' }, fld(t('fCr'), f.cr), fld(t('fPhone'), f.phone)), fld(t('fEmail'), f.email),
     el('div', { class:'field' }, el('label', { text:t('fCats') }), catBox),
     el('div', { class:'field' }, el('label', { for:'jGov', text:t('fAreas') }), gsel, areaBox, picked),
     el('div', { class:'row2' }, fld(t('fFee'), f.fee), fld(t('fHours'), f.hours)), fld(t('fNote'), f.note));
@@ -467,15 +468,17 @@ function providerForm(b, close, acct){
     if(f.name.value.trim().length < 2) return toast(t('eName'));
     if(!acct && !/^\d{4,12}$/.test(cr)) return toast(t('eCr'));
     if(!acct && !/^968[79]\d{7}$/.test(phone)) return toast(t('ePhone'));
+    const email = f.email.value.trim().toLowerCase();
+    if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return toast(t('eEmail'));
     if(!pick.cats.size) return toast(t('eCats'));
     if(!pick.areas.size) return toast(t('eAreas'));
     go.disabled = true;
     try{
       if(acct){
-        await rpc('kh_update', { p_phone:ME.phone, p_code:ME.code, p_name:f.name.value.trim(), p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim(), p_available:acct.available });
+        await rpc('kh_update', { p_phone:ME.phone, p_code:ME.code, p_name:f.name.value.trim(), p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim(), p_available:acct.available, p_email:email });
         toast(t('saved2')); refresh(); dashboard();
       } else {
-        const r = await rpc('kh_register', { p_name:f.name.value.trim(), p_cr:cr, p_phone:phone, p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim() });
+        const r = await rpc('kh_register', { p_name:f.name.value.trim(), p_cr:cr, p_phone:phone, p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim(), p_email:email });
         ME = { phone, code:r.code }; store.set('kh-me', ME);
         S.cat = [...pick.cats][0]; const a = [...pick.areas][0]; if(a.startsWith('gov:')){ S.gov = a.slice(4); S.area = GOV[S.gov][0]; } else { S.gov = Object.keys(GOV).find(g => GOV[g].includes(a)); S.area = a; }
         save(); drawCats(); drawGov(); refresh(); showCode(r.code);
@@ -531,7 +534,7 @@ async function dashboard(){
     av.onchange = async () => { try{ A = await rpc('kh_set_available', { p_phone:ME.phone, p_code:ME.code, p_available:av.checked }); toast(t(av.checked ? 'nowAvail' : 'nowBusy')); refresh(); }catch(e){ toast(e.message); av.checked = !av.checked; } };
     b.append(el('h3', { text:'🧰 ' + A.name }), st,
       el('label', { class:'sw' }, el('span', { text:t('availSw') }), av),
-      el('p', { class:'hint', style:'margin:0', text:t('myRate', (+A.rating).toFixed(1), A.votes) + t('svcs') + A.cats.map(catName).join(LANG === 'ar' ? '، ' : ', ') + ' · ' + t('covers') + areaText(A) }),
+      el('p', { class:'hint', style:'margin:0', text:t('myRate', (+A.rating).toFixed(1), A.votes) + (A.email ? ' · ✉️ ' + A.email : '') + t('svcs') + A.cats.map(catName).join(LANG === 'ar' ? '، ' : ', ') + ' · ' + t('covers') + areaText(A) }),
       el('div', { class:'end', style:'justify-content:stretch' },
         el('button', { class:'btn soft', type:'button', style:'flex:1', text:t('edit'), onclick:() => sheet((b2, c2) => providerForm(b2, c2, A)) }),
         el('button', { class:'btn ghost', type:'button', style:'flex:1', text:t('close'), onclick:close })),
