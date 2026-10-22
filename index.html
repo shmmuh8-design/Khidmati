@@ -43,6 +43,15 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .logo{display:flex;align-items:center;gap:8px;font:800 1.35rem var(--display);color:var(--cobalt)}
 .logo svg{width:34px;height:34px}
 .top .sp{flex:1}
+.btn.ico{padding:7px 10px;min-width:40px}
+.btn.fav{background:none;border:0;padding:4px 2px;font-size:.8rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.btn.fav.on{color:var(--star);text-decoration:none;font-weight:700}
+.hrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.hrow:first-of-type{border-top:0}
+.hrow b{display:block}
+.hrow .meta{font-size:.78rem}
+.hrow .mini{display:flex;gap:6px}
+.hrow .mini .btn{padding:7px 10px}
 .demo{font-size:.72rem;font-weight:700;background:var(--amber-soft);color:var(--amber);padding:2px 9px;border-radius:999px}
 .btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;background:var(--cobalt);color:var(--cobalt-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
 .btn.ghost{background:var(--surface);color:var(--fg);border:1px solid var(--line)}
@@ -128,37 +137,41 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
 
 <div class="wrap">
   <header class="top">
-    <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M38.5 15a10 10 0 0 0-9.3 13.6L15.8 42a3.6 3.6 0 0 0 5.1 5.1l13.4-13.4A10 10 0 0 0 47.9 24l-6 6-5.4-1-1-5.4 6-6a10 10 0 0 0-3-2.6z" fill="#fff"/></svg>خدماتي</div>
+    <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M38.5 15a10 10 0 0 0-9.3 13.6L15.8 42a3.6 3.6 0 0 0 5.1 5.1l13.4-13.4A10 10 0 0 0 47.9 24l-6 6-5.4-1-1-5.4 6-6a10 10 0 0 0-3-2.6z" fill="#fff"/></svg><span data-t="brand">خدماتي</span></div>
     <span class="sp"></span>
-    <button class="btn ghost sm" id="joinTop" type="button">🧰 أنا مقدّم خدمة</button>
+    <button class="btn ghost sm ico" id="favTop" type="button" aria-label="المفضلة">⭐ <span id="favN" class="num"></span></button>
+    <button class="btn ghost sm ico" id="histTop" type="button" aria-label="طلباتي">📋 <span id="histN" class="num"></span></button>
+    <button class="btn ghost sm ico" id="langBtn" type="button" lang="en">EN</button>
+  </header>
+  <div style="display:flex;justify-content:flex-end;margin:-4px 0 10px"><button class="btn ghost sm" id="joinTop" type="button" data-t="joinTop">🧰 أنا مقدّم خدمة</button></div>
   </header>
 
   <section class="hero">
     <div>
-      <h1>فنّي لين باب بيتك، الحين</h1>
-      <p>مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.</p>
-      <div class="facts"><span>✓ <b>مؤسسات مرخّصة</b> بسجل تجاري</span><span>⭐ <b>تقييمات</b> من الزبائن</span><span>💬 <b>بدون وسيط</b></span></div>
+      <h1 data-t="h1">فنّي لين باب بيتك، الحين</h1>
+      <p data-t="lead">مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.</p>
+      <div class="facts"><span data-t="f1">✓ مؤسسات مرخّصة بسجل تجاري</span><span data-t="f2">⭐ تقييمات من الزبائن</span><span data-t="f3">💬 بدون وسيط</span></div>
     </div>
     <svg class="art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="var(--cobalt-soft)"/><rect x="30" y="38" width="60" height="22" rx="6" fill="var(--surface)" stroke="var(--cobalt)" stroke-width="3"/><path d="M38 52h44" stroke="var(--cobalt)" stroke-width="3" stroke-linecap="round"/><path d="M44 66c0 6-4 8-4 14M60 66c0 6-4 8-4 14M76 66c0 6-4 8-4 14" stroke="var(--cobalt)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/><circle cx="84" cy="44" r="3" fill="var(--amber)"/></svg>
   </section>
 
-  <section class="step"><h2><i>1</i>شو تحتاج؟</h2><div class="cats" id="cats"></div></section>
+  <section class="step"><h2><i>1</i><span data-t="s1">شو تحتاج؟</span></h2><div class="cats" id="cats"></div></section>
 
-  <section class="step"><h2><i>2</i>وين؟</h2>
+  <section class="step"><h2><i>2</i><span data-t="s2">وين؟</span></h2>
     <div class="row2"><select class="in" id="gov" aria-label="المحافظة"></select><select class="in" id="area" aria-label="الولاية"></select></div>
   </section>
 
-  <section class="step"><h2><i>3</i>اشرح المشكلة <span class="hint" style="font-weight:400">(اختياري)</span></h2>
-    <textarea class="in" id="desc" placeholder="مثال: المكيف في غرفة النوم يشتغل بس ما يبرّد، ويطلع منه صوت"></textarea>
+  <section class="step"><h2><i>3</i><span data-t="s3">اشرح المشكلة</span> <span class="hint" style="font-weight:400" data-t="opt">(اختياري)</span></h2>
+    <textarea class="in" id="desc" data-tp="descPh" aria-label="وصف المشكلة" placeholder="مثال: المكيف في غرفة النوم يشتغل بس ما يبرّد، ويطلع منه صوت"></textarea>
     <div class="chips" id="when" style="margin-top:10px"></div>
-    <div class="photo"><label class="btn ghost sm" for="pic">📷 صورة العطل</label><input type="file" id="pic" accept="image/*" hidden><img id="picPrev" alt="" hidden><span class="hint" id="picHint">الصورة ترسلها بعدين في المحادثة نفسها.</span></div>
+    <div class="photo"><label class="btn ghost sm" for="pic" data-t="pic">📷 صورة العطل</label><input type="file" id="pic" accept="image/*" hidden><img id="picPrev" alt="" hidden><span class="hint" id="picHint" data-t="picHint">الصورة ترسلها بعدين في المحادثة نفسها.</span></div>
   </section>
 
-  <div class="reshead"><h2 id="resTitle">مقدّمو الخدمة</h2><label class="toggle"><input type="checkbox" id="nowOnly"> 🟢 المتوفرين الحين بس</label></div>
+  <div class="reshead"><h2 id="resTitle">مقدّمو الخدمة</h2><label class="toggle"><input type="checkbox" id="nowOnly"> <span data-t="nowOnly">🟢 المتوفرين الحين بس</span></label></div>
   <div class="list" id="list"></div>
 
-  <section class="join"><div><h3>عندك مؤسسة صيانة؟</h3><p>سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة. <b id="trialLine">أول شهر مجاني.</b> التسجيل للمؤسسات المرخّصة بسجل تجاري.</p></div><button class="btn" id="joinBtn" type="button">سجّل مؤسستك</button></section>
-  <footer>خدماتي · سلطنة عُمان · © سالم الجابري — <a href="privacy.html" style="color:inherit">الخصوصية والشروط</a></footer>
+  <section class="join"><div><h3 data-t="joinH">عندك مؤسسة صيانة؟</h3><p><span data-t="joinP">سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.</span> <b id="trialLine"></b> <span data-t="joinP2">التسجيل للمؤسسات المرخّصة بسجل تجاري.</span></p></div><button class="btn" id="joinBtn" type="button" data-t="joinBtn">سجّل مؤسستك</button></section>
+  <footer><span data-t="foot">خدماتي · سلطنة عُمان · © سالم الجابري</span> — <a href="privacy.html" style="color:inherit" data-t="privacy">الخصوصية والشروط</a></footer>
 </div>
 <div class="toast" id="toast"></div>
 <div id="root"></div>
@@ -168,15 +181,83 @@ const $ = id => document.getElementById(id);
 const el = (t, a = {}, ...k) => { const e = document.createElement(t); for(const [x, v] of Object.entries(a)){ if(x === 'class') e.className = v; else if(x === 'text') e.textContent = v; else if(x.startsWith('on')) e[x] = v; else if(v !== false && v != null) e.setAttribute(x, v === true ? '' : v); } k.flat().forEach(c => c != null && e.append(c)); return e; };
 const store = { get(k, d){ try{ const v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; }catch(e){ return d; } }, set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} } };
 function toast(t){ const e = $('toast'); e.textContent = t; e.classList.add('show'); clearTimeout(e._t); e._t = setTimeout(() => e.classList.remove('show'), 2800); }
-const normPhone = p => { let d = String(p || '').replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/\D/g, ''); if(d.startsWith('00')) d = d.slice(2); if(/^[79]\d{7}$/.test(d)) d = '968' + d; return d; };
+const digits = v => String(v || '').replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c));
+const normPhone = p => { let d = digits(p).replace(/\D/g, ''); if(d.startsWith('00')) d = d.slice(2); if(/^[79]\d{7}$/.test(d)) d = '968' + d; return d; };
 const Cap = window.Capacitor, NATIVE = !!(Cap && Cap.isNativePlatform && Cap.isNativePlatform());
 const CONTACT = window.KH_CONTACT || 'design.omani1@gmail.com';
-const fDate = new Intl.DateTimeFormat('ar-u-nu-latn', { day:'numeric', month:'long', year:'numeric' });
+
+/* ---------------- اللغة / Language ---------------- */
+let LANG = store.get('kh-lang', '') || ((navigator.language || 'ar').toLowerCase().startsWith('ar') ? 'ar' : 'en');
+const T = {
+  brand:['خدماتي','Khidmati'], joinTop:['🧰 أنا مقدّم خدمة','🧰 I’m a provider'],
+  h1:['فنّي لين باب بيتك، الحين','A technician at your door, now'],
+  lead:['مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.','AC broken? Water leaking? Pick the service and your area, then call the nearest licensed maintenance company directly.'],
+  f1:['✓ مؤسسات مرخّصة بسجل تجاري','✓ Licensed companies (CR)'], f2:['⭐ تقييمات من الزبائن','⭐ Customer ratings'], f3:['💬 بدون وسيط','💬 No middleman'],
+  s1:['شو تحتاج؟','What do you need?'], s2:['وين؟','Where?'], s3:['اشرح المشكلة','Describe the problem'], opt:['(اختياري)','(optional)'],
+  descPh:['مثال: المكيف في غرفة النوم يشتغل بس ما يبرّد، ويطلع منه صوت','e.g. The bedroom AC runs but doesn’t cool, and it makes a noise'],
+  pic:['📷 صورة العطل','📷 Photo of the issue'], picHint:['الصورة ترسلها بعدين في المحادثة نفسها.','You send the photo yourself in the chat.'], picReady:['✓ جاهزة. أرفقها في المحادثة لما تراسل المؤسسة 📎','✓ Ready. Attach it in the chat when you message the company 📎'],
+  nowOnly:['🟢 المتوفرين الحين بس','🟢 Available now only'],
+  joinH:['عندك مؤسسة صيانة؟','Own a maintenance company?'], joinP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.','List your company and customers in your areas call you directly.'], joinP2:['التسجيل للمؤسسات المرخّصة بسجل تجاري.','For licensed companies with a Commercial Registration.'], joinBtn:['سجّل مؤسستك','List your company'],
+  trialWeb:['أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.','First month free, then OMR 1.900/month.'], trialApp:['أول شهر مجاني.','First month free.'],
+  foot:['خدماتي · سلطنة عُمان · © سالم الجابري','Khidmati · Sultanate of Oman · © Salem Aljabri'], privacy:['الخصوصية والشروط','Privacy & Terms'],
+  gov:['المحافظة','Governorate'], area:['الولاية','Wilayat'], fav:['المفضلة','Favorites'], hist:['طلباتي','My requests'],
+  when_now:['🚨 الحين','🚨 Now'], when_today:['اليوم','Today'], when_later:['موعد لاحق','Later'],
+  loading:['جاري التحميل…','Loading…'], retry:['حاول مرة ثانية','Try again'], inArea:[' في ',' in '],
+  none:(c, a, f) => LANG === 'ar' ? 'ما فيه مؤسسة مسجّلة لـ«' + c + '» في ' + a + ' حاليًا. جرّب ولاية قريبة' + (f ? '، أو شيل فلتر «المتوفرين الحين»' : '') + '. وإذا تعرف مؤسسة صيانة، قل لها تسجّل في خدماتي 🙏' : 'No company is listed for “' + c + '” in ' + a + ' yet. Try a nearby wilayat' + (f ? ' or turn off “Available now”' : '') + '. Know a maintenance company? Tell them to join Khidmati 🙏',
+  cr:['✓ سجل تجاري','✓ CR verified'], avail:['🟢 متوفر الحين','🟢 Available'], busy:['مشغول','Busy'], free:['مجانًا','Free'], omr:[' ر.ع',' OMR'], fee:['الكشفية','Visit fee'], newP:['جديد','New'],
+  ratings:[' تقييم',' ratings'], covers:['يغطي: ','Covers: '], all:['كل ','All '],
+  call:['📞 اتصال','📞 Call'], sms:['✉️ رسالة','✉️ SMS'], wa:['💬 واتساب','💬 WhatsApp'], rate:['⭐ قيّم','⭐ Rate'], report:['🚩 إبلاغ','🚩 Report'], hide:['🚫 إخفاء','🚫 Hide'],
+  save:['☆ حفظ','☆ Save'], saved:['★ محفوظة','★ Saved'], hidden:n => (LANG === 'ar' ? 'إظهار المخفيين (' : 'Show hidden (') + n + ')', hiddenT:['انخفى ','Hidden: '],
+  favAdd:['انحفظت في المفضلة ⭐','Saved to favorites ⭐'], favDel:['انشالت من المفضلة','Removed from favorites'],
+  favEmpty:['ما عندك مؤسسات في المفضلة. اضغط «☆ حفظ» تحت أي مؤسسة.','No favorites yet. Tap “☆ Save” under any company.'],
+  histEmpty:['ما تواصلت مع أي مؤسسة للحين. أي مؤسسة تتصل فيها أو تراسلها بتطلع هنا.','You haven’t contacted anyone yet. Companies you call or message will show here.'],
+  histClear:['امسح السجل','Clear history'], close:['إغلاق','Close'], gone:['(ما عادت ظاهرة)','(no longer listed)'],
+  via_call:['اتصال','Call'], via_sms:['رسالة','SMS'], via_wa:['واتساب','WhatsApp'],
+  rateQ:n => (LANG === 'ar' ? 'كيف كانت خدمة ' : 'How was ') + n + (LANG === 'ar' ? '؟' : '’s service?'), rateHint:['تقييمك يساعد غيرك يختار صح. قيّم بعد ما تخلص الخدمة.','Your rating helps others choose. Rate after the job is done.'],
+  later:['بعدين','Later'], saveRate:['حفظ التقييم','Save rating'], pickStars:['اختار عدد النجوم','Pick the number of stars'], thanksRate:['شكرًا على تقييمك ⭐','Thanks for rating ⭐'],
+  repH:n => (LANG === 'ar' ? 'إبلاغ عن ' : 'Report ') + n, repPh:['مثال: ما التزم بالموعد، سعر مبالغ فيه، رقم غلط…','e.g. missed the appointment, overpriced, wrong number…'], repHint:['البلاغ يوصل لإدارة خدماتي ونراجعه خلال 24 ساعة. وتقدر تخفي المؤسسة عندك بزر «إخفاء».','Reports go to the Khidmati team and are reviewed within 24 hours. You can also hide the company with “Hide”.'],
+  cancel:['إلغاء','Cancel'], send:['أرسل البلاغ','Send report'], repOk:['وصل البلاغ، شكرًا لك 🙏','Report received, thank you 🙏'], noDetails:['بدون تفاصيل','No details'],
+  msgHi:['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰','Hello, I need a service via the Khidmati app 🧰'], msgSvc:['• الخدمة: ','• Service: '], msgArea:['• المنطقة: ','• Area: '], msgWhen:['• الوقت: ','• When: '], msgProb:['• المشكلة: ','• Problem: '], msgPic:['• بأرسل لكم صورة العطل الحين 📷','• I’ll send you a photo of the issue now 📷'], msgAsk:['كم الكشفية والوقت المتوقع للوصول؟','What’s the visit fee and your estimated arrival time?'],
+  // provider
+  pHome:['🧰 أنا مقدّم خدمة','🧰 I’m a service provider'], pHomeP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company and customers in your areas call you directly. '],
+  pNew:['سجّل مؤسستك (جديد)','List your company (new)'], pLogin:['مسجّل من قبل؟ ادخل','Already listed? Log in'],
+  fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'],
+  fCats:['الخدمات اللي تقدمونها','Services you offer'], fAreas:['المحافظة والولايات اللي توصلونها (تقدر تختار من أكثر من محافظة)','Governorate and wilayats you cover (you can pick from several governorates)'],
+  fFee:['الكشفية (ر.ع)','Visit fee (OMR)'], fFeePh:['0 = مجانًا','0 = free'], fHours:['أوقات الدوام','Working hours'], fHoursPh:['مثال: 7 الصبح – 10 الليل','e.g. 7am – 10pm'], fNote:['ملاحظة (اختياري)','Note (optional)'], fNotePh:['شو تسوون بالضبط؟','What exactly do you do?'],
+  picked:['المختار: ','Selected: '], regH:['🧰 سجّل مؤسستك','🧰 List your company'], editH:['✏️ عدّل بيانات مؤسستك','✏️ Edit your company'],
+  regP:['التسجيل للمؤسسات المرخّصة بس. بعد التسجيل تظهر للزبائن في ولاياتك على طول. ','Licensed companies only. Once listed, you appear to customers in your wilayats right away. '],
+  regTerms:['بالتسجيل تأكد إن بياناتك صحيحة، وإن البلاغات المتكررة أو أي مخالفة تؤدي لإيقاف المؤسسة. ما تحتاج واتساب ولا أي تطبيق ثاني.','By registering you confirm your details are correct; repeated reports or any violation lead to suspension. No WhatsApp or other app needed.'],
+  saveBtn:['حفظ','Save'], regBtn:['سجّل وابدأ','Register & start'],
+  eName:['اكتب اسم المؤسسة','Enter the company name'], eCr:['اكتب رقم السجل التجاري (أرقام بس)','Enter the CR number (digits only)'], ePhone:['رقم الجوال لازم 8 أرقام ويبدأ بـ 9 أو 7','Mobile must be 8 digits starting with 9 or 7'], eCats:['اختار خدمة وحدة على الأقل','Pick at least one service'], eAreas:['اختار ولاية وحدة على الأقل','Pick at least one wilayat'],
+  saved2:['انحفظ ✅','Saved ✅'], codeH:['🎉 تم التسجيل! مؤسستك ظاهرة الحين','🎉 Done! Your company is now listed'], codeP:['هذا رمز الدخول حقك. احفظه (صوّر الشاشة أو انسخه)، تحتاجه لو غيّرت جوالك أو حذفت التطبيق:','This is your login code. Save it (screenshot or copy) — you’ll need it on a new phone or after reinstalling:'],
+  copy:['📋 نسخ الرمز','📋 Copy code'], copied:['انسخ الرمز ✅','Code copied ✅'], copyFail:['حدده وانسخه يدوي','Select and copy it manually'], gotIt:['حفظته، كمّل','Saved it, continue'],
+  loginH:['🔑 دخول مقدّم الخدمة','🔑 Provider login'], code:['رمز الدخول','Login code'], forgot:['نسيت الرمز؟ راسل الإدارة: ','Forgot your code? Email: '], back:['رجوع','Back'], login:['دخول','Log in'], eLogin:['اكتب الرقم والرمز صح','Enter a valid number and code'],
+  stBlocked:['⛔ مؤسستك موقوفة بسبب بلاغات. للمراجعة راسل الإدارة: ','⛔ Your company is suspended due to reports. Contact: '],
+  stExpired:t => LANG === 'ar' ? '⛔ انتهى ' + (t ? 'الشهر المجاني' : 'اشتراكك') + '، ومؤسستك مخفية عن الزبائن. للتجديد تواصل مع إدارة خدماتي: ' : '⛔ Your ' + (t ? 'free month' : 'subscription') + ' has ended and your company is hidden. To renew, contact Khidmati: ',
+  stTrial:(d, u) => LANG === 'ar' ? '🎁 شهرك المجاني: باقي ' + d + ' يوم (لين ' + u + ')' : '🎁 Free month: ' + d + ' days left (until ' + u + ')',
+  stPaid:(d, u) => LANG === 'ar' ? '✅ اشتراكك فعّال لين ' + u + ' (باقي ' + d + ' يوم)' : '✅ Active until ' + u + ' (' + d + ' days left)',
+  stRenew:['. للاستمرار تواصل مع الإدارة: ','. To continue, contact: '],
+  availSw:['🟢 متوفر الحين لاستقبال الطلبات','🟢 Available for requests now'], nowAvail:['🟢 صرت متوفر','🟢 You’re available'], nowBusy:['صرت «مشغول»','You’re now “Busy”'],
+  myRate:(r, v) => v ? (LANG === 'ar' ? '⭐ تقييمك ' + r + ' من ' + v + ' تقييم' : '⭐ Rated ' + r + ' from ' + v + ' ratings') : (LANG === 'ar' ? '⭐ ما عندك تقييمات للحين' : '⭐ No ratings yet'),
+  svcs:[' · الخدمات: ',' · Services: '], edit:['✏️ عدّل البيانات','✏️ Edit details'], logout:['تسجيل خروج','Log out'], logoutSure:['متأكد؟ بتحتاج رمز الدخول ترجع','Sure? You’ll need your code to return'], loggedOut:['طلعت من حسابك','Logged out'],
+  del:['🗑️ حذف حسابي نهائيًا','🗑️ Delete my account'], delSure:['اضغط مرة ثانية للتأكيد','Tap again to confirm'], deleted:['انحذف حسابك ✅','Your account was deleted ✅'],
+  nativeOnly:['هذي تشتغل في التطبيق','Works in the app only'],
+};
+const t = (k, ...a) => { const v = T[k]; if(typeof v === 'function') return v(...a); return v ? v[LANG === 'ar' ? 0 : 1] : k; };
+const fDate = d => new Intl.DateTimeFormat(LANG === 'ar' ? 'ar-u-nu-latn' : 'en-GB', { day:'numeric', month:'long', year:'numeric' }).format(d);
+const fShort = d => new Intl.DateTimeFormat(LANG === 'ar' ? 'ar-u-nu-latn' : 'en-GB', { day:'numeric', month:'short', hour:'numeric', minute:'2-digit' }).format(d);
 
 const GOV = {"مسقط": ["مسقط", "مطرح", "بوشر", "السيب", "العامرات", "قريات"], "ظفار": ["صلالة", "طاقة", "مرباط", "رخيوت", "ثمريت", "ضلكوت", "المزيونة", "مقشن", "شليم وجزر الحلانيات", "سدح"], "مسندم": ["خصب", "دبا", "بخا", "مدحاء"], "البريمي": ["البريمي", "محضة", "السنينة"], "الداخلية": ["نزوى", "بهلاء", "منح", "الحمراء", "أدم", "إزكي", "سمائل", "بدبد", "الجبل الأخضر"], "شمال الباطنة": ["صحار", "شناص", "لوى", "صحم", "الخابورة", "السويق"], "جنوب الباطنة": ["الرستاق", "العوابي", "نخل", "وادي المعاول", "بركاء", "المصنعة"], "جنوب الشرقية": ["صور", "الكامل والوافي", "جعلان بني بو حسن", "جعلان بني بو علي", "مصيرة"], "شمال الشرقية": ["إبراء", "المضيبي", "بدية", "القابل", "وادي بني خالد", "دماء والطائيين"], "الظاهرة": ["عبري", "ينقل", "ضنك"], "الوسطى": ["هيماء", "محوت", "الدقم", "الجازر"]};
-const CATS = [ ['ac','❄️','مكيفات'], ['elec','⚡','كهرباء'], ['plumb','🚿','سباكة'], ['carp','🪚','نجارة'], ['paint','🎨','صباغة'], ['clean','🧹','تنظيف'], ['pest','🐜','مكافحة حشرات'], ['sat','📡','ستلايت وكاميرات'], ['lock','🔑','أقفال'], ['reno','🏗️','ترميم'] ];
-const catName = id => (CATS.find(c => c[0] === id) || [, , id])[2];
-const WHEN = [ ['now','🚨 الحين'], ['today','اليوم'], ['later','موعد لاحق'] ];
+const EN = {"مسقط":"Muscat","ظفار":"Dhofar","مسندم":"Musandam","البريمي":"Al Buraimi","الداخلية":"Ad Dakhiliyah","شمال الباطنة":"North Al Batinah","جنوب الباطنة":"South Al Batinah","جنوب الشرقية":"South Ash Sharqiyah","شمال الشرقية":"North Ash Sharqiyah","الظاهرة":"Ad Dhahirah","الوسطى":"Al Wusta",
+  "مطرح":"Muttrah","بوشر":"Bawshar","السيب":"Seeb","العامرات":"Al Amerat","قريات":"Qurayyat","صلالة":"Salalah","طاقة":"Taqah","مرباط":"Mirbat","رخيوت":"Rakhyut","ثمريت":"Thumrait","ضلكوت":"Dhalkut","المزيونة":"Al Mazyunah","مقشن":"Muqshin","شليم وجزر الحلانيات":"Shalim & Hallaniyat Islands","سدح":"Sadah",
+  "خصب":"Khasab","دبا":"Dibba","بخا":"Bukha","مدحاء":"Madha","محضة":"Mahdah","السنينة":"As Sunaynah","نزوى":"Nizwa","بهلاء":"Bahla","منح":"Manah","الحمراء":"Al Hamra","أدم":"Adam","إزكي":"Izki","سمائل":"Samail","بدبد":"Bidbid","الجبل الأخضر":"Al Jabal Al Akhdar",
+  "صحار":"Sohar","شناص":"Shinas","لوى":"Liwa","صحم":"Saham","الخابورة":"Al Khaburah","السويق":"As Suwaiq","الرستاق":"Rustaq","العوابي":"Al Awabi","نخل":"Nakhal","وادي المعاول":"Wadi Al Maawil","بركاء":"Barka","المصنعة":"Al Musannah",
+  "صور":"Sur","الكامل والوافي":"Al Kamil Wal Wafi","جعلان بني بو حسن":"Jaalan Bani Bu Hassan","جعلان بني بو علي":"Jaalan Bani Bu Ali","مصيرة":"Masirah","إبراء":"Ibra","المضيبي":"Al Mudhaibi","بدية":"Bidiyah","القابل":"Al Qabil","وادي بني خالد":"Wadi Bani Khalid","دماء والطائيين":"Dima Wa At Tayyin",
+  "عبري":"Ibri","ينقل":"Yanqul","ضنك":"Dhank","هيماء":"Haima","محوت":"Mahout","الدقم":"Duqm","الجازر":"Al Jazir"};
+const place = a => LANG === 'ar' ? a : (EN[a] || a);
+const CATS = [ ['ac','❄️','مكيفات','AC'], ['elec','⚡','كهرباء','Electrical'], ['plumb','🚿','سباكة','Plumbing'], ['carp','🪚','نجارة','Carpentry'], ['paint','🎨','صباغة','Painting'], ['clean','🧹','تنظيف','Cleaning'], ['pest','🐜','مكافحة حشرات','Pest control'], ['sat','📡','ستلايت وكاميرات','Satellite & CCTV'], ['lock','🔑','أقفال','Locksmith'], ['reno','🏗️','ترميم','Renovation'] ];
+const catName = id => { const c = CATS.find(c => c[0] === id); return c ? c[LANG === 'ar' ? 2 : 3] : id; };
+const WHEN = ['now','today','later'];
 const TINT = ['#1d56c9','#1f7a4a','#b86e00','#7a3fb8','#b4313b','#0f7d8c'];
 
 /* ---------------- Supabase ---------------- */
@@ -184,9 +265,9 @@ const SB = window.KH_SB || {};
 async function rpc(fn, args){
   let r;
   try{ r = await fetch(SB.url + '/rest/v1/rpc/' + fn, { method:'POST', headers:{ apikey:SB.key, 'Content-Type':'application/json' }, body:JSON.stringify(args || {}) }); }
-  catch(e){ throw new Error('ما فيه اتصال بالإنترنت، حاول مرة ثانية'); }
-  const t = await r.text(); let j = null; try{ j = t ? JSON.parse(t) : null; }catch(e){}
-  if(!r.ok) throw new Error((j && j.message) || 'صار خطأ، حاول مرة ثانية');
+  catch(e){ throw new Error(LANG === 'ar' ? 'ما فيه اتصال بالإنترنت، حاول مرة ثانية' : 'No internet connection, please try again'); }
+  const tx = await r.text(); let j = null; try{ j = tx ? JSON.parse(tx) : null; }catch(e){}
+  if(!r.ok) throw new Error((j && j.message) || (LANG === 'ar' ? 'صار خطأ، حاول مرة ثانية' : 'Something went wrong, please try again'));
   return j;
 }
 const DEVICE = (() => { let d = store.get('kh-device', ''); if(!d){ const a = new Uint8Array(12); crypto.getRandomValues(a); d = Array.from(a, b => b.toString(16).padStart(2, '0')).join(''); store.set('kh-device', d); } return d; })();
@@ -194,7 +275,7 @@ const DEVICE = (() => { let d = store.get('kh-device', ''); if(!d){ const a = ne
 const S = Object.assign({ cat:'ac', gov:'مسقط', area:'السيب', when:'now' }, store.get('kh-s', {}));
 let PROVIDERS = [], LOADED = false, LOAD_ERR = '';
 const covers = p => p.areas.includes(S.area) || p.areas.includes('gov:' + S.gov);
-const areaText = p => p.areas.map(a => a.startsWith('gov:') ? 'كل ' + a.slice(4) : a).join('، ');
+const areaText = p => p.areas.map(a => a.startsWith('gov:') ? t('all') + place(a.slice(4)) : place(a)).join(LANG === 'ar' ? '، ' : ', ');
 const save = () => store.set('kh-s', S);
 async function refresh(){
   try{ PROVIDERS = (await rpc('kh_list')) || []; LOAD_ERR = ''; }
@@ -202,84 +283,149 @@ async function refresh(){
   LOADED = true; drawList();
 }
 
+/* ---------------- المفضلة وطلباتي (محفوظة في الجوال) ---------------- */
+let FAV = store.get('kh-fav', []);    // [{id,name,phone,cats,areas}]
+let HIST = store.get('kh-hist', []);  // [{id,name,phone,cat,area,via,at}]
+const snap = p => ({ id:p.id, name:p.name, phone:p.phone, cats:p.cats, areas:p.areas });
+const isFav = id => FAV.some(f => f.id === id);
+function toggleFav(p){
+  if(isFav(p.id)){ FAV = FAV.filter(f => f.id !== p.id); toast(t('favDel')); }
+  else { FAV.unshift(snap(p)); toast(t('favAdd')); }
+  store.set('kh-fav', FAV); drawCounts(); drawList();
+}
+function logContact(p, via){
+  HIST = [{ ...snap(p), cat:S.cat, area:S.area, via, at:Date.now() }, ...HIST.filter(h => !(h.id === p.id && Date.now() - h.at < 6e4))].slice(0, 40);
+  store.set('kh-hist', HIST); drawCounts();
+}
+function drawCounts(){ $('favN').textContent = FAV.length || ''; $('histN').textContent = HIST.length || ''; }
+
+/* ---------------- static texts ---------------- */
+function applyLang(){
+  document.documentElement.lang = LANG; document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr';
+  document.title = t('brand');
+  document.querySelectorAll('[data-t]').forEach(e => { e.textContent = t(e.dataset.t); });
+  document.querySelectorAll('[data-tp]').forEach(e => { e.placeholder = t(e.dataset.tp); });
+  $('langBtn').textContent = LANG === 'ar' ? 'EN' : 'ع'; $('langBtn').lang = LANG === 'ar' ? 'en' : 'ar';
+  $('langBtn').setAttribute('aria-label', LANG === 'ar' ? 'English' : 'العربية');
+  $('favTop').setAttribute('aria-label', t('fav')); $('histTop').setAttribute('aria-label', t('hist'));
+  $('gov').setAttribute('aria-label', t('gov')); $('area').setAttribute('aria-label', t('area')); $('desc').setAttribute('aria-label', t('s3'));
+  $('trialLine').textContent = t(NATIVE ? 'trialApp' : 'trialWeb');
+  if(!$('picPrev').hidden) $('picHint').textContent = t('picReady');
+  drawCats(); drawGov(); drawWhen(); drawList();
+}
+$('langBtn').onclick = () => { LANG = LANG === 'ar' ? 'en' : 'ar'; store.set('kh-lang', LANG); applyLang(); };
+
 /* step 1 */
-function drawCats(){ $('cats').replaceChildren(...CATS.map(([id, ic, n]) => el('button', { class:'cat', type:'button', 'aria-pressed':String(S.cat === id), onclick:() => { S.cat = id; save(); drawCats(); drawList(); } }, el('span', { text:ic }), n))); }
+function drawCats(){ $('cats').replaceChildren(...CATS.map(([id, ic]) => el('button', { class:'cat', type:'button', 'aria-pressed':String(S.cat === id), onclick:() => { S.cat = id; save(); drawCats(); drawList(); } }, el('span', { text:ic }), catName(id)))); }
 /* step 2 */
 function drawGov(){
-  $('gov').replaceChildren(...Object.keys(GOV).map(g => el('option', { value:g, text:g, selected:g === S.gov })));
   if(!GOV[S.gov]) S.gov = 'مسقط';
   if(!GOV[S.gov].includes(S.area)) S.area = GOV[S.gov][0];
-  $('area').replaceChildren(...GOV[S.gov].map(a => el('option', { value:a, text:a, selected:a === S.area })));
+  $('gov').replaceChildren(...Object.keys(GOV).map(g => el('option', { value:g, text:place(g), selected:g === S.gov })));
+  $('area').replaceChildren(...GOV[S.gov].map(a => el('option', { value:a, text:place(a), selected:a === S.area })));
 }
 $('gov').onchange = () => { S.gov = $('gov').value; S.area = GOV[S.gov][0]; save(); drawGov(); drawList(); };
 $('area').onchange = () => { S.area = $('area').value; save(); drawList(); };
 /* step 3 */
-function drawWhen(){ $('when').replaceChildren(...WHEN.map(([id, n]) => el('button', { class:'chip', type:'button', 'aria-pressed':String(S.when === id), text:n, onclick:() => { S.when = id; save(); drawWhen(); } }))); }
-$('pic').onchange = () => { const f = $('pic').files[0]; if(!f) return; const r = new FileReader(); r.onload = () => { $('picPrev').src = r.result; $('picPrev').hidden = false; $('picHint').textContent = '✓ جاهزة. أرفقها في المحادثة لما تراسل المؤسسة 📎'; }; r.readAsDataURL(f); };
+function drawWhen(){ $('when').replaceChildren(...WHEN.map(id => el('button', { class:'chip', type:'button', 'aria-pressed':String(S.when === id), text:t('when_' + id), onclick:() => { S.when = id; save(); drawWhen(); } }))); }
+$('pic').onchange = () => { const f = $('pic').files[0]; if(!f) return; const r = new FileReader(); r.onload = () => { $('picPrev').src = r.result; $('picPrev').hidden = false; $('picHint').textContent = t('picReady'); }; r.readAsDataURL(f); };
 $('nowOnly').onchange = () => drawList();
+
+/* contact buttons (shared by results, favorites, history) */
+function contactBtns(p, after){
+  return [
+    el('a', { class:'btn call', href:'tel:+' + normPhone(p.phone), onclick:() => { logContact(p, 'call'); if(after) after(); } }, t('call')),
+    el('a', { class:'btn ghost', href:'#', onclick:e => { e.currentTarget.href = smsLink(p); logContact(p, 'sms'); if(after) after(); } }, t('sms')),
+    el('a', { class:'btn wa', href:'#', target:'_blank', rel:'noopener', onclick:e => { e.currentTarget.href = waLink(p); logContact(p, 'wa'); if(after) after(); } }, t('wa')),
+  ];
+}
 
 /* results */
 function drawList(){
   const box = $('list'); box.replaceChildren();
-  if(!LOADED){ $('resTitle').textContent = catName(S.cat) + ' في ' + S.area; box.append(el('div', { class:'empty', text:'جاري التحميل…' })); return; }
-  if(LOAD_ERR){ box.append(el('div', { class:'empty' }, LOAD_ERR + ' ', el('button', { class:'linkb', type:'button', text:'حاول مرة ثانية', onclick:refresh }))); return; }
+  $('resTitle').textContent = catName(S.cat) + t('inArea') + place(S.area);
+  if(!LOADED){ box.append(el('div', { class:'empty', text:t('loading') })); return; }
+  if(LOAD_ERR){ box.append(el('div', { class:'empty' }, LOAD_ERR + ' ', el('button', { class:'linkb', type:'button', text:t('retry'), onclick:refresh }))); return; }
   const hidden = new Set(store.get('kh-hidden', []));
   let L = PROVIDERS.filter(p => p.cats.includes(S.cat) && covers(p) && !hidden.has(p.id));
   if($('nowOnly').checked) L = L.filter(p => p.available);
-  L.sort((a, b) => (b.available - a.available) || (b.rating - a.rating) || (b.votes - a.votes));
-  $('resTitle').textContent = catName(S.cat) + ' في ' + S.area + (L.length ? ' (' + L.length + ')' : '');
-  if(!L.length) box.append(el('div', { class:'empty', text:'ما فيه مؤسسة مسجّلة لـ«' + catName(S.cat) + '» في ' + S.area + ' حاليًا. جرّب ولاية قريبة' + ($('nowOnly').checked ? '، أو شيل فلتر «المتوفرين الحين»' : '') + '. وإذا تعرف مؤسسة صيانة، قل لها تسجّل في خدماتي 🙏' }));
+  L.sort((a, b) => (b.available - a.available) || (isFav(b.id) - isFav(a.id)) || (b.rating - a.rating) || (b.votes - a.votes));
+  if(L.length) $('resTitle').textContent += ' (' + L.length + ')';
+  if(!L.length) box.append(el('div', { class:'empty', text:t('none', catName(S.cat), place(S.area), $('nowOnly').checked) }));
   L.forEach((p, i) => {
-    const init = p.name.replace(/^(مؤسسة|ورشة|شركة)\s+/, '').trim().replace(/^ال(?=\S\S)/, '')[0] || '؟', fee = +p.fee;
+    const init = p.name.replace(/^(مؤسسة|ورشة|شركة)\s+/, '').trim().replace(/^ال(?=\S\S)/, '')[0] || '؟', fee = +p.fee, fv = isFav(p.id);
     box.append(el('article', { class:'card' + (p.available ? '' : ' busy') },
       el('div', { class:'av', style:'background:' + TINT[i % TINT.length], text:init }),
-      el('h3', {}, p.name, el('span', { class:'pill cob', text:'✓ سجل تجاري' }), p.available ? el('span', { class:'pill ok', text:'🟢 متوفر الحين' }) : el('span', { class:'pill amber', text:'مشغول' })),
-      el('div', { class:'fee' }, el('b', { class:'num', text:fee ? fee + ' ر.ع' : 'مجانًا' }), el('small', { text:'الكشفية' })),
-      el('div', { class:'meta' }, p.votes ? el('span', { class:'stars', text:'★ ' + (+p.rating).toFixed(1) }) : el('span', { class:'pill cob', text:'جديد' }), (p.votes ? ' (' + p.votes + ' تقييم)' : '') + ' · ' + p.cats.map(catName).join('، ') + ' · يغطي: ' + areaText(p) + (p.hours ? ' · ' + p.hours : '') + (p.note ? ' · ' + p.note : '')),
+      el('h3', {}, p.name, el('span', { class:'pill cob', text:t('cr') }), p.available ? el('span', { class:'pill ok', text:t('avail') }) : el('span', { class:'pill amber', text:t('busy') })),
+      el('div', { class:'fee' }, el('b', { class:'num', text:fee ? fee + t('omr') : t('free') }), el('small', { text:t('fee') })),
+      el('div', { class:'meta' }, p.votes ? el('span', { class:'stars', text:'★ ' + (+p.rating).toFixed(1) }) : el('span', { class:'pill cob', text:t('newP') }), (p.votes ? ' (' + p.votes + t('ratings') + ')' : '') + ' · ' + p.cats.map(catName).join(LANG === 'ar' ? '، ' : ', ') + ' · ' + t('covers') + areaText(p) + (p.hours ? ' · ' + p.hours : '') + (p.note ? ' · ' + p.note : '')),
       el('div', { class:'acts' },
-        el('a', { class:'btn call', href:'tel:+' + normPhone(p.phone), onclick:() => setTimeout(() => askRate(p), 2500) }, '📞 اتصال'),
-        el('a', { class:'btn ghost', href:'#', onclick:e => { e.currentTarget.href = smsLink(p); setTimeout(() => askRate(p), 2500); } }, '✉️ رسالة'),
-        el('a', { class:'btn wa', href:'#', target:'_blank', rel:'noopener', onclick:e => { e.currentTarget.href = waLink(p); setTimeout(() => askRate(p), 2500); } }, '💬 واتساب'),
+        ...contactBtns(p, () => setTimeout(() => askRate(p), 2500)),
         el('span', { class:'sp' }),
-        el('button', { class:'linkb', type:'button', text:'⭐ قيّم', onclick:() => askRate(p) }),
-        el('button', { class:'linkb', type:'button', text:'🚩 إبلاغ', onclick:() => report(p) }),
-        el('button', { class:'linkb', type:'button', text:'🚫 إخفاء', onclick:() => { const h = store.get('kh-hidden', []); h.push(p.id); store.set('kh-hidden', h); drawList(); toast('انخفى ' + p.name); } }))));
+        el('button', { class:'btn fav' + (fv ? ' on' : ''), type:'button', 'aria-pressed':String(fv), text:t(fv ? 'saved' : 'save'), onclick:() => toggleFav(p) }),
+        el('button', { class:'linkb', type:'button', text:t('rate'), onclick:() => askRate(p) }),
+        el('button', { class:'linkb', type:'button', text:t('report'), onclick:() => report(p) }),
+        el('button', { class:'linkb', type:'button', text:t('hide'), onclick:() => { const h = store.get('kh-hidden', []); h.push(p.id); store.set('kh-hidden', h); drawList(); toast(t('hiddenT') + p.name); } }))));
   });
-  if(hidden.size) box.append(el('button', { class:'linkb', type:'button', style:'align-self:center', text:'إظهار المخفيين (' + hidden.size + ')', onclick:() => { store.set('kh-hidden', []); drawList(); } }));
+  if(hidden.size) box.append(el('button', { class:'linkb', type:'button', style:'align-self:center', text:t('hidden', hidden.size), onclick:() => { store.set('kh-hidden', []); drawList(); } }));
 }
 function msgText(){
-  const when = (WHEN.find(w => w[0] === S.when) || [, ''])[1].replace('🚨 ', '');
-  const body = ['• الخدمة: ' + catName(S.cat), '• المنطقة: ' + S.area + '، ' + S.gov, '• الوقت: ' + when];
-  if($('desc').value.trim()) body.push('• المشكلة: ' + $('desc').value.trim());
-  if(!$('picPrev').hidden) body.push('• بأرسل لكم صورة العطل الحين 📷');
-  return ['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰', '', ...body, '', 'كم الكشفية والوقت المتوقع للوصول؟'].join('\n');
+  const body = [t('msgSvc') + catName(S.cat), t('msgArea') + place(S.area) + (LANG === 'ar' ? '، ' : ', ') + place(S.gov), t('msgWhen') + t('when_' + S.when).replace('🚨 ', '')];
+  if($('desc').value.trim()) body.push(t('msgProb') + $('desc').value.trim());
+  if(!$('picPrev').hidden) body.push(t('msgPic'));
+  return [t('msgHi'), '', ...body, '', t('msgAsk')].join('\n');
 }
 function waLink(p){ return 'https://wa.me/' + normPhone(p.phone) + '?text=' + encodeURIComponent(msgText()); }
 function smsLink(p){ return 'sms:+' + normPhone(p.phone) + '&body=' + encodeURIComponent(msgText()); }
 
 /* sheets */
 function sheet(build){ const s = el('div', { class:'scrim' }), b = el('div', { class:'sheet', role:'dialog', 'aria-modal':'true' }); const close = () => s.remove(); s.onclick = e => { if(e.target === s) close(); }; build(b, close); s.append(b); $('root').replaceChildren(s); return close; }
+function listSheet(kind){
+  sheet((b, close) => {
+    const rows = kind === 'fav' ? FAV : HIST;
+    b.append(el('h3', { text:(kind === 'fav' ? '⭐ ' + t('fav') : '📋 ' + t('hist')) }));
+    if(!rows.length) b.append(el('p', { class:'hint', style:'margin:0', text:t(kind === 'fav' ? 'favEmpty' : 'histEmpty') }));
+    const box = el('div');
+    rows.forEach(r => {
+      const live = PROVIDERS.find(p => p.id === r.id), p = live || r;
+      const meta = kind === 'fav' ? p.cats.map(catName).join(LANG === 'ar' ? '، ' : ', ') + ' · ' + areaText(p)
+        : catName(r.cat) + ' · ' + place(r.area) + ' · ' + t('via_' + r.via) + ' · ' + fShort(new Date(r.at));
+      box.append(el('div', { class:'hrow' },
+        el('div', {}, el('b', { text:p.name }), el('div', { class:'meta', text:meta + (LOADED && !LOAD_ERR && !live ? ' ' + t('gone') : '') })),
+        el('div', { class:'mini' }, contactBtns(p, close)[0], kind === 'fav'
+          ? el('button', { class:'btn ghost', type:'button', 'aria-label':t('favDel'), text:'✕', onclick:() => { toggleFav(p); listSheet('fav'); } })
+          : contactBtns(p, close)[2])));
+    });
+    b.append(box);
+    const end = el('div', { class:'end' });
+    if(kind === 'hist' && rows.length) end.append(el('button', { class:'btn ghost', type:'button', text:t('histClear'), onclick:e => { const x = e.currentTarget; if(!x.dataset.sure){ x.dataset.sure = 1; x.textContent = t('delSure'); return; } HIST = []; store.set('kh-hist', HIST); drawCounts(); close(); } }));
+    end.append(el('button', { class:'btn', type:'button', text:t('close'), onclick:close }));
+    b.append(end);
+  });
+}
+$('favTop').onclick = () => listSheet('fav'); $('histTop').onclick = () => listSheet('hist');
+
 function askRate(p){
   if($('root').firstChild) return;
   const mine = store.get('kh-rate', {}); let v = mine[p.id] || 0;
   sheet((b, close) => {
     const stars = el('div', { class:'rate' });
-    const draw = () => stars.replaceChildren(...[1,2,3,4,5].map(n => el('button', { type:'button', class:n <= v ? 'on' : '', 'aria-label':n + ' نجوم', text:'★', onclick:() => { v = n; draw(); } })));
+    const draw = () => stars.replaceChildren(...[1,2,3,4,5].map(n => el('button', { type:'button', class:n <= v ? 'on' : '', 'aria-label':n + ' ★', text:'★', onclick:() => { v = n; draw(); } })));
     draw();
-    b.append(el('h3', { text:'كيف كانت خدمة ' + p.name + '؟' }), el('p', { class:'hint', style:'margin:0', text:'تقييمك يساعد غيرك يختار صح. قيّم بعد ما تخلص الخدمة.' }), stars,
-      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'بعدين', onclick:close }), el('button', { class:'btn', type:'button', text:'حفظ التقييم', onclick:async () => {
-        if(!v) return toast('اختار عدد النجوم');
-        try{ await rpc('kh_rate', { p_id:p.id, p_device:DEVICE, p_stars:v }); mine[p.id] = v; store.set('kh-rate', mine); close(); toast('شكرًا على تقييمك ⭐'); refresh(); }
+    b.append(el('h3', { text:t('rateQ', p.name) }), el('p', { class:'hint', style:'margin:0', text:t('rateHint') }), stars,
+      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:t('later'), onclick:close }), el('button', { class:'btn', type:'button', text:t('saveRate'), onclick:async () => {
+        if(!v) return toast(t('pickStars'));
+        try{ await rpc('kh_rate', { p_id:p.id, p_device:DEVICE, p_stars:v }); mine[p.id] = v; store.set('kh-rate', mine); close(); toast(t('thanksRate')); refresh(); }
         catch(e){ toast(e.message); } } })));
   });
 }
 function report(p){
   sheet((b, close) => {
-    const why = el('textarea', { class:'in', placeholder:'مثال: ما التزم بالموعد، سعر مبالغ فيه، رقم غلط…', 'aria-label':'سبب البلاغ' });
-    b.append(el('h3', { text:'إبلاغ عن ' + p.name }), why, el('p', { class:'hint', style:'margin:0', text:'البلاغ يوصل لإدارة خدماتي ونراجعه خلال 24 ساعة. وتقدر تخفي المؤسسة عندك بزر «إخفاء».' }),
-      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'إلغاء', onclick:close }),
-        el('button', { class:'btn', type:'button', text:'أرسل البلاغ', onclick:async () => {
-          try{ await rpc('kh_report', { p_id:p.id, p_reason:why.value.trim() || 'بدون تفاصيل' }); close(); toast('وصل البلاغ، شكرًا لك 🙏'); }
+    const why = el('textarea', { class:'in', placeholder:t('repPh'), 'aria-label':t('report') });
+    b.append(el('h3', { text:t('repH', p.name) }), why, el('p', { class:'hint', style:'margin:0', text:t('repHint') }),
+      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:t('cancel'), onclick:close }),
+        el('button', { class:'btn', type:'button', text:t('send'), onclick:async () => {
+          try{ await rpc('kh_report', { p_id:p.id, p_reason:why.value.trim() || t('noDetails') }); close(); toast(t('repOk')); }
           catch(e){ toast(e.message); } } })));
   });
 }
@@ -290,39 +436,40 @@ const fld = (l, i) => el('div', { class:'field' }, el('label', { for:i.id, text:
 function providerForm(b, close, acct){
   const pick = { cats:new Set(acct ? acct.cats : []), areas:new Set(acct ? acct.areas : []) };
   const I = (id, ph, extra = {}) => el('input', { class:'in', id, placeholder:ph, ...extra });
-  const f = { name:I('jName', 'مثال: مؤسسة البرودة الذهبية', { maxlength:70 }), cr:I('jCr', 'رقم السجل التجاري', { inputmode:'numeric', dir:'ltr', maxlength:12 }), phone:I('jPhone', '9XXXXXXX', { inputmode:'tel', dir:'ltr', maxlength:15 }),
-    fee:I('jFee', '0 = مجانًا', { inputmode:'decimal' }), hours:I('jHours', 'مثال: 7 الصبح – 10 الليل', { maxlength:60 }), note:I('jNote', 'شو تسوون بالضبط؟', { maxlength:160 }) };
+  const f = { name:I('jName', t('fNamePh'), { maxlength:70 }), cr:I('jCr', t('fCrPh'), { inputmode:'numeric', dir:'ltr', maxlength:12 }), phone:I('jPhone', '9XXXXXXX', { inputmode:'tel', dir:'ltr', maxlength:15 }),
+    fee:I('jFee', t('fFeePh'), { inputmode:'decimal' }), hours:I('jHours', t('fHoursPh'), { maxlength:60 }), note:I('jNote', t('fNotePh'), { maxlength:160 }) };
   if(acct){ f.name.value = acct.name; f.cr.value = acct.cr; f.cr.disabled = true; f.phone.value = String(acct.phone).replace(/^968/, ''); f.phone.disabled = true; f.fee.value = +acct.fee || ''; f.hours.value = acct.hours || ''; f.note.value = acct.note || ''; }
-  const catBox = el('div', { class:'multi' }, CATS.map(([id, ic, n]) => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.cats.has(id)), text:ic + ' ' + n, onclick:e => { pick.cats.has(id) ? pick.cats.delete(id) : pick.cats.add(id); e.currentTarget.setAttribute('aria-pressed', String(pick.cats.has(id))); } })));
+  const catBox = el('div', { class:'multi' }, CATS.map(([id, ic]) => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.cats.has(id)), text:ic + ' ' + catName(id), onclick:e => { pick.cats.has(id) ? pick.cats.delete(id) : pick.cats.add(id); e.currentTarget.setAttribute('aria-pressed', String(pick.cats.has(id))); } })));
   const first = [...pick.areas][0], g0 = first ? (first.startsWith('gov:') ? first.slice(4) : Object.keys(GOV).find(g => GOV[g].includes(first))) : 'مسقط';
-  const gsel = el('select', { class:'in', id:'jGov' }, Object.keys(GOV).map(g => el('option', { value:g, text:g, selected:g === g0 })));
+  const gsel = el('select', { class:'in', id:'jGov' }, Object.keys(GOV).map(g => el('option', { value:g, text:place(g), selected:g === g0 })));
   const areaBox = el('div', { class:'multi' }), picked = el('p', { class:'hint', style:'margin:4px 0 0' });
-  const drawPicked = () => { picked.textContent = pick.areas.size ? 'المختار: ' + [...pick.areas].map(a => a.startsWith('gov:') ? 'كل ' + a.slice(4) : a).join('، ') : ''; };
-  const drawAreas = () => { areaBox.replaceChildren(...['gov:' + gsel.value, ...GOV[gsel.value]].map(a => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.areas.has(a)), text:a.startsWith('gov:') ? 'كل ' + a.slice(4) : a, onclick:e => { pick.areas.has(a) ? pick.areas.delete(a) : pick.areas.add(a); e.currentTarget.setAttribute('aria-pressed', String(pick.areas.has(a))); drawPicked(); } }))); drawPicked(); };
+  const nm = a => a.startsWith('gov:') ? t('all') + place(a.slice(4)) : place(a);
+  const drawPicked = () => { picked.textContent = pick.areas.size ? t('picked') + [...pick.areas].map(nm).join(LANG === 'ar' ? '، ' : ', ') : ''; };
+  const drawAreas = () => { areaBox.replaceChildren(...['gov:' + gsel.value, ...GOV[gsel.value]].map(a => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.areas.has(a)), text:nm(a), onclick:e => { pick.areas.has(a) ? pick.areas.delete(a) : pick.areas.add(a); e.currentTarget.setAttribute('aria-pressed', String(pick.areas.has(a))); drawPicked(); } }))); drawPicked(); };
   gsel.onchange = drawAreas; drawAreas();
-  b.append(el('h3', { text:acct ? '✏️ عدّل بيانات مؤسستك' : '🧰 سجّل مؤسستك' }));
-  if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:'التسجيل للمؤسسات المرخّصة بس. بعد التسجيل تظهر للزبائن في ولاياتك على طول. ' + (NATIVE ? 'أول شهر مجاني.' : 'أول شهر مجاني، وبعده الاشتراك 1.900 ر.ع شهريًا.') }));
-  b.append(fld('اسم المؤسسة', f.name), el('div', { class:'row2' }, fld('السجل التجاري', f.cr), fld('رقم الجوال', f.phone)),
-    el('div', { class:'field' }, el('label', { text:'الخدمات اللي تقدمونها' }), catBox),
-    el('div', { class:'field' }, el('label', { for:'jGov', text:'المحافظة والولايات اللي توصلونها (تقدر تختار من أكثر من محافظة)' }), gsel, areaBox, picked),
-    el('div', { class:'row2' }, fld('الكشفية (ر.ع)', f.fee), fld('أوقات الدوام', f.hours)), fld('ملاحظة (اختياري)', f.note));
-  if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:'بالتسجيل تأكد إن بياناتك صحيحة، وإن البلاغات المتكررة أو أي مخالفة تؤدي لإيقاف المؤسسة. ما تحتاج واتساب ولا أي تطبيق ثاني.' }));
-  const go = el('button', { class:'btn', type:'button', text:acct ? 'حفظ' : 'سجّل وابدأ' });
-  b.append(el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'إلغاء', onclick:() => acct ? dashboard() : close() }), go));
+  b.append(el('h3', { text:t(acct ? 'editH' : 'regH') }));
+  if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:t('regP') + t(NATIVE ? 'trialApp' : 'trialWeb') }));
+  b.append(fld(t('fName'), f.name), el('div', { class:'row2' }, fld(t('fCr'), f.cr), fld(t('fPhone'), f.phone)),
+    el('div', { class:'field' }, el('label', { text:t('fCats') }), catBox),
+    el('div', { class:'field' }, el('label', { for:'jGov', text:t('fAreas') }), gsel, areaBox, picked),
+    el('div', { class:'row2' }, fld(t('fFee'), f.fee), fld(t('fHours'), f.hours)), fld(t('fNote'), f.note));
+  if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:t('regTerms') }));
+  const go = el('button', { class:'btn', type:'button', text:t(acct ? 'saveBtn' : 'regBtn') });
+  b.append(el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:t('cancel'), onclick:() => acct ? dashboard() : close() }), go));
   go.onclick = async () => {
-    const phone = normPhone(f.phone.value), fee = parseFloat(String(f.fee.value).replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c))) || 0;
-    if(f.name.value.trim().length < 2) return toast('اكتب اسم المؤسسة');
-    if(!acct && !/^\d{4,12}$/.test(f.cr.value.replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).trim())) return toast('اكتب رقم السجل التجاري (أرقام بس)');
-    if(!/^968[79]\d{7}$/.test(phone) && !acct) return toast('رقم الجوال لازم 8 أرقام ويبدأ بـ 9 أو 7');
-    if(!pick.cats.size) return toast('اختار خدمة وحدة على الأقل');
-    if(!pick.areas.size) return toast('اختار ولاية وحدة على الأقل');
+    const phone = normPhone(f.phone.value), fee = parseFloat(digits(f.fee.value)) || 0, cr = digits(f.cr.value).trim();
+    if(f.name.value.trim().length < 2) return toast(t('eName'));
+    if(!acct && !/^\d{4,12}$/.test(cr)) return toast(t('eCr'));
+    if(!acct && !/^968[79]\d{7}$/.test(phone)) return toast(t('ePhone'));
+    if(!pick.cats.size) return toast(t('eCats'));
+    if(!pick.areas.size) return toast(t('eAreas'));
     go.disabled = true;
     try{
       if(acct){
         await rpc('kh_update', { p_phone:ME.phone, p_code:ME.code, p_name:f.name.value.trim(), p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim(), p_available:acct.available });
-        toast('انحفظ ✅'); refresh(); dashboard();
+        toast(t('saved2')); refresh(); dashboard();
       } else {
-        const r = await rpc('kh_register', { p_name:f.name.value.trim(), p_cr:f.cr.value.replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).trim(), p_phone:phone, p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim() });
+        const r = await rpc('kh_register', { p_name:f.name.value.trim(), p_cr:cr, p_phone:phone, p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim() });
         ME = { phone, code:r.code }; store.set('kh-me', ME);
         S.cat = [...pick.cats][0]; const a = [...pick.areas][0]; if(a.startsWith('gov:')){ S.gov = a.slice(4); S.area = GOV[S.gov][0]; } else { S.gov = Object.keys(GOV).find(g => GOV[g].includes(a)); S.area = a; }
         save(); drawCats(); drawGov(); refresh(); showCode(r.code);
@@ -331,24 +478,22 @@ function providerForm(b, close, acct){
   };
 }
 function showCode(code){
-  sheet((b, close) => {
-    b.append(el('h3', { text:'🎉 تم التسجيل! مؤسستك ظاهرة الحين' }),
-      el('p', { style:'margin:0', text:'هذا رمز الدخول حقك. احفظه (صوّر الشاشة أو انسخه)، تحتاجه لو غيّرت جوالك أو حذفت التطبيق:' }),
-      el('div', { class:'code', text:code }),
-      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'📋 نسخ الرمز', onclick:() => navigator.clipboard?.writeText(code).then(() => toast('انسخ الرمز ✅'), () => toast('حدده وانسخه يدوي')) }),
-        el('button', { class:'btn', type:'button', text:'حفظته، كمّل', onclick:() => dashboard() })));
+  sheet(b => {
+    b.append(el('h3', { text:t('codeH') }), el('p', { style:'margin:0', text:t('codeP') }), el('div', { class:'code', text:code }),
+      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:t('copy'), onclick:() => navigator.clipboard?.writeText(code).then(() => toast(t('copied')), () => toast(t('copyFail'))) }),
+        el('button', { class:'btn', type:'button', text:t('gotIt'), onclick:() => dashboard() })));
   });
 }
 function loginSheet(){
-  sheet((b, close) => {
-    const ph = el('input', { class:'in', id:'lPhone', placeholder:'9XXXXXXX', inputmode:'tel', dir:'ltr' }), cd = el('input', { class:'in', id:'lCode', placeholder:'مثال: 8E7B9F24', dir:'ltr', autocapitalize:'characters', autocomplete:'off' });
-    const go = el('button', { class:'btn', type:'button', text:'دخول' });
-    b.append(el('h3', { text:'🔑 دخول مقدّم الخدمة' }), fld('رقم الجوال', ph), fld('رمز الدخول', cd),
-      el('p', { class:'hint', style:'margin:0', text:'نسيت الرمز؟ راسل الإدارة: ' + CONTACT }),
-      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:'رجوع', onclick:providerHome }), go));
+  sheet(b => {
+    const ph = el('input', { class:'in', id:'lPhone', placeholder:'9XXXXXXX', inputmode:'tel', dir:'ltr' }), cd = el('input', { class:'in', id:'lCode', placeholder:'8E7B9F24', dir:'ltr', autocapitalize:'characters', autocomplete:'off' });
+    const go = el('button', { class:'btn', type:'button', text:t('login') });
+    b.append(el('h3', { text:t('loginH') }), fld(t('fPhone'), ph), fld(t('code'), cd),
+      el('p', { class:'hint', style:'margin:0', text:t('forgot') + CONTACT }),
+      el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:t('back'), onclick:providerHome }), go));
     go.onclick = async () => {
       const phone = normPhone(ph.value), code = cd.value.trim().toUpperCase();
-      if(!/^968\d{8}$/.test(phone) || code.length < 6) return toast('اكتب الرقم والرمز صح');
+      if(!/^968\d{8}$/.test(phone) || code.length < 6) return toast(t('eLogin'));
       go.disabled = true;
       try{ await rpc('kh_me', { p_phone:phone, p_code:code }); ME = { phone, code }; store.set('kh-me', ME); dashboard(); }
       catch(e){ toast(e.message); go.disabled = false; }
@@ -358,11 +503,10 @@ function loginSheet(){
 function providerHome(){
   if(ME) return dashboard();
   sheet((b, close) => {
-    b.append(el('h3', { text:'🧰 أنا مقدّم خدمة' }),
-      el('p', { class:'hint', style:'margin:0', text:'سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة. ' + (NATIVE ? 'أول شهر مجاني.' : 'أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.') }),
-      el('button', { class:'btn', type:'button', text:'سجّل مؤسستك (جديد)', onclick:() => sheet((b2, c2) => providerForm(b2, c2, null)) }),
-      el('button', { class:'btn ghost', type:'button', text:'مسجّل من قبل؟ ادخل', onclick:loginSheet }),
-      el('button', { class:'linkb', type:'button', text:'إغلاق', onclick:close }));
+    b.append(el('h3', { text:t('pHome') }), el('p', { class:'hint', style:'margin:0', text:t('pHomeP') + t(NATIVE ? 'trialApp' : 'trialWeb') }),
+      el('button', { class:'btn', type:'button', text:t('pNew'), onclick:() => sheet((b2, c2) => providerForm(b2, c2, null)) }),
+      el('button', { class:'btn ghost', type:'button', text:t('pLogin'), onclick:loginSheet }),
+      el('button', { class:'linkb', type:'button', text:t('close'), onclick:close }));
   });
 }
 async function dashboard(){
@@ -373,28 +517,26 @@ async function dashboard(){
   sheet((b, close) => {
     const until = new Date(A.active_until), days = Math.ceil((until - Date.now()) / 864e5), trial = !A.paid_until || new Date(A.paid_until) <= new Date(A.trial_until);
     let st;
-    if(A.status === 'blocked') st = el('div', { class:'stat bad', text:'⛔ مؤسستك موقوفة بسبب بلاغات. للمراجعة راسل الإدارة: ' + CONTACT });
-    else if(days <= 0) st = el('div', { class:'stat bad', text:'⛔ انتهى ' + (trial ? 'الشهر المجاني' : 'اشتراكك') + '، ومؤسستك مخفية عن الزبائن. للتجديد تواصل مع إدارة خدماتي: ' + CONTACT });
-    else if(trial) st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:'🎁 شهرك المجاني: باقي ' + days + ' يوم (لين ' + fDate.format(until) + ')' + (days <= 5 ? '. للاستمرار تواصل مع الإدارة: ' + CONTACT : '') });
-    else st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:'✅ اشتراكك فعّال لين ' + fDate.format(until) + ' (باقي ' + days + ' يوم)' });
-    const av = el('input', { type:'checkbox', checked:!!A.available, 'aria-label':'متوفر الحين' });
-    av.onchange = async () => { try{ A = await rpc('kh_set_available', { p_phone:ME.phone, p_code:ME.code, p_available:av.checked }); toast(av.checked ? '🟢 صرت متوفر' : 'صرت «مشغول»'); refresh(); }catch(e){ toast(e.message); av.checked = !av.checked; } };
+    if(A.status === 'blocked') st = el('div', { class:'stat bad', text:t('stBlocked') + CONTACT });
+    else if(days <= 0) st = el('div', { class:'stat bad', text:t('stExpired', trial) + CONTACT });
+    else if(trial) st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:t('stTrial', days, fDate(until)) + (days <= 5 ? t('stRenew') + CONTACT : '') });
+    else st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:t('stPaid', days, fDate(until)) });
+    const av = el('input', { type:'checkbox', checked:!!A.available, 'aria-label':t('availSw') });
+    av.onchange = async () => { try{ A = await rpc('kh_set_available', { p_phone:ME.phone, p_code:ME.code, p_available:av.checked }); toast(t(av.checked ? 'nowAvail' : 'nowBusy')); refresh(); }catch(e){ toast(e.message); av.checked = !av.checked; } };
     b.append(el('h3', { text:'🧰 ' + A.name }), st,
-      el('label', { class:'sw' }, el('span', { text:'🟢 متوفر الحين لاستقبال الطلبات' }), av),
-      el('p', { class:'hint', style:'margin:0', text:(A.votes ? '⭐ تقييمك ' + (+A.rating).toFixed(1) + ' من ' + A.votes + ' تقييم' : '⭐ ما عندك تقييمات للحين') + ' · الخدمات: ' + A.cats.map(catName).join('، ') + ' · يغطي: ' + areaText(A) }),
+      el('label', { class:'sw' }, el('span', { text:t('availSw') }), av),
+      el('p', { class:'hint', style:'margin:0', text:t('myRate', (+A.rating).toFixed(1), A.votes) + t('svcs') + A.cats.map(catName).join(LANG === 'ar' ? '، ' : ', ') + ' · ' + t('covers') + areaText(A) }),
       el('div', { class:'end', style:'justify-content:stretch' },
-        el('button', { class:'btn soft', type:'button', style:'flex:1', text:'✏️ عدّل البيانات', onclick:() => sheet((b2, c2) => providerForm(b2, c2, A)) }),
-        el('button', { class:'btn ghost', type:'button', style:'flex:1', text:'إغلاق', onclick:close })),
+        el('button', { class:'btn soft', type:'button', style:'flex:1', text:t('edit'), onclick:() => sheet((b2, c2) => providerForm(b2, c2, A)) }),
+        el('button', { class:'btn ghost', type:'button', style:'flex:1', text:t('close'), onclick:close })),
       el('div', { style:'display:flex;gap:14px;justify-content:center;flex-wrap:wrap' },
-        el('button', { class:'linkb', type:'button', text:'تسجيل خروج', onclick:e => { if(!e.currentTarget.dataset.sure){ e.currentTarget.dataset.sure = 1; e.currentTarget.textContent = 'متأكد؟ بتحتاج رمز الدخول ترجع'; return; } ME = null; store.set('kh-me', null); close(); toast('طلعت من حسابك'); } }),
-        el('button', { class:'linkb', type:'button', style:'color:var(--bad)', text:'🗑️ حذف حسابي نهائيًا', onclick:async e => { const x = e.currentTarget; if(!x.dataset.sure){ x.dataset.sure = 1; x.textContent = 'اضغط مرة ثانية للتأكيد'; return; } try{ await rpc('kh_delete', { p_phone:ME.phone, p_code:ME.code }); ME = null; store.set('kh-me', null); close(); refresh(); toast('انحذف حسابك ✅'); }catch(er){ toast(er.message); } } })));
+        el('button', { class:'linkb', type:'button', text:t('logout'), onclick:e => { if(!e.currentTarget.dataset.sure){ e.currentTarget.dataset.sure = 1; e.currentTarget.textContent = t('logoutSure'); return; } ME = null; store.set('kh-me', null); close(); toast(t('loggedOut')); } }),
+        el('button', { class:'linkb', type:'button', style:'color:var(--bad)', text:t('del'), onclick:async e => { const x = e.currentTarget; if(!x.dataset.sure){ x.dataset.sure = 1; x.textContent = t('delSure'); return; } try{ await rpc('kh_delete', { p_phone:ME.phone, p_code:ME.code }); ME = null; store.set('kh-me', null); close(); refresh(); toast(t('deleted')); }catch(er){ toast(er.message); } } })));
   });
 }
 $('joinBtn').onclick = providerHome; $('joinTop').onclick = providerHome;
-if(NATIVE) $('trialLine').textContent = 'أول شهر مجاني.';
-else $('trialLine').textContent = 'أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.';
 
-drawCats(); drawGov(); drawWhen(); drawList(); refresh();
+drawCounts(); applyLang(); refresh();
 </script>
 </body>
 </html>
