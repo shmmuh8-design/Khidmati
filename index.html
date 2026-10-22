@@ -31,7 +31,7 @@
   --ok:#69c795; --ok-soft:#173326; --bad:#f08890; --bad-soft:#3d1c20; --wa:#3cc177; --star:#f3c34a;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 28px rgba(0,0,0,.35); color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font:15px/1.65 var(--body)}
+body{background:var(--bg);color:var(--fg);font:17px/1.65 var(--body)}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
@@ -43,6 +43,9 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .logo{display:flex;align-items:center;gap:8px;font:800 1.35rem var(--display);color:var(--cobalt)}
 .logo svg{width:34px;height:34px}
 .top .sp{flex:1}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:-4px 0 12px}
+.bar .sp{flex:1}
+.cnt:not(:empty){background:var(--cobalt);color:var(--cobalt-ink);border-radius:999px;padding:0 7px;font-size:.78rem;min-width:20px;text-align:center}
 .btn.ico{padding:7px 10px;min-width:40px}
 .btn.fav{background:none;border:0;padding:4px 2px;font-size:.8rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
 .btn.fav.on{color:var(--star);text-decoration:none;font-weight:700}
@@ -96,7 +99,8 @@ textarea.in{min-height:84px;resize:vertical}
 .meta{font-size:.8rem;color:var(--muted);line-height:1.6}
 .fee{text-align:end;grid-row:span 2}
 .fee b{display:block;font:800 1.15rem var(--display);color:var(--fg)}
-.fee small{font-size:.72rem;color:var(--muted)}
+.fee small{font-size:.75rem;color:var(--muted);display:block}
+.fee b.free{font:700 .95rem var(--display);color:var(--ok)}
 .pill{display:inline-block;font-size:.7rem;font-weight:700;border-radius:999px;padding:1px 8px;white-space:nowrap}
 .pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.amber{background:var(--amber-soft);color:var(--amber)}.pill.bad{background:var(--bad-soft);color:var(--bad)}.pill.cob{background:var(--cobalt-soft);color:var(--cobalt)}
 .stars{color:var(--star);font-weight:700;font-size:.82rem}
@@ -129,7 +133,7 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
 .rate button.on{color:var(--star)}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(30px);opacity:0;transition:.25s;background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:600;z-index:60;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media (max-width:520px){.hero{grid-template-columns:1fr}.hero .art{display:none}.row2{grid-template-columns:1fr}.card{grid-template-columns:auto minmax(0,1fr)}.card .av{grid-row:1 / 3;grid-column:1}.card h3{grid-column:2;grid-row:1;min-width:0}.fee{grid-column:2;grid-row:2;text-align:start;display:flex;gap:6px;align-items:baseline}.fee b{display:inline}.card .meta{grid-column:1 / -1}}
+@media (max-width:520px){.hero{grid-template-columns:1fr}.hero .art{display:none}.row2{grid-template-columns:1fr}.card{grid-template-columns:auto minmax(0,1fr)}.card .av{grid-row:1 / 3;grid-column:1}.card h3{grid-column:2;grid-row:1;min-width:0}.fee{grid-column:2;grid-row:2;text-align:start;display:flex;gap:6px;align-items:baseline}.fee small{display:inline}.fee b{display:inline}.card .meta{grid-column:1 / -1}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -139,11 +143,14 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
   <header class="top">
     <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M38.5 15a10 10 0 0 0-9.3 13.6L15.8 42a3.6 3.6 0 0 0 5.1 5.1l13.4-13.4A10 10 0 0 0 47.9 24l-6 6-5.4-1-1-5.4 6-6a10 10 0 0 0-3-2.6z" fill="#fff"/></svg><span data-t="brand">خدماتي</span></div>
     <span class="sp"></span>
-    <button class="btn ghost sm ico" id="favTop" type="button" aria-label="المفضلة">⭐ <span id="favN" class="num"></span></button>
-    <button class="btn ghost sm ico" id="histTop" type="button" aria-label="طلباتي">📋 <span id="histN" class="num"></span></button>
     <button class="btn ghost sm ico" id="langBtn" type="button" lang="en">EN</button>
   </header>
-  <div style="display:flex;justify-content:flex-end;margin:-4px 0 10px"><button class="btn ghost sm" id="joinTop" type="button" data-t="joinTop">🧰 أنا مقدّم خدمة</button></div>
+  <div class="bar">
+    <button class="btn ghost sm" id="favTop" type="button">⭐ <span data-t="fav">مفضلتي</span> <span id="favN" class="num cnt"></span></button>
+    <button class="btn ghost sm" id="histTop" type="button">📋 <span data-t="hist">طلباتي</span> <span id="histN" class="num cnt"></span></button>
+    <span class="sp"></span>
+    <button class="btn ghost sm" id="joinTop" type="button" data-t="joinTop">🧰 أنا مقدّم خدمة</button>
+  </div>
   </header>
 
   <section class="hero">
@@ -171,7 +178,7 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
   <div class="list" id="list"></div>
 
   <section class="join"><div><h3 data-t="joinH">عندك مؤسسة صيانة؟</h3><p><span data-t="joinP">سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.</span> <b id="trialLine"></b> <span data-t="joinP2">التسجيل للمؤسسات المرخّصة بسجل تجاري.</span></p></div><button class="btn" id="joinBtn" type="button" data-t="joinBtn">سجّل مؤسستك</button></section>
-  <footer><span data-t="foot">خدماتي · سلطنة عُمان · © سالم الجابري</span> — <a href="privacy.html" style="color:inherit" data-t="privacy">الخصوصية والشروط</a></footer>
+  <footer><a href="mailto:design.omani1@gmail.com" style="color:inherit;display:inline-block;margin-bottom:4px" dir="ltr">✉️ design.omani1@gmail.com</a><br><span data-t="foot">خدماتي · سلطنة عُمان · © سالم الجابري</span> — <a href="privacy.html" style="color:inherit" data-t="privacy">الخصوصية والشروط</a></footer>
 </div>
 <div class="toast" id="toast"></div>
 <div id="root"></div>
@@ -200,11 +207,11 @@ const T = {
   joinH:['عندك مؤسسة صيانة؟','Own a maintenance company?'], joinP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.','List your company and customers in your areas call you directly.'], joinP2:['التسجيل للمؤسسات المرخّصة بسجل تجاري.','For licensed companies with a Commercial Registration.'], joinBtn:['سجّل مؤسستك','List your company'],
   trialWeb:['أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.','First month free, then OMR 1.900/month.'], trialApp:['أول شهر مجاني.','First month free.'],
   foot:['خدماتي · سلطنة عُمان · © سالم الجابري','Khidmati · Sultanate of Oman · © Salem Aljabri'], privacy:['الخصوصية والشروط','Privacy & Terms'],
-  gov:['المحافظة','Governorate'], area:['الولاية','Wilayat'], fav:['المفضلة','Favorites'], hist:['طلباتي','My requests'],
+  gov:['المحافظة','Governorate'], area:['الولاية','Wilayat'], fav:['مفضلتي','Favorites'], hist:['طلباتي','My requests'],
   when_now:['🚨 الحين','🚨 Now'], when_today:['اليوم','Today'], when_later:['موعد لاحق','Later'],
   loading:['جاري التحميل…','Loading…'], retry:['حاول مرة ثانية','Try again'], inArea:[' في ',' in '],
   none:(c, a, f) => LANG === 'ar' ? 'ما فيه مؤسسة مسجّلة لـ«' + c + '» في ' + a + ' حاليًا. جرّب ولاية قريبة' + (f ? '، أو شيل فلتر «المتوفرين الحين»' : '') + '. وإذا تعرف مؤسسة صيانة، قل لها تسجّل في خدماتي 🙏' : 'No company is listed for “' + c + '” in ' + a + ' yet. Try a nearby wilayat' + (f ? ' or turn off “Available now”' : '') + '. Know a maintenance company? Tell them to join Khidmati 🙏',
-  cr:['✓ سجل تجاري','✓ CR verified'], avail:['🟢 متوفر الحين','🟢 Available'], busy:['مشغول','Busy'], free:['مجانًا','Free'], omr:[' ر.ع',' OMR'], fee:['الكشفية','Visit fee'], newP:['جديد','New'],
+  cr:['✓ سجل تجاري','✓ CR verified'], avail:['🟢 متوفر الحين','🟢 Available'], busy:['مشغول','Busy'], free:['مجانًا','Free'], omr:[' ر.ع',' OMR'], feeL:['رسوم الفحص','Inspection fee'], freeChk:['الفحص مجانًا ✓','Free inspection ✓'], newP:['جديد','New'],
   ratings:[' تقييم',' ratings'], covers:['يغطي: ','Covers: '], all:['كل ','All '],
   call:['📞 اتصال','📞 Call'], sms:['✉️ رسالة','✉️ SMS'], wa:['💬 واتساب','💬 WhatsApp'], rate:['⭐ قيّم','⭐ Rate'], report:['🚩 إبلاغ','🚩 Report'], hide:['🚫 إخفاء','🚫 Hide'],
   save:['☆ حفظ','☆ Save'], saved:['★ محفوظة','★ Saved'], hidden:n => (LANG === 'ar' ? 'إظهار المخفيين (' : 'Show hidden (') + n + ')', hiddenT:['انخفى ','Hidden: '],
@@ -217,13 +224,13 @@ const T = {
   later:['بعدين','Later'], saveRate:['حفظ التقييم','Save rating'], pickStars:['اختار عدد النجوم','Pick the number of stars'], thanksRate:['شكرًا على تقييمك ⭐','Thanks for rating ⭐'],
   repH:n => (LANG === 'ar' ? 'إبلاغ عن ' : 'Report ') + n, repPh:['مثال: ما التزم بالموعد، سعر مبالغ فيه، رقم غلط…','e.g. missed the appointment, overpriced, wrong number…'], repHint:['البلاغ يوصل لإدارة خدماتي ونراجعه خلال 24 ساعة. وتقدر تخفي المؤسسة عندك بزر «إخفاء».','Reports go to the Khidmati team and are reviewed within 24 hours. You can also hide the company with “Hide”.'],
   cancel:['إلغاء','Cancel'], send:['أرسل البلاغ','Send report'], repOk:['وصل البلاغ، شكرًا لك 🙏','Report received, thank you 🙏'], noDetails:['بدون تفاصيل','No details'],
-  msgHi:['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰','Hello, I need a service via the Khidmati app 🧰'], msgSvc:['• الخدمة: ','• Service: '], msgArea:['• المنطقة: ','• Area: '], msgWhen:['• الوقت: ','• When: '], msgProb:['• المشكلة: ','• Problem: '], msgPic:['• بأرسل لكم صورة العطل الحين 📷','• I’ll send you a photo of the issue now 📷'], msgAsk:['كم الكشفية والوقت المتوقع للوصول؟','What’s the visit fee and your estimated arrival time?'],
+  msgHi:['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰','Hello, I need a service via the Khidmati app 🧰'], msgSvc:['• الخدمة: ','• Service: '], msgArea:['• المنطقة: ','• Area: '], msgWhen:['• الوقت: ','• When: '], msgProb:['• المشكلة: ','• Problem: '], msgPic:['• بأرسل لكم صورة العطل الحين 📷','• I’ll send you a photo of the issue now 📷'], msgAsk:['كم رسوم الفحص والوقت المتوقع للوصول؟','What’s the inspection fee and your estimated arrival time?'],
   // provider
   pHome:['🧰 أنا مقدّم خدمة','🧰 I’m a service provider'], pHomeP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company and customers in your areas call you directly. '],
   pNew:['سجّل مؤسستك (جديد)','List your company (new)'], pLogin:['مسجّل من قبل؟ ادخل','Already listed? Log in'],
   fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'],
   fCats:['الخدمات اللي تقدمونها','Services you offer'], fAreas:['المحافظة والولايات اللي توصلونها (تقدر تختار من أكثر من محافظة)','Governorate and wilayats you cover (you can pick from several governorates)'],
-  fFee:['الكشفية (ر.ع)','Visit fee (OMR)'], fFeePh:['0 = مجانًا','0 = free'], fHours:['أوقات الدوام','Working hours'], fHoursPh:['مثال: 7 الصبح – 10 الليل','e.g. 7am – 10pm'], fNote:['ملاحظة (اختياري)','Note (optional)'], fNotePh:['شو تسوون بالضبط؟','What exactly do you do?'],
+  fFee:['رسوم الفحص (ر.ع)','Inspection fee (OMR)'], fFeePh:['0 = مجانًا','0 = free'], fHours:['أوقات الدوام','Working hours'], fHoursPh:['مثال: 7 الصبح – 10 الليل','e.g. 7am – 10pm'], fNote:['ملاحظة (اختياري)','Note (optional)'], fNotePh:['شو تسوون بالضبط؟','What exactly do you do?'],
   picked:['المختار: ','Selected: '], regH:['🧰 سجّل مؤسستك','🧰 List your company'], editH:['✏️ عدّل بيانات مؤسستك','✏️ Edit your company'],
   regP:['التسجيل للمؤسسات المرخّصة بس. بعد التسجيل تظهر للزبائن في ولاياتك على طول. ','Licensed companies only. Once listed, you appear to customers in your wilayats right away. '],
   regTerms:['بالتسجيل تأكد إن بياناتك صحيحة، وإن البلاغات المتكررة أو أي مخالفة تؤدي لإيقاف المؤسسة. ما تحتاج واتساب ولا أي تطبيق ثاني.','By registering you confirm your details are correct; repeated reports or any violation lead to suspension. No WhatsApp or other app needed.'],
@@ -307,8 +314,7 @@ function applyLang(){
   document.querySelectorAll('[data-tp]').forEach(e => { e.placeholder = t(e.dataset.tp); });
   $('langBtn').textContent = LANG === 'ar' ? 'EN' : 'ع'; $('langBtn').lang = LANG === 'ar' ? 'en' : 'ar';
   $('langBtn').setAttribute('aria-label', LANG === 'ar' ? 'English' : 'العربية');
-  $('favTop').setAttribute('aria-label', t('fav')); $('histTop').setAttribute('aria-label', t('hist'));
-  $('gov').setAttribute('aria-label', t('gov')); $('area').setAttribute('aria-label', t('area')); $('desc').setAttribute('aria-label', t('s3'));
+    $('gov').setAttribute('aria-label', t('gov')); $('area').setAttribute('aria-label', t('area')); $('desc').setAttribute('aria-label', t('s3'));
   $('trialLine').textContent = t(NATIVE ? 'trialApp' : 'trialWeb');
   if(!$('picPrev').hidden) $('picHint').textContent = t('picReady');
   drawCats(); drawGov(); drawWhen(); drawList();
@@ -357,7 +363,7 @@ function drawList(){
     box.append(el('article', { class:'card' + (p.available ? '' : ' busy') },
       el('div', { class:'av', style:'background:' + TINT[i % TINT.length], text:init }),
       el('h3', {}, p.name, el('span', { class:'pill cob', text:t('cr') }), p.available ? el('span', { class:'pill ok', text:t('avail') }) : el('span', { class:'pill amber', text:t('busy') })),
-      el('div', { class:'fee' }, el('b', { class:'num', text:fee ? fee + t('omr') : t('free') }), el('small', { text:t('fee') })),
+      el('div', { class:'fee' }, fee ? [el('small', { text:t('feeL') }), el('b', { class:'num', text:fee + t('omr') })] : el('b', { class:'free', text:t('freeChk') })),
       el('div', { class:'meta' }, p.votes ? el('span', { class:'stars', text:'★ ' + (+p.rating).toFixed(1) }) : el('span', { class:'pill cob', text:t('newP') }), (p.votes ? ' (' + p.votes + t('ratings') + ')' : '') + ' · ' + p.cats.map(catName).join(LANG === 'ar' ? '، ' : ', ') + ' · ' + t('covers') + areaText(p) + (p.hours ? ' · ' + p.hours : '') + (p.note ? ' · ' + p.note : '')),
       el('div', { class:'acts' },
         ...contactBtns(p, () => setTimeout(() => askRate(p), 2500)),
