@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1d56c9">
+<title>إدارة خدماتي</title>
+<style>
+/* Admin: passcode gate (same passcode as Suqya), then providers in tabs: active / expiring / expired / blocked, plus reports */
+:root{
+  --bg:#eef2f5; --surface:#ffffff; --fg:#132029; --muted:#5b6b78; --line:#d3dbe2;
+  --brand:#1d56c9; --brand-fg:#ffffff; --ok:#1f7a4a; --bad:#b4313b; --amber:#b86e00;
+  --body:-apple-system,"SF Arabic","Geeza Pro","Segoe UI",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e151b; --surface:#16212a; --fg:#e8eff4; --muted:#93a4b1; --line:#263541; --brand:#6f9bf2; --brand-fg:#0d1620; --ok:#69c795; --bad:#f08890; --amber:#f0b24f; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e151b; --surface:#16212a; --fg:#e8eff4; --muted:#93a4b1; --line:#263541; --brand:#6f9bf2; --brand-fg:#0d1620; --ok:#69c795; --bad:#f08890; --amber:#f0b24f; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px}
+.wrap{max-width:640px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 40px)}
+h1{font-size:1.4rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px;line-height:1.6}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px}
+.fld{width:100%;min-width:0;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--fg);font:1.05rem var(--body);padding:12px;margin:8px 0 12px}
+.btn{border:0;border-radius:12px;background:var(--brand);color:var(--brand-fg);font:800 .92rem var(--body);padding:10px 12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn.full{width:100%;padding:14px}
+.btn.ok{background:var(--ok);color:#fff} .btn.bad{background:var(--bad);color:#fff} .btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.5}
+.tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:0 0 12px;position:sticky;top:0;padding:8px 0;background:var(--bg);z-index:2}
+.tabs button{border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:12px;padding:8px 2px;font:700 .74rem var(--body);cursor:pointer}
+.tabs button[aria-pressed="true"]{border-color:var(--brand);color:var(--brand)}
+.tabs b{display:block;font-size:1.1rem}
+.drv{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}
+.drv h3{margin:0 0 6px;font-size:1.05rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pill{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--bg);color:var(--muted)}
+.pill.ok{color:var(--ok)} .pill.amber{color:var(--amber)} .pill.bad{color:var(--bad)}
+.row{font-size:.88rem;line-height:1.8} .row b{color:var(--muted);font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.acts .btn{flex:1 1 auto;min-width:0}
+a.tel{color:var(--brand);font-weight:800;text-decoration:none;direction:ltr;display:inline-block}
+.empty{text-align:center;color:var(--muted);padding:30px 10px;border:1px dashed var(--line);border-radius:16px;line-height:1.8}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom) + 20px);left:50%;transform:translate(-50%,30px);background:#132029;color:#fff;padding:11px 16px;border-radius:12px;opacity:0;transition:.25s;pointer-events:none;max-width:90vw;text-align:center;z-index:9}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="gate" hidden>
+    <h1>🔐 إدارة خدماتي</h1>
+    <p class="sub">اكتب رمز المدير (نفس رمز إدارة سُقيا).</p>
+    <div class="card">
+      <label for="pass" style="font-weight:800">رمز المدير</label>
+      <input class="fld" id="pass" type="password" autocomplete="current-password" dir="ltr">
+      <button class="btn full" type="button" id="gateBtn">دخول</button>
+    </div>
+  </div>
+
+  <div id="panel" hidden>
+    <div class="top">
+      <div><h1>🧰 مؤسسات خدماتي</h1><p class="sub">بعد ما تستلم الاشتراك (1.900 ر.ع)، اضغط «+ شهر» عند المؤسسة.</p></div>
+      <button class="btn ghost" type="button" id="reload" aria-label="تحديث">↻</button>
+    </div>
+    <div class="tabs" id="tabs">
+      <button type="button" data-t="soon"><b id="c-soon">0</b>تنتهي قريب</button>
+      <button type="button" data-t="active"><b id="c-active">0</b>فعّالة</button>
+      <button type="button" data-t="expired"><b id="c-expired">0</b>منتهية</button>
+      <button type="button" data-t="blocked"><b id="c-blocked">0</b>موقوفة</button>
+      <button type="button" data-t="reports"><b id="c-reports">0</b>بلاغات</button>
+    </div>
+    <div id="list"></div>
+    <p style="text-align:center;margin-top:20px"><button class="btn ghost" type="button" id="logout">خروج</button></p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const SB = window.KH_SB || {};
+function toast(t){ const e = $('toast'); e.textContent = t; e.classList.add('show'); clearTimeout(e._t); e._t = setTimeout(() => e.classList.remove('show'), 2600); }
+async function rpc(fn, args){
+  let r;
+  try{ r = await fetch(SB.url + '/rest/v1/rpc/' + fn, { method:'POST', headers:{ apikey:SB.key, 'Content-Type':'application/json' }, body:JSON.stringify(args || {}) }); }
+  catch(e){ throw new Error('ما فيه اتصال بالإنترنت'); }
+  const t = await r.text(); let j = null; try{ j = t ? JSON.parse(t) : null; }catch(e){}
+  if(!r.ok) throw new Error((j && j.message) || 'صار خطأ');
+  return j;
+}
+const ss = { get(){ try{ return sessionStorage.getItem('kh-admin') || ''; }catch(e){ return ''; } }, set(v){ try{ v ? sessionStorage.setItem('kh-admin', v) : sessionStorage.removeItem('kh-admin'); }catch(e){} } };
+const CATS = { ac:'مكيفات', elec:'كهرباء', plumb:'سباكة', carp:'نجارة', paint:'صباغة', clean:'تنظيف', pest:'مكافحة حشرات', sat:'ستلايت وكاميرات', lock:'أقفال', reno:'ترميم' };
+let PASS = ss.get(), ROWS = [], REPS = [], TAB = 'soon';
+const areaText = a => a.map(x => x.startsWith('gov:') ? 'كل ' + x.slice(4) : x).join('، ');
+const fDate = d => new Date(d).toLocaleDateString('ar-OM-u-nu-latn', { day:'numeric', month:'short', year:'numeric' });
+const daysLeft = r => Math.ceil((new Date(r.active_until) - Date.now()) / 864e5);
+const tabOf = r => r.status === 'blocked' ? 'blocked' : daysLeft(r) <= 0 ? 'expired' : daysLeft(r) <= 7 ? 'soon' : 'active';
+const mk = (t, cls, txt) => { const e = document.createElement(t); if(cls) e.className = cls; if(txt != null) e.textContent = txt; return e; };
+
+function showGate(){ $('panel').hidden = true; $('gate').hidden = false; $('pass').focus(); }
+async function load(){
+  try{ [ROWS, REPS] = await Promise.all([rpc('kh_admin_list', { p_pass:PASS }), rpc('kh_admin_reports', { p_pass:PASS })]); ROWS = ROWS || []; REPS = REPS || []; }
+  catch(e){ toast(e.message); PASS = ''; ss.set(''); showGate(); return false; }
+  $('gate').hidden = true; $('panel').hidden = false; paint(); return true;
+}
+function paint(){
+  for(const t of ['soon','active','expired','blocked']) $('c-' + t).textContent = ROWS.filter(r => tabOf(r) === t).length;
+  $('c-reports').textContent = REPS.length;
+  document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === TAB));
+  const box = $('list'); box.replaceChildren();
+  if(TAB === 'reports'){
+    if(!REPS.length) return box.append(mk('div', 'empty', 'ما فيه بلاغات 👌'));
+    REPS.forEach(x => { const a = mk('article', 'drv'); a.append(mk('h3', '', '🚩 ' + (x.provider || 'مؤسسة محذوفة')), mk('div', 'row', x.reason), mk('div', 'row', fDate(x.created_at) + (x.phone ? ' · \u200E+' + x.phone : ''))); box.append(a); });
+    return;
+  }
+  const rows = ROWS.filter(r => tabOf(r) === TAB);
+  if(!rows.length) return box.append(mk('div', 'empty', { soon:'ما فيه اشتراكات تنتهي هالأسبوع 👌', active:'ما فيه مؤسسات فعّالة للحين.', expired:'ما فيه اشتراكات منتهية.', blocked:'ما فيه أحد موقوف.' }[TAB]));
+  rows.forEach(r => {
+    const a = mk('article', 'drv'), h = mk('h3', '', r.name), d = daysLeft(r), trial = !r.paid_until || new Date(r.paid_until) <= new Date(r.trial_until);
+    h.append(mk('span', 'pill ' + (d <= 0 ? 'bad' : d <= 7 ? 'amber' : 'ok'), d <= 0 ? 'منتهي من ' + (-d) + ' يوم' : (trial ? '🎁 مجاني: ' : '✅ ') + 'باقي ' + d + ' يوم'));
+    if(r.reports) h.append(mk('span', 'pill bad', '🚩 ' + r.reports));
+    const line = (k, v, node) => { const x = mk('div', 'row'); x.append(mk('b', '', k + ': '), node || document.createTextNode(v)); return x; };
+    const tel = mk('a', 'tel', '+' + r.phone); tel.href = 'tel:+' + r.phone;
+    a.append(h, line('الجوال', '', tel), line('السجل التجاري', r.cr), line('الخدمات', r.cats.map(c => CATS[c] || c).join('، ')), line('المناطق', areaText(r.areas)),
+      line('ينتهي', fDate(r.active_until)), line('التقييم', r.votes ? '★ ' + (+r.rating).toFixed(1) + ' (' + r.votes + ')' : 'ما فيه'), line('سجّل', fDate(r.created_at)));
+    const acts = mk('div', 'acts');
+    const btn = (txt, cls, fn) => { const b = mk('button', 'btn ' + cls, txt); b.type = 'button'; b.onclick = async () => { b.disabled = true; try{ await fn(b); await load(); }catch(e){ if(e.message !== '-') toast(e.message); } b.disabled = false; }; acts.append(b); };
+    const sure = (b, msg) => { if(b.dataset.sure) return; b.dataset.sure = 1; b.textContent = msg; setTimeout(() => { delete b.dataset.sure; }, 4000); throw new Error('-'); };
+    btn('+ شهر', 'ok', async () => { await rpc('kh_admin_extend', { p_pass:PASS, p_id:r.id, p_months:1 }); toast('انضاف شهر لـ' + r.name + ' ✅'); });
+    btn('+ 3 شهور', 'ghost', async () => { await rpc('kh_admin_extend', { p_pass:PASS, p_id:r.id, p_months:3 }); toast('انضاف 3 شهور ✅'); });
+    if(r.status === 'blocked') btn('✅ إلغاء الإيقاف', 'ok', async () => { await rpc('kh_admin_set_status', { p_pass:PASS, p_id:r.id, p_status:'approved' }); toast('رجعت ظاهرة'); });
+    else btn('⛔ إيقاف', 'bad', async b => { sure(b, 'متأكد؟ اضغط مرة ثانية'); await rpc('kh_admin_set_status', { p_pass:PASS, p_id:r.id, p_status:'blocked' }); toast('انوقفت'); });
+    btn('🗑️ حذف', 'ghost', async b => { sure(b, 'حذف نهائي؟ اضغط مرة ثانية'); await rpc('kh_admin_delete', { p_pass:PASS, p_id:r.id }); toast('انحذفت'); });
+    a.append(acts); box.append(a);
+  });
+}
+$('tabs').onclick = e => { const b = e.target.closest('button'); if(b){ TAB = b.dataset.t; paint(); } };
+$('reload').onclick = () => load().then(ok => ok && toast('تحدّثت القائمة'));
+$('logout').onclick = () => { PASS = ''; ss.set(''); showGate(); };
+$('pass').addEventListener('keydown', e => { if(e.key === 'Enter') $('gateBtn').click(); });
+$('gateBtn').onclick = async () => { const v = $('pass').value; if(!v) return toast('اكتب الرمز'); $('gateBtn').disabled = true; PASS = v; ss.set(v); $('pass').value = ''; await load(); $('gateBtn').disabled = false; };
+(async () => { if(PASS && await load()) return; showGate(); })();
+</script>
+</body>
+</html>
