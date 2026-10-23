@@ -157,7 +157,7 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
     <div>
       <h1 data-t="h1">فنّي إلى باب بيتك</h1>
       <p data-t="lead">مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.</p>
-      <div class="facts"><span data-t="f1">✓ مؤسسات مرخّصة بسجل تجاري</span><span data-t="f2">⭐ تقييمات من الزبائن</span><span data-t="f3">💬 بدون وسيط</span></div>
+      <div class="facts"><span data-t="f1">✓ مؤسسات مرخّصة وفنيين عمانيين</span><span data-t="f2">⭐ تقييمات من الزبائن</span><span data-t="f3">💬 بدون وسيط</span></div>
     </div>
     <svg class="art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="var(--cobalt-soft)"/><rect x="30" y="38" width="60" height="22" rx="6" fill="var(--surface)" stroke="var(--cobalt)" stroke-width="3"/><path d="M38 52h44" stroke="var(--cobalt)" stroke-width="3" stroke-linecap="round"/><path d="M44 66c0 6-4 8-4 14M60 66c0 6-4 8-4 14M76 66c0 6-4 8-4 14" stroke="var(--cobalt)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/><circle cx="84" cy="44" r="3" fill="var(--amber)"/></svg>
   </section>
@@ -199,13 +199,18 @@ const T = {
   brand:['خدماتي','Khidmati'], joinTop:['🧰 أنا مقدّم خدمة','🧰 I’m a provider'], shareApp:['📤 شارك','📤 Share'],
   h1:['فنّي إلى باب بيتك','A technician to your door'],
   lead:['مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.','AC broken? Water leaking? Pick the service and your area, then call the nearest licensed maintenance company directly.'],
-  f1:['✓ مؤسسات مرخّصة بسجل تجاري','✓ Licensed companies (CR)'], f2:['⭐ تقييمات من الزبائن','⭐ Customer ratings'], f3:['💬 بدون وسيط','💬 No middleman'],
+  f1:['✓ مؤسسات مرخّصة وفنيين عمانيين','✓ Licensed companies & Omani pros'], f2:['⭐ تقييمات من الزبائن','⭐ Customer ratings'], f3:['💬 بدون وسيط','💬 No middleman'],
   s1:['شو تحتاج؟','What do you need?'], s2:['وين؟','Where?'], s3:['اشرح المشكلة','Describe the problem'], opt:['(اختياري)','(optional)'],
   descPh:['مثال: المكيف في غرفة النوم يشتغل بس ما يبرّد، ويطلع منه صوت','e.g. The bedroom AC runs but doesn’t cool, and it makes a noise'],
   pic:['📷 صورة العطل','📷 Photo of the issue'], picHint:['الصورة ترسلها بعدين في المحادثة نفسها.','You send the photo yourself in the chat.'], picReady:['✓ جاهزة. أرفقها في المحادثة لما تراسل المؤسسة 📎','✓ Ready. Attach it in the chat when you message the company 📎'],
   nowOnly:['🟢 المتوفرين الحين بس','🟢 Available now only'],
-  joinH:['عندك مؤسسة صيانة؟','Own a maintenance company?'], joinP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.','List your company and customers in your areas call you directly.'], joinP2:['التسجيل للمؤسسات المرخّصة بسجل تجاري.','For licensed companies with a Commercial Registration.'], joinBtn:['سجّل مؤسستك','List your company'],
-  trialWeb:['أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.','First month free, then OMR 1.900/month.'], trialApp:['أول شهر مجاني.','First month free.'],
+  joinH:['عندك مؤسسة صيانة، أو فني مستقل؟','Own a company, or an independent pro?'], joinP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.','List your company and customers in your areas call you directly.'], joinP2:['المؤسسات بسجل تجاري، والفنيين المستقلين العمانيين بعد موافقة الإدارة.','Companies with a CR, and independent Omani pros after admin approval.'], joinBtn:['سجّل الحين','Join now'],
+  trialWeb:['أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.','First month free, then OMR 1.900/month.'], trialApp:['أول شهر مجاني.','First month free.'], trialWebF:['أول شهر مجاني، وبعده 1.150 ر.ع شهريًا.','First month free, then OMR 1.150/month.'],
+  fl:['👷 فني مستقل','👷 Independent pro'], pNewF:['👷 سجّل كفني مستقل (عماني)','👷 Join as an independent Omani pro'], regHF:['👷 سجّل كفني مستقل','👷 Join as an independent pro'], editHF:['✏️ عدّل بياناتك','✏️ Edit your details'],
+  regPF:['للفنيين العمانيين اللي يشتغلون لحسابهم. حسابك يطلع للزبائن بعد موافقة الإدارة، ويبدأ شهرك المجاني من يوم الموافقة. وبعده 1.150 ر.ع شهريًا.','For Omani technicians working for themselves. You appear to customers after admin approval; your free month starts that day. Then OMR 1.150/month.'], regPFApp:['للفنيين العمانيين اللي يشتغلون لحسابهم. حسابك يطلع للزبائن بعد موافقة الإدارة، ويبدأ شهرك المجاني من يوم الموافقة.','For Omani technicians working for themselves. You appear to customers after admin approval; your free month starts that day.'],
+  fNameF:['اسمك','Your name'], fNamePhF:['مثال: سالم الحارثي — فني مكيفات','e.g. Salem — AC technician'], eNameF:['اكتب اسمك','Enter your name'],
+  oath:['أقر إني عُماني الجنسية، وأشتغل لحسابي، وأتحمل مسؤولية عملي.','I confirm I am an Omani national, work for myself, and am responsible for my work.'], eOath:['لازم توافق على الإقرار','Please confirm the declaration'],
+  stPending:['⏳ طلبك تحت المراجعة. بنتواصل معك قريب، وبعد الموافقة تطلع للزبائن ويبدأ شهرك المجاني.','⏳ Your request is under review. We’ll contact you soon; after approval you appear to customers and your free month starts.'],
   foot:['خدماتي · سلطنة عُمان · © سالم الجابري','Khidmati · Sultanate of Oman · © Salem Aljabri'], privacy:['الخصوصية والشروط','Privacy & Terms'],
   gov:['المحافظة','Governorate'], area:['الولاية','Wilayat'], fav:['مفضلتي','Favorites'], hist:['طلباتي','My requests'],
   when_now:['🚨 الحين','🚨 Now'], when_today:['اليوم','Today'], when_later:['موعد لاحق','Later'],
@@ -226,8 +231,8 @@ const T = {
   cancel:['إلغاء','Cancel'], send:['أرسل البلاغ','Send report'], repOk:['وصل البلاغ، شكرًا لك 🙏','Report received, thank you 🙏'], noDetails:['بدون تفاصيل','No details'],
   msgHi:['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰','Hello, I need a service via the Khidmati app 🧰'], msgSvc:['• الخدمة: ','• Service: '], msgArea:['• المنطقة: ','• Area: '], msgWhen:['• الوقت: ','• When: '], msgProb:['• المشكلة: ','• Problem: '], msgPic:['• بأرسل لكم صورة العطل الحين 📷','• I’ll send you a photo of the issue now 📷'], msgAsk:['كم رسوم الفحص والوقت المتوقع للوصول؟','What’s the inspection fee and your estimated arrival time?'],
   // provider
-  pHome:['🧰 أنا مقدّم خدمة','🧰 I’m a service provider'], pHomeP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company and customers in your areas call you directly. '],
-  pNew:['سجّل مؤسستك (جديد)','List your company (new)'], pLogin:['مسجّل من قبل؟ ادخل','Already listed? Log in'],
+  pHome:['🧰 أنا مقدّم خدمة','🧰 I’m a service provider'], pHomeP:['سجّل مؤسستك أو نفسك كفني مستقل، ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company or yourself as an independent pro; customers in your areas call you directly. '],
+  pNew:['🏢 سجّل مؤسستك','🏢 List your company'], pLogin:['مسجّل من قبل؟ ادخل','Already listed? Log in'],
   fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'], fEmail:['الإيميل (اختياري)','Email (optional)'], eEmail:['الإيميل مو صحيح','That email doesn’t look right'], mail:['📧 إيميل','📧 Email'], subj:['طلب خدمة من تطبيق خدماتي','Service request via Khidmati'],
   fCats:['الخدمات اللي تقدمونها','Services you offer'], fAreas:['المحافظة والولايات اللي توصلونها (تقدر تختار من أكثر من محافظة)','Governorate and wilayats you cover (you can pick from several governorates)'],
   fFee:['رسوم الفحص (ر.ع)','Inspection fee (OMR)'], fFeePh:['0 = مجانًا','0 = free'], fHours:['أوقات الدوام','Working hours'], fHoursPh:['مثال: 7 الصبح – 10 الليل','e.g. 7am – 10pm'], fNote:['ملاحظة (اختياري)','Note (optional)'], fNotePh:['شو تسوون بالضبط؟','What exactly do you do?'],
@@ -363,7 +368,7 @@ function drawList(){
     const init = p.name.replace(/^(مؤسسة|ورشة|شركة)\s+/, '').trim().replace(/^ال(?=\S\S)/, '')[0] || '؟', fee = +p.fee, fv = isFav(p.id);
     box.append(el('article', { class:'card' + (p.available ? '' : ' busy') },
       el('div', { class:'av', style:'background:' + TINT[i % TINT.length], text:init }),
-      el('h3', {}, p.name, el('span', { class:'pill cob', text:t('cr') }), p.available ? el('span', { class:'pill ok', text:t('avail') }) : el('span', { class:'pill amber', text:t('busy') })),
+      el('h3', {}, p.name, p.kind === 'freelance' ? el('span', { class:'pill amber', text:t('fl') }) : el('span', { class:'pill cob', text:t('cr') }), p.available ? el('span', { class:'pill ok', text:t('avail') }) : el('span', { class:'pill amber', text:t('busy') })),
       el('div', { class:'fee' }, fee ? [el('small', { text:t('feeL') }), el('b', { class:'num', text:fee + t('omr') })] : el('b', { class:'free', text:t('freeChk') })),
       el('div', { class:'meta' }, p.votes ? el('span', { class:'stars', text:'★ ' + (+p.rating).toFixed(1) }) : el('span', { class:'pill cob', text:t('newP') }), (p.votes ? ' (' + p.votes + t('ratings') + ')' : '') + ' · ' + p.cats.map(catName).join(LANG === 'ar' ? '، ' : ', ') + ' · ' + t('covers') + areaText(p) + (p.hours ? ' · ' + p.hours : '') + (p.note ? ' · ' + p.note : '')),
       el('div', { class:'acts' },
@@ -440,12 +445,13 @@ function report(p){
 /* ---------------- مقدّم الخدمة ---------------- */
 let ME = store.get('kh-me', null);   // { phone, code }
 const fld = (l, i) => el('div', { class:'field' }, el('label', { for:i.id, text:l }), i);
-function providerForm(b, close, acct){
+function providerForm(b, close, acct, kind){
+  const FL = (acct ? acct.kind : kind) === 'freelance';
   const pick = { cats:new Set(acct ? acct.cats : []), areas:new Set(acct ? acct.areas : []) };
   const I = (id, ph, extra = {}) => el('input', { class:'in', id, placeholder:ph, ...extra });
-  const f = { name:I('jName', t('fNamePh'), { maxlength:70 }), cr:I('jCr', t('fCrPh'), { inputmode:'numeric', dir:'ltr', maxlength:12 }), phone:I('jPhone', '9XXXXXXX', { inputmode:'tel', dir:'ltr', maxlength:15 }), email:I('jEmail', 'name@example.com', { type:'email', inputmode:'email', dir:'ltr', maxlength:120, autocomplete:'email', autocapitalize:'off' }),
+  const f = { name:I('jName', t(FL ? 'fNamePhF' : 'fNamePh'), { maxlength:70 }), cr:I('jCr', t('fCrPh'), { inputmode:'numeric', dir:'ltr', maxlength:12 }), phone:I('jPhone', '9XXXXXXX', { inputmode:'tel', dir:'ltr', maxlength:15 }), email:I('jEmail', 'name@example.com', { type:'email', inputmode:'email', dir:'ltr', maxlength:120, autocomplete:'email', autocapitalize:'off' }),
     fee:I('jFee', t('fFeePh'), { inputmode:'decimal' }), hours:I('jHours', t('fHoursPh'), { maxlength:60 }), note:I('jNote', t('fNotePh'), { maxlength:160 }) };
-  if(acct){ f.name.value = acct.name; f.cr.value = acct.cr; f.cr.disabled = true; f.phone.value = String(acct.phone).replace(/^968/, ''); f.phone.disabled = true; f.fee.value = +acct.fee || ''; f.email.value = acct.email || ''; f.hours.value = acct.hours || ''; f.note.value = acct.note || ''; }
+  if(acct){ f.name.value = acct.name; f.cr.value = acct.cr || ''; f.cr.disabled = true; f.phone.value = String(acct.phone).replace(/^968/, ''); f.phone.disabled = true; f.fee.value = +acct.fee || ''; f.email.value = acct.email || ''; f.hours.value = acct.hours || ''; f.note.value = acct.note || ''; }
   const catBox = el('div', { class:'multi' }, CATS.map(([id, ic]) => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.cats.has(id)), text:ic + ' ' + catName(id), onclick:e => { pick.cats.has(id) ? pick.cats.delete(id) : pick.cats.add(id); e.currentTarget.setAttribute('aria-pressed', String(pick.cats.has(id))); } })));
   const first = [...pick.areas][0], g0 = first ? (first.startsWith('gov:') ? first.slice(4) : Object.keys(GOV).find(g => GOV[g].includes(first))) : 'مسقط';
   const gsel = el('select', { class:'in', id:'jGov' }, Object.keys(GOV).map(g => el('option', { value:g, text:place(g), selected:g === g0 })));
@@ -454,19 +460,22 @@ function providerForm(b, close, acct){
   const drawPicked = () => { picked.textContent = pick.areas.size ? t('picked') + [...pick.areas].map(nm).join(LANG === 'ar' ? '، ' : ', ') : ''; };
   const drawAreas = () => { areaBox.replaceChildren(...['gov:' + gsel.value, ...GOV[gsel.value]].map(a => el('button', { class:'chip', type:'button', 'aria-pressed':String(pick.areas.has(a)), text:nm(a), onclick:e => { pick.areas.has(a) ? pick.areas.delete(a) : pick.areas.add(a); e.currentTarget.setAttribute('aria-pressed', String(pick.areas.has(a))); drawPicked(); } }))); drawPicked(); };
   gsel.onchange = drawAreas; drawAreas();
-  b.append(el('h3', { text:t(acct ? 'editH' : 'regH') }));
-  if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:t('regP') + t(NATIVE ? 'trialApp' : 'trialWeb') }));
-  b.append(fld(t('fName'), f.name), el('div', { class:'row2' }, fld(t('fCr'), f.cr), fld(t('fPhone'), f.phone)), fld(t('fEmail'), f.email),
+  b.append(el('h3', { text:t(acct ? (FL ? 'editHF' : 'editH') : (FL ? 'regHF' : 'regH')) }));
+  if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:FL ? t(NATIVE ? 'regPFApp' : 'regPF') : t('regP') + t(NATIVE ? 'trialApp' : 'trialWeb') }));
+  b.append(fld(t(FL ? 'fNameF' : 'fName'), f.name), FL ? fld(t('fPhone'), f.phone) : el('div', { class:'row2' }, fld(t('fCr'), f.cr), fld(t('fPhone'), f.phone)), fld(t('fEmail'), f.email),
     el('div', { class:'field' }, el('label', { text:t('fCats') }), catBox),
     el('div', { class:'field' }, el('label', { for:'jGov', text:t('fAreas') }), gsel, areaBox, picked),
     el('div', { class:'row2' }, fld(t('fFee'), f.fee), fld(t('fHours'), f.hours)), fld(t('fNote'), f.note));
+  const oath = el('input', { type:'checkbox', id:'jOath' });
+  if(!acct && FL) b.append(el('label', { class:'hint', for:'jOath', style:'display:flex;gap:8px;align-items:flex-start;margin:0;color:var(--fg)' }, oath, el('span', { text:t('oath') })));
   if(!acct) b.append(el('p', { class:'hint', style:'margin:0', text:t('regTerms') }));
   const go = el('button', { class:'btn', type:'button', text:t(acct ? 'saveBtn' : 'regBtn') });
   b.append(el('div', { class:'end' }, el('button', { class:'btn ghost', type:'button', text:t('cancel'), onclick:() => acct ? dashboard() : close() }), go));
   go.onclick = async () => {
     const phone = normPhone(f.phone.value), fee = parseFloat(digits(f.fee.value)) || 0, cr = digits(f.cr.value).trim();
-    if(f.name.value.trim().length < 2) return toast(t('eName'));
-    if(!acct && !/^\d{4,12}$/.test(cr)) return toast(t('eCr'));
+    if(f.name.value.trim().length < 2) return toast(t(FL ? 'eNameF' : 'eName'));
+    if(!acct && !FL && !/^\d{4,12}$/.test(cr)) return toast(t('eCr'));
+    if(!acct && FL && !oath.checked) return toast(t('eOath'));
     if(!acct && !/^968[79]\d{7}$/.test(phone)) return toast(t('ePhone'));
     const email = f.email.value.trim().toLowerCase();
     if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return toast(t('eEmail'));
@@ -478,7 +487,7 @@ function providerForm(b, close, acct){
         await rpc('kh_update', { p_phone:ME.phone, p_code:ME.code, p_name:f.name.value.trim(), p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim(), p_available:acct.available, p_email:email });
         toast(t('saved2')); refresh(); dashboard();
       } else {
-        const r = await rpc('kh_register', { p_name:f.name.value.trim(), p_cr:cr, p_phone:phone, p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim(), p_email:email });
+        const r = await rpc('kh_register', { p_name:f.name.value.trim(), p_cr:cr, p_phone:phone, p_cats:[...pick.cats], p_areas:[...pick.areas], p_fee:fee, p_hours:f.hours.value.trim(), p_note:f.note.value.trim(), p_email:email, p_kind:FL ? 'freelance' : 'company' });
         ME = { phone, code:r.code }; store.set('kh-me', ME);
         S.cat = [...pick.cats][0]; const a = [...pick.areas][0]; if(a.startsWith('gov:')){ S.gov = a.slice(4); S.area = GOV[S.gov][0]; } else { S.gov = Object.keys(GOV).find(g => GOV[g].includes(a)); S.area = a; }
         save(); drawCats(); drawGov(); refresh(); showCode(r.code);
@@ -513,7 +522,8 @@ function providerHome(){
   if(ME) return dashboard();
   sheet((b, close) => {
     b.append(el('h3', { text:t('pHome') }), el('p', { class:'hint', style:'margin:0', text:t('pHomeP') + t(NATIVE ? 'trialApp' : 'trialWeb') }),
-      el('button', { class:'btn', type:'button', text:t('pNew'), onclick:() => sheet((b2, c2) => providerForm(b2, c2, null)) }),
+      el('button', { class:'btn', type:'button', text:t('pNew'), onclick:() => sheet((b2, c2) => providerForm(b2, c2, null, 'company')) }),
+      el('button', { class:'btn ghost', type:'button', text:t('pNewF'), onclick:() => sheet((b2, c2) => providerForm(b2, c2, null, 'freelance')) }),
       el('button', { class:'btn ghost', type:'button', text:t('pLogin'), onclick:loginSheet }),
       el('button', { class:'linkb', type:'button', text:t('close'), onclick:close }));
   });
@@ -526,7 +536,8 @@ async function dashboard(){
   sheet((b, close) => {
     const until = new Date(A.active_until), days = Math.ceil((until - Date.now()) / 864e5), trial = !A.paid_until || new Date(A.paid_until) <= new Date(A.trial_until);
     let st;
-    if(A.status === 'blocked') st = el('div', { class:'stat bad', text:t('stBlocked') + CONTACT });
+    if(A.status === 'pending') st = el('div', { class:'stat amber', text:t('stPending') });
+    else if(A.status === 'blocked') st = el('div', { class:'stat bad', text:t('stBlocked') + CONTACT });
     else if(days <= 0) st = el('div', { class:'stat bad', text:t('stExpired', trial) + CONTACT });
     else if(trial) st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:t('stTrial', days, fDate(until)) + (days <= 5 ? t('stRenew') + CONTACT : '') });
     else st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:t('stPaid', days, fDate(until)) });
