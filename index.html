@@ -141,7 +141,7 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
 
 <div class="wrap">
   <header class="top">
-    <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M38.5 15a10 10 0 0 0-9.3 13.6L15.8 42a3.6 3.6 0 0 0 5.1 5.1l13.4-13.4A10 10 0 0 0 47.9 24l-6 6-5.4-1-1-5.4 6-6a10 10 0 0 0-3-2.6z" fill="#fff"/></svg><span data-t="brand">خدماتي</span></div>
+    <div class="logo"><svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="currentColor"/><path d="M96 250 256 112l160 138" stroke="#fff" stroke-width="34" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M134 232v166a14 14 0 0 0 14 14h216a14 14 0 0 0 14-14V232" stroke="#fff" stroke-width="30" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/><g transform="rotate(-45 256 318)"><rect x="238" y="300" width="36" height="104" rx="18" fill="#ffb020"/><circle cx="256" cy="282" r="50" fill="#ffb020"/><rect x="240" y="226" width="32" height="50" rx="6" fill="currentColor"/></g></svg><span data-t="brand">خدماتي</span></div>
     <span class="sp"></span>
     <button class="btn ghost sm ico" id="langBtn" type="button" lang="en">EN</button>
   </header>
@@ -546,6 +546,9 @@ async function dashboard(){
 $('joinBtn').onclick = providerHome; $('joinTop').onclick = providerHome;
 
 drawCounts(); applyLang(); refresh();
+/* تطبيق الآيفون: طلب تقييم أبل الرسمي بعد 3 تواصلات (أبل تقرر تظهره، بحد أقصى 3 مرات بالسنة) */
+if(NATIVE){ try{ const RV = Cap.Plugins.InAppReview || (Cap.registerPlugin && Cap.registerPlugin('InAppReview')), last = +store.get('kh-rv', 0);
+  if(RV && HIST.length >= 3 && Date.now() - last > 120 * 864e5) setTimeout(() => { store.set('kh-rv', Date.now()); RV.requestReview().catch(() => {}); }, 4000); }catch(e){} }
 </script>
 </body>
 </html>

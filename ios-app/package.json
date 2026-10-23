@@ -1,0 +1,20 @@
+{
+  "name": "khidmati-ios",
+  "version": "1.0.0",
+  "private": true,
+  "description": "خدماتي — تطبيق آيفون (Capacitor)",
+  "scripts": {
+    "build": "rm -rf www && mkdir -p www && cp ../index.html ../privacy.html ../config.js www/",
+    "assets": "capacitor-assets generate --ios --iconBackgroundColor '#1d56c9' --splashBackgroundColor '#1d56c9' --splashBackgroundColorDark '#0e2a66'"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0",
+    "@capacitor/app": "^7.0.0",
+    "@capacitor-community/in-app-review": "^7.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/assets": "^3.0.5"
+  }
+}

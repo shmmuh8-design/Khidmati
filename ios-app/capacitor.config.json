@@ -1,0 +1,10 @@
+{
+  "appId": "com.salemaljabri.khidmati",
+  "appName": "خدماتي",
+  "webDir": "www",
+  "backgroundColor": "#eef2f5",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#eef2f5"
+  }
+}
