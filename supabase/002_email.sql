@@ -1,4 +1,4 @@
--- خدماتي: إيميل المؤسسة (اختياري) — الصقه في SQL Editor واضغط Run
+-- خدماتي: إيميل المؤسسة (اختياري) — الصقه في SQL Editor (Database مو Logs) واضغط Run. تقدر تشغّله أكثر من مرة بدون مشاكل.
 alter table public.kh_providers add column if not exists email text
   check (email is null or (char_length(email) <= 120 and email ~* '^[^@\s]+@[^@\s]+\.[^@\s]+$'));
 
@@ -14,6 +14,7 @@ language sql stable security definer set search_path = public as $$
 $$;
 
 drop function if exists public.kh_register(text, text, text, text[], text[], numeric, text, text);
+drop function if exists public.kh_register(text, text, text, text[], text[], numeric, text, text, text);
 create function public.kh_register(p_name text, p_cr text, p_phone text, p_cats text[], p_areas text[], p_fee numeric, p_hours text, p_note text, p_email text default null)
 returns json language plpgsql security definer set search_path = public, extensions as $$
 declare v_code text;
@@ -43,6 +44,7 @@ begin
 end $$;
 
 drop function if exists public.kh_update(text, text, text, text[], text[], numeric, text, text, boolean);
+drop function if exists public.kh_update(text, text, text, text[], text[], numeric, text, text, boolean, text);
 create function public.kh_update(p_phone text, p_code text, p_name text, p_cats text[], p_areas text[], p_fee numeric, p_hours text, p_note text, p_available boolean, p_email text default null)
 returns json language plpgsql security definer set search_path = public as $$
 declare d kh_providers := _kh_provider(p_phone, p_code);
