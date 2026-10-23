@@ -37,7 +37,7 @@ button{cursor:pointer}
 :focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
 .num{font-variant-numeric:tabular-nums}
 h1,h2,h3{margin:0;text-wrap:balance}
-.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
 
 .top{display:flex;align-items:center;gap:10px;padding-block:14px}
 .logo{display:flex;align-items:center;gap:8px;font:800 1.35rem var(--display);color:var(--cobalt)}
@@ -151,7 +151,6 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
     <span class="sp"></span>
     <button class="btn ghost sm" id="joinTop" type="button" data-t="joinTop">🧰 أنا مقدّم خدمة</button>
   </div>
-  </header>
 
   <section class="hero">
     <div>
