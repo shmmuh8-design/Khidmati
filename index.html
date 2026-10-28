@@ -205,9 +205,9 @@ const T = {
   pic:['📷 صورة العطل','📷 Photo of the issue'], picHint:['الصورة ترسلها بعدين في المحادثة نفسها.','You send the photo yourself in the chat.'], picReady:['✓ جاهزة. أرفقها في المحادثة لما تراسل المؤسسة 📎','✓ Ready. Attach it in the chat when you message the company 📎'],
   nowOnly:['🟢 المتوفرين الحين بس','🟢 Available now only'],
   joinH:['عندك مؤسسة صيانة، أو فني مستقل؟','Own a company, or an independent pro?'], joinP:['سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.','List your company and customers in your areas call you directly.'], joinP2:['المؤسسات بسجل تجاري، والفنيين المستقلين العمانيين بعد موافقة الإدارة.','Companies with a CR, and independent Omani pros after admin approval.'], joinBtn:['سجّل الحين','Join now'],
-  trialWeb:['أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.','First month free, then OMR 1.900/month.'], trialApp:['أول شهر مجاني.','First month free.'], trialWebF:['أول شهر مجاني، وبعده 1.150 ر.ع شهريًا.','First month free, then OMR 1.150/month.'],
+  trialWeb:['أول شهر مجاني، وبعده 1.900 ر.ع شهريًا.','First month free, then OMR 1.900/month.'], trialApp:['التسجيل مجاني.','Signing up is free.'], trialWebF:['أول شهر مجاني، وبعده 1.150 ر.ع شهريًا.','First month free, then OMR 1.150/month.'],
   fl:['👷 فني مستقل','👷 Independent pro'], pNewF:['👷 سجّل كفني مستقل (عماني)','👷 Join as an independent Omani pro'], regHF:['👷 سجّل كفني مستقل','👷 Join as an independent pro'], editHF:['✏️ عدّل بياناتك','✏️ Edit your details'],
-  regPF:['للفنيين العمانيين اللي يشتغلون لحسابهم. حسابك يطلع للزبائن بعد موافقة الإدارة، ويبدأ شهرك المجاني من يوم الموافقة. وبعده 1.150 ر.ع شهريًا.','For Omani technicians working for themselves. You appear to customers after admin approval; your free month starts that day. Then OMR 1.150/month.'], regPFApp:['للفنيين العمانيين اللي يشتغلون لحسابهم. حسابك يطلع للزبائن بعد موافقة الإدارة، ويبدأ شهرك المجاني من يوم الموافقة.','For Omani technicians working for themselves. You appear to customers after admin approval; your free month starts that day.'],
+  regPF:['للفنيين العمانيين اللي يشتغلون لحسابهم. حسابك يطلع للزبائن بعد موافقة الإدارة، ويبدأ شهرك المجاني من يوم الموافقة. وبعده 1.150 ر.ع شهريًا.','For Omani technicians working for themselves. You appear to customers after admin approval; your free month starts that day. Then OMR 1.150/month.'], regPFApp:['للفنيين العمانيين اللي يشتغلون لحسابهم. حسابك يطلع للزبائن بعد موافقة الإدارة.','For Omani technicians working for themselves. You appear to customers after admin approval.'],
   fNameF:['اسمك','Your name'], fNamePhF:['مثال: سالم الحارثي — فني مكيفات','e.g. Salem — AC technician'], eNameF:['اكتب اسمك','Enter your name'],
   oath:['أقر إني عُماني الجنسية، وأشتغل لحسابي، وأتحمل مسؤولية عملي.','I confirm I am an Omani national, work for myself, and am responsible for my work.'], eOath:['لازم توافق على الإقرار','Please confirm the declaration'],
   stPending:['⏳ طلبك تحت المراجعة. بنتواصل معك قريب، وبعد الموافقة تطلع للزبائن ويبدأ شهرك المجاني.','⏳ Your request is under review. We’ll contact you soon; after approval you appear to customers and your free month starts.'],
@@ -538,9 +538,9 @@ async function dashboard(){
     let st;
     if(A.status === 'pending') st = el('div', { class:'stat amber', text:t('stPending') });
     else if(A.status === 'blocked') st = el('div', { class:'stat bad', text:t('stBlocked') + CONTACT });
-    else if(days <= 0) st = el('div', { class:'stat bad', text:t('stExpired', trial) + CONTACT });
-    else if(trial) st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:t('stTrial', days, fDate(until)) + (days <= 5 ? t('stRenew') + CONTACT : '') });
-    else st = el('div', { class:days <= 5 ? 'stat amber' : 'stat ok', text:t('stPaid', days, fDate(until)) });
+    else if(days <= 0) st = el('div', { class:'stat bad', text:NATIVE ? (LANG === 'ar' ? '⛔ حسابك متوقف حاليًا ومخفي عن الزبائن.' : '⛔ Your account is currently paused and hidden from customers.') : t('stExpired', trial) + CONTACT });
+    else if(trial) st = el('div', { class:days <= 5 && !NATIVE ? 'stat amber' : 'stat ok', text:NATIVE ? (LANG === 'ar' ? '✅ حسابك فعّال وظاهر للزبائن' : '✅ Your account is active and visible to customers') : t('stTrial', days, fDate(until)) + (days <= 5 ? t('stRenew') + CONTACT : '') });
+    else st = el('div', { class:days <= 5 && !NATIVE ? 'stat amber' : 'stat ok', text:NATIVE ? (LANG === 'ar' ? '✅ حسابك فعّال وظاهر للزبائن' : '✅ Your account is active and visible to customers') : t('stPaid', days, fDate(until)) });
     const av = el('input', { type:'checkbox', checked:!!A.available, 'aria-label':t('availSw') });
     av.onchange = async () => { try{ A = await rpc('kh_set_available', { p_phone:ME.phone, p_code:ME.code, p_available:av.checked }); toast(t(av.checked ? 'nowAvail' : 'nowBusy')); refresh(); }catch(e){ toast(e.message); av.checked = !av.checked; } };
     b.append(el('h3', { text:'🧰 ' + A.name }), st,
