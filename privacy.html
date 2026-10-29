@@ -22,7 +22,8 @@ a{color:var(--brand)}
 </style>
 </head>
 <body>
-<main>
+<main id="ar">
+  <p style="text-align:end;margin:0"><a href="#en" onclick="show('en');return false">English</a></p>
   <h1>الخصوصية والشروط — خدماتي</h1>
   <p class="muted">آخر تحديث: 22 أكتوبر 2026 · خدماتي من سالم الجابري، مسقط، سلطنة عُمان.</p>
   <p>خدماتي دليل يربط الناس بمؤسسات الصيانة والخدمات المنزلية المرخّصة والفنيين العمانيين المستقلين في سلطنة عُمان. نجمع أقل قدر ممكن من البيانات، ولا نبيعها ولا نشاركها مع أي جهة إعلانية.</p>
@@ -71,5 +72,52 @@ a{color:var(--brand)}
 
   <p class="muted" style="margin-top:20px"><a href="./">← رجوع لخدماتي</a></p>
 </main>
+<main id="en" dir="ltr" lang="en" hidden>
+  <p style="text-align:end;margin:0"><a href="#ar" onclick="show('ar');return false">العربية</a></p>
+  <h1>Privacy &amp; Terms — Khidmati</h1>
+  <p class="muted">Last updated: October 29, 2026 · Khidmati is by Salem Aljabri, Muscat, Sultanate of Oman.</p>
+  <p>Khidmati is a directory that connects people with licensed home-maintenance companies and independent Omani technicians in Oman. We collect as little data as possible, and we never sell it or share it with advertisers.</p>
+  <section>
+    <h2>1. If you are a customer</h2>
+    <ul>
+      <li>You don't need an account, and we don't store your name or number.</li>
+      <li>When you tap “Call”, “SMS” or “WhatsApp”, your phone contacts the provider directly; we don't receive the call or message.</li>
+      <li>Photos of the problem are never uploaded to us; they stay on your phone until you send them to the provider yourself.</li>
+      <li>Star ratings are saved with a random device ID (not your name or number) so each device rates each provider once.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2. If you are a service provider</h2>
+    <ul>
+      <li>We store: company or technician name, commercial registration number (companies), phone number, optional email, services, wilayats, inspection fee, working hours and note.</li>
+      <li>Shown to customers: name, number, services, wilayats, fee, hours, note and rating. The CR number is not shown.</li>
+      <li>Your login code is stored encrypted; no one can see it, not even the admin.</li>
+      <li>You can edit your details or permanently delete your account at any time from “I'm a provider” → “Delete my account”.</li>
+      <li>Independent technicians: for Omani technicians working for themselves only; they appear after admin approval. We don't ask for ID numbers or photos.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>3. Terms of use and reports</h2>
+    <ul>
+      <li>No abusive or misleading content or false information is allowed.</li>
+      <li>Every listing has a “Report” button that reaches us inside the app, and a “Hide” button that hides it on your phone immediately.</li>
+      <li>We review reports within 24 hours and suspend or remove any provider in violation.</li>
+      <li>Khidmati is only a directory. Price and work are agreed directly between you and the provider.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>4. Where data is stored</h2>
+    <p>Provider data is stored in a secure database with our service provider, Supabase, and used only to run Khidmati. There are no ads and no third-party tracking tools.</p>
+  </section>
+  <section>
+    <h2>5. Contact us</h2>
+    <p>For any question or data deletion request: <a href="mailto:design.omani1@gmail.com">design.omani1@gmail.com</a></p>
+  </section>
+  <p class="muted" style="margin-top:20px"><a href="./">← Back to Khidmati</a></p>
+</main>
+<script>
+function show(l){ document.getElementById('ar').hidden = l !== 'ar'; document.getElementById('en').hidden = l !== 'en'; document.documentElement.lang = l; document.documentElement.dir = l === 'en' ? 'ltr' : 'rtl'; history.replaceState(null, '', '#' + l); }
+(function(){ var h = location.hash.slice(1), l = h === 'en' || h === 'ar' ? h : null; if(!l){ try{ l = JSON.parse(localStorage.getItem('kh-lang') || 'null'); }catch(e){} } if(l !== 'en' && l !== 'ar') l = /^ar/i.test(navigator.language || 'ar') ? 'ar' : 'en'; show(l); })();
+</script>
 </body>
 </html>
