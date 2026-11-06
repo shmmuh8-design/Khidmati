@@ -150,7 +150,8 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
     <button class="btn ghost sm" id="favTop" type="button">⭐ <span data-t="fav">مفضلتي</span> <span id="favN" class="num cnt"></span></button>
     <button class="btn ghost sm" id="histTop" type="button">📋 <span data-t="hist">طلباتي</span> <span id="histN" class="num cnt"></span></button>
     <span class="sp"></span>
-    <button class="btn ghost sm" id="joinTop" type="button" data-t="joinTop">🧰 أنا مقدّم خدمة</button>
+    <button class="btn ghost sm" id="outTop" type="button" hidden style="display:none">🚪 خروج</button>
+    <button class="btn ghost sm" id="joinTop" type="button">🧰 أنا مقدّم خدمة</button>
   </div>
 
   <section class="hero">
@@ -319,6 +320,7 @@ function applyLang(){
   document.querySelectorAll('[data-tp]').forEach(e => { e.placeholder = t(e.dataset.tp); });
   $('langBtn').textContent = LANG === 'ar' ? 'EN' : 'ع'; $('langBtn').lang = LANG === 'ar' ? 'en' : 'ar';
   $('langBtn').setAttribute('aria-label', LANG === 'ar' ? 'English' : 'العربية');
+  if(typeof topBar === 'function') topBar();
     $('gov').setAttribute('aria-label', t('gov')); $('area').setAttribute('aria-label', t('area')); $('desc').setAttribute('aria-label', t('s3'));
   $('trialLine').textContent = t(NATIVE ? 'trialApp' : 'trialWeb');
   if(!$('picPrev').hidden) $('picHint').textContent = t('picReady');
@@ -555,6 +557,17 @@ async function dashboard(){
   });
 }
 $('joinBtn').onclick = providerHome; $('joinTop').onclick = providerHome;
+// شريط الحساب فوق: «حسابي» + زر «خروج» ظاهر لما يكون مقدّم الخدمة داخل
+function topBar(){
+  const j = $('joinTop'), o = $('outTop'); if(!j || !o) return;
+  j.textContent = ME ? (LANG === 'ar' ? '🧰 حسابي' : '🧰 My account') : t('joinTop');
+  o.textContent = LANG === 'ar' ? '🚪 خروج' : '🚪 Log out'; o.hidden = !ME; o.style.display = ME ? '' : 'none';
+}
+{ const _set = store.set; store.set = (k, v) => { _set(k, v); if(k === 'kh-me') topBar(); }; }
+$('outTop').onclick = () => { ME = null; store.set('kh-me', null); toast(t('loggedOut')); };
+// تحديث القائمة لما يرجع المستخدم للتطبيق (مثلًا من الواتساب) وكل دقيقتين
+document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') refresh(); });
+setInterval(() => { if(document.visibilityState === 'visible') refresh(); }, 120000);
 $('shareApp').onclick = () => shareKit({ title:LANG === 'en' ? 'Share Khidmati' : 'شارك خدماتي', text:LANG === 'en' ? '🛠️ Khidmati: licensed maintenance companies at your door in Oman. AC, plumbing, electrical and more 👇' : '🛠️ خدماتي: فنّي إلى باب بيتك. مكيفات، سباكة، كهرباء وأكثر من مؤسسات مرخّصة في عُمان 👇', url:'https://shmmuh8-design.github.io/Khidmati/' });
 
 drawCounts(); applyLang(); refresh();
