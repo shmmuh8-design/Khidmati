@@ -560,8 +560,8 @@ async function dashboard(){
 $('joinBtn').onclick = providerHome; $('joinTop').onclick = providerHome;
 // مدخل الإدارة السري: 3 ضغطات سريعة على شعار «خدماتي»
 (function(){ const lg = document.querySelector('.logo'); if(!lg) return; let n = 0, tm;
-  lg.style.cursor = 'pointer'; lg.style.webkitTapHighlightColor = 'transparent'; lg.style.userSelect = 'none';
-  lg.addEventListener('click', () => { n++; clearTimeout(tm); tm = setTimeout(() => n = 0, 900);
+  lg.style.cursor = 'pointer'; lg.style.webkitTapHighlightColor = 'transparent'; lg.style.userSelect = 'none'; lg.style.touchAction = 'manipulation'; lg.style.webkitUserSelect = 'none';
+  lg.addEventListener('click', () => { n++; clearTimeout(tm); tm = setTimeout(() => n = 0, 1500);
     if(n >= 3){ n = 0; location.href = (/^https?:$/.test(location.protocol) && location.hostname !== 'localhost') ? 'admin.html' : 'https://shmmuh8-design.github.io/Khidmati/admin.html'; } }); })();
 // شريط الحساب فوق: «حسابي» + زر «خروج» ظاهر لما يكون مقدّم الخدمة داخل
 function topBar(){
