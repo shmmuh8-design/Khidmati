@@ -62,6 +62,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .btn.wa{background:var(--wa);color:#fff}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .btn.sm{padding:7px 12px;font-size:.85rem;border-radius:10px}
+.btn .two{display:inline-flex;flex-direction:column;line-height:1.2;text-align:start}.btn .two small{font-size:.68rem;font-weight:600;opacity:.75}
 .linkb{border:0;background:none;padding:4px 2px;color:var(--muted);font-size:.8rem;text-decoration:underline;text-underline-offset:3px}
 
 .hero{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;box-shadow:var(--shadow)}
@@ -148,10 +149,10 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
   </header>
   <div class="bar">
     <button class="btn ghost sm" id="favTop" type="button">⭐ <span data-t="fav">مفضلتي</span> <span id="favN" class="num cnt"></span></button>
-    <button class="btn ghost sm" id="histTop" type="button">📋 <span data-t="hist">طلباتي</span> <span id="histN" class="num cnt"></span></button>
+    <button class="btn ghost sm" id="histTop" type="button">📋 <span class="two"><span data-t="hist">حسابي</span><small data-t="histSub">للعملاء والمستخدمين</small></span> <span id="histN" class="num cnt"></span></button>
     <span class="sp"></span>
     <button class="btn ghost sm" id="outTop" type="button" hidden style="display:none">🚪 خروج</button>
-    <button class="btn ghost sm" id="joinTop" type="button">🧰 أنا مقدّم خدمة</button>
+    <button class="btn ghost sm" id="joinTop" type="button">🧰 حساب الشركات والمسجلين</button>
   </div>
 
   <section class="hero">
@@ -197,7 +198,7 @@ const CONTACT = window.KH_CONTACT || 'design.omani1@gmail.com';
 /* ---------------- اللغة / Language ---------------- */
 let LANG = store.get('kh-lang', '') || ((navigator.language || 'ar').toLowerCase().startsWith('ar') ? 'ar' : 'en');
 const T = {
-  brand:['خدماتي','Khidmati'], joinTop:['🧰 أنا مقدّم خدمة','🧰 I’m a provider'], shareApp:['📤 شارك','📤 Share'],
+  brand:['خدماتي','Khidmati'], joinTop:['🧰 حساب الشركات والمسجلين','🧰 Companies & providers'], shareApp:['📤 شارك','📤 Share'],
   h1:['فنّي إلى باب بيتك','A technician to your door'],
   lead:['مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.','AC broken? Water leaking? Pick the service and your area, then call the nearest licensed maintenance company directly.'],
   f1:['✓ مؤسسات مرخّصة وفنيين عمانيين','✓ Licensed companies & Omani pros'], f2:['⭐ تقييمات من الزبائن','⭐ Customer ratings'], f3:['💬 بدون وسيط','💬 No middleman'],
@@ -213,7 +214,7 @@ const T = {
   oath:['أقر إني عُماني الجنسية، وأشتغل لحسابي، وأتحمل مسؤولية عملي.','I confirm I am an Omani national, work for myself, and am responsible for my work.'], eOath:['لازم توافق على الإقرار','Please confirm the declaration'],
   stPending:['⏳ طلبك تحت المراجعة. بنتواصل معك قريب، وبعد الموافقة تطلع للزبائن ويبدأ شهرك المجاني.','⏳ Your request is under review. We’ll contact you soon; after approval you appear to customers and your free month starts.'],
   foot:['خدماتي · سلطنة عُمان · © سالم الجابري','Khidmati · Sultanate of Oman · © Salem Aljabri'], privacy:['الخصوصية والشروط','Privacy & Terms'],
-  gov:['المحافظة','Governorate'], area:['الولاية','Wilayat'], fav:['مفضلتي','Favorites'], hist:['طلباتي','My requests'],
+  gov:['المحافظة','Governorate'], area:['الولاية','Wilayat'], fav:['مفضلتي','Favorites'], hist:['حسابي','My account'], histSub:['للعملاء والمستخدمين','For customers & users'], histH:['طلباتي','My requests'],
   when_now:['🚨 الحين','🚨 Now'], when_today:['اليوم','Today'], when_later:['موعد لاحق','Later'],
   loading:['جاري التحميل…','Loading…'], retry:['حاول مرة ثانية','Try again'], inArea:[' في ',' in '],
   none:(c, a, f) => LANG === 'ar' ? 'ما فيه مؤسسة مسجّلة لـ«' + c + '» في ' + a + ' حاليًا. جرّب ولاية قريبة' + (f ? '، أو شيل فلتر «المتوفرين الحين»' : '') + '. وإذا تعرف مؤسسة صيانة، قل لها تسجّل في خدماتي 🙏' : 'No company is listed for “' + c + '” in ' + a + ' yet. Try a nearby wilayat' + (f ? ' or turn off “Available now”' : '') + '. Know a maintenance company? Tell them to join Khidmati 🙏',
@@ -232,7 +233,7 @@ const T = {
   cancel:['إلغاء','Cancel'], send:['أرسل البلاغ','Send report'], repOk:['وصل البلاغ، شكرًا لك 🙏','Report received, thank you 🙏'], noDetails:['بدون تفاصيل','No details'],
   msgHi:['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰','Hello, I need a service via the Khidmati app 🧰'], msgSvc:['• الخدمة: ','• Service: '], msgArea:['• المنطقة: ','• Area: '], msgWhen:['• الوقت: ','• When: '], msgProb:['• المشكلة: ','• Problem: '], msgPic:['• بأرسل لكم صورة العطل الحين 📷','• I’ll send you a photo of the issue now 📷'], msgAsk:['كم رسوم الفحص والوقت المتوقع للوصول؟','What’s the inspection fee and your estimated arrival time?'],
   // provider
-  pHome:['🧰 أنا مقدّم خدمة','🧰 I’m a service provider'], pHomeP:['سجّل مؤسستك أو نفسك كفني مستقل، ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company or yourself as an independent pro; customers in your areas call you directly. '],
+  pHome:['🧰 حساب الشركات والمسجلين','🧰 Companies & providers'], pHomeP:['سجّل مؤسستك أو نفسك كفني مستقل، ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company or yourself as an independent pro; customers in your areas call you directly. '],
   pNew:['🏢 سجّل مؤسستك','🏢 List your company'], pLogin:['مسجّل من قبل؟ ادخل','Already listed? Log in'],
   fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'], fEmail:['الإيميل (اختياري)','Email (optional)'], eEmail:['الإيميل مو صحيح','That email doesn’t look right'], mail:['📧 إيميل','📧 Email'], subj:['طلب خدمة من تطبيق خدماتي','Service request via Khidmati'],
   fCats:['الخدمات اللي تقدمونها','Services you offer'], fAreas:['المحافظة والولايات اللي توصلونها (تقدر تختار من أكثر من محافظة)','Governorate and wilayats you cover (you can pick from several governorates)'],
@@ -397,7 +398,7 @@ function sheet(build){ const s = el('div', { class:'scrim' }), b = el('div', { c
 function listSheet(kind){
   sheet((b, close) => {
     const rows = kind === 'fav' ? FAV : HIST;
-    b.append(el('h3', { text:(kind === 'fav' ? '⭐ ' + t('fav') : '📋 ' + t('hist')) }));
+    b.append(el('h3', { text:(kind === 'fav' ? '⭐ ' + t('fav') : '📋 ' + t('histH')) }));
     if(!rows.length) b.append(el('p', { class:'hint', style:'margin:0', text:t(kind === 'fav' ? 'favEmpty' : 'histEmpty') }));
     const box = el('div');
     rows.forEach(r => {
@@ -560,7 +561,7 @@ $('joinBtn').onclick = providerHome; $('joinTop').onclick = providerHome;
 // شريط الحساب فوق: «حسابي» + زر «خروج» ظاهر لما يكون مقدّم الخدمة داخل
 function topBar(){
   const j = $('joinTop'), o = $('outTop'); if(!j || !o) return;
-  j.textContent = ME ? (LANG === 'ar' ? '🧰 حسابي' : '🧰 My account') : t('joinTop');
+  j.textContent = ME ? (LANG === 'ar' ? '🧰 حساب شركتي' : '🧰 My company') : t('joinTop');
   o.textContent = LANG === 'ar' ? '🚪 خروج' : '🚪 Log out'; o.hidden = !ME; o.style.display = ME ? '' : 'none';
 }
 { const _set = store.set; store.set = (k, v) => { _set(k, v); if(k === 'kh-me') topBar(); }; }
