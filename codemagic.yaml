@@ -1,7 +1,7 @@
-# بناء تطبيق خدماتي للآيفون على أجهزة ماك في Codemagic ورفعه إلى TestFlight
+# بناء تطبيق خدمة بلس للآيفون على أجهزة ماك في Codemagic ورفعه إلى TestFlight
 workflows:
   khidmati-ios:
-    name: خدماتي — آيفون
+    name: خدمة بلس — آيفون
     max_build_duration: 60
     instance_type: mac_mini_m2
     working_directory: ios-app
@@ -30,9 +30,9 @@ workflows:
         script: |
           PLIST=ios/App/App/Info.plist
           /usr/libexec/PlistBuddy -c "Delete :CFBundleDisplayName" $PLIST || true
-          /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string خدماتي" $PLIST
-          /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string خدماتي تحتاج الصور عشان ترفق صورة العطل وترسلها للمؤسسة" $PLIST || true
-          /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string خدماتي تحتاج الكاميرا عشان تصوّر العطل وترسله للمؤسسة" $PLIST || true
+          /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string 'خدمة بلس'" $PLIST
+          /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string خدمة بلس تحتاج الصور عشان ترفق صورة العطل وترسلها للمؤسسة" $PLIST || true
+          /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string خدمة بلس تحتاج الكاميرا عشان تصوّر العطل وترسله للمؤسسة" $PLIST || true
           /usr/libexec/PlistBuddy -c "Set :CFBundleDevelopmentRegion ar" $PLIST || true
           /usr/libexec/PlistBuddy -c "Add :CFBundleLocalizations array" $PLIST || true
           /usr/libexec/PlistBuddy -c "Add :CFBundleLocalizations:0 string ar" $PLIST || true

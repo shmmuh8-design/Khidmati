@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>خدماتي</title>
+<title>خدمة بلس</title>
 <script src="config.js"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -134,7 +134,7 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
 @media (max-width:520px){.hero{grid-template-columns:1fr}.hero .art{display:none}.row2{grid-template-columns:1fr}.card{grid-template-columns:auto minmax(0,1fr)}.card .av{grid-row:1 / 3;grid-column:1}.card h3{grid-column:2;grid-row:1;min-width:0}.fee{grid-column:2;grid-row:2;text-align:start;display:flex;gap:6px;align-items:baseline}.fee small{display:inline}.fee b{display:inline}.card .meta{grid-column:1 / -1}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
-/* ===== خدماتي 2 — هوية «الورشة»: كريمي دافئ + برتقالي السلامة + فحمي، بيت تفاعلي ===== */
+/* ===== خدمة بلس 2 — هوية «الورشة»: كريمي دافئ + برتقالي السلامة + فحمي، بيت تفاعلي ===== */
 @font-face{font-family:"KCairo";src:url(fonts/cairo-600.woff) format("woff");font-weight:500 600;font-display:swap}
 @font-face{font-family:"KCairo";src:url(fonts/cairo-800.woff) format("woff");font-weight:700 900;font-display:swap}
 @font-face{font-family:"KTaj";src:url(fonts/tajawal-400.woff) format("woff");font-weight:400;font-display:swap}
@@ -213,7 +213,7 @@ body{background:var(--bg);background-image:radial-gradient(var(--line) 1px,trans
 
 <div class="wrap">
   <header class="top">
-    <div class="logo"><svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="currentColor"/><path d="M96 250 256 112l160 138" stroke="#fff" stroke-width="34" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M134 232v166a14 14 0 0 0 14 14h216a14 14 0 0 0 14-14V232" stroke="#fff" stroke-width="30" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/><g transform="rotate(-45 256 318)"><rect x="238" y="300" width="36" height="104" rx="18" fill="#ffb020"/><circle cx="256" cy="282" r="50" fill="#ffb020"/><rect x="240" y="226" width="32" height="50" rx="6" fill="currentColor"/></g></svg><span data-t="brand">خدماتي</span></div>
+    <div class="logo"><svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="currentColor"/><path d="M96 250 256 112l160 138" stroke="#fff" stroke-width="34" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M134 232v166a14 14 0 0 0 14 14h216a14 14 0 0 0 14-14V232" stroke="#fff" stroke-width="30" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/><g transform="rotate(-45 256 318)"><rect x="238" y="300" width="36" height="104" rx="18" fill="#ffb020"/><circle cx="256" cy="282" r="50" fill="#ffb020"/><rect x="240" y="226" width="32" height="50" rx="6" fill="currentColor"/></g></svg><span data-t="brand">خدمة بلس</span></div>
     <span class="sp"></span>
     <button class="btn ghost sm" id="shareApp" type="button" data-t="shareApp">📤 شارك</button>
     <button class="btn ghost sm ico" id="langBtn" type="button" lang="en">EN</button>
@@ -254,7 +254,7 @@ body{background:var(--bg);background-image:radial-gradient(var(--line) 1px,trans
   </div>
   <div class="view" id="v-home" hidden><div id="homeBody"></div></div>
   <div class="view" id="v-sos" hidden><div id="sosBody"></div></div>
-  <footer><a href="mailto:design.omani1@gmail.com" style="color:inherit;display:inline-block;margin-bottom:4px" dir="ltr">✉️ design.omani1@gmail.com</a><br><span data-t="foot">خدماتي · سلطنة عُمان · © سالم الجابري</span> — <a href="privacy.html" style="color:inherit" data-t="privacy">الخصوصية والشروط</a><br><a href="https://techlights.app" target="_blank" rel="noopener" dir="ltr" style="color:inherit;font-weight:700">🌐 techlights.app</a></footer>
+  <footer><a href="mailto:design.omani1@gmail.com" style="color:inherit;display:inline-block;margin-bottom:4px" dir="ltr">✉️ design.omani1@gmail.com</a><br><span data-t="foot">خدمة بلس · سلطنة عُمان · © سالم الجابري</span> — <a href="privacy.html" style="color:inherit" data-t="privacy">الخصوصية والشروط</a><br><a href="https://techlights.app" target="_blank" rel="noopener" dir="ltr" style="color:inherit;font-weight:700">🌐 techlights.app</a></footer>
 </div>
 <div class="toast" id="toast"></div>
 <div id="root"></div>
@@ -272,7 +272,7 @@ const CONTACT = window.KH_CONTACT || 'design.omani1@gmail.com';
 /* ---------------- اللغة / Language ---------------- */
 let LANG = store.get('kh-lang', '') || ((navigator.language || 'ar').toLowerCase().startsWith('ar') ? 'ar' : 'en');
 const T = {
-  brand:['خدماتي','Khidmati'], joinTop:['🧰 حساب الشركات والمسجلين','🧰 Companies & providers'], shareApp:['📤 شارك','📤 Share'],
+  brand:['خدمة بلس','Khidma Plus'], joinTop:['🧰 حساب الشركات والمسجلين','🧰 Companies & providers'], shareApp:['📤 شارك','📤 Share'],
   h1:['فنّي إلى باب بيتك','A technician to your door'],
   lead:['مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.','AC broken? Water leaking? Pick the service and your area, then call the nearest licensed maintenance company directly.'],
   f1:['✓ مؤسسات مرخّصة وفنيين عمانيين','✓ Licensed companies & Omani pros'], f2:['⭐ تقييمات من الزبائن','⭐ Customer ratings'], f3:['💬 بدون وسيط','💬 No middleman'],
@@ -287,11 +287,11 @@ const T = {
   fNameF:['اسمك','Your name'], fNamePhF:['مثال: سالم الحارثي — فني مكيفات','e.g. Salem — AC technician'], eNameF:['اكتب اسمك','Enter your name'],
   oath:['أقر إني عُماني الجنسية، وأشتغل لحسابي، وأتحمل مسؤولية عملي.','I confirm I am an Omani national, work for myself, and am responsible for my work.'], eOath:['لازم توافق على الإقرار','Please confirm the declaration'],
   stPending:['⏳ طلبك تحت المراجعة. بنتواصل معك قريب، وبعد الموافقة تطلع للزبائن ويبدأ شهرك المجاني.','⏳ Your request is under review. We’ll contact you soon; after approval you appear to customers and your free month starts.'],
-  foot:['خدماتي · سلطنة عُمان · © سالم الجابري','Khidmati · Sultanate of Oman · © Salem Aljabri'], privacy:['الخصوصية والشروط','Privacy & Terms'],
+  foot:['خدمة بلس · سلطنة عُمان · © سالم الجابري','Khidma Plus · Sultanate of Oman · © Salem Aljabri'], privacy:['الخصوصية والشروط','Privacy & Terms'],
   gov:['المحافظة','Governorate'], area:['الولاية','Wilayat'], fav:['مفضلتي','Favorites'], hist:['حسابي','My account'], histSub:['للعملاء والمستخدمين','For customers & users'], histH:['طلباتي','My requests'],
   when_now:['🚨 الحين','🚨 Now'], when_today:['اليوم','Today'], when_later:['موعد لاحق','Later'],
   loading:['جاري التحميل…','Loading…'], retry:['حاول مرة ثانية','Try again'], inArea:[' في ',' in '],
-  none:(c, a, f) => LANG === 'ar' ? 'ما فيه مؤسسة مسجّلة لـ«' + c + '» في ' + a + ' حاليًا. جرّب ولاية قريبة' + (f ? '، أو شيل فلتر «المتوفرين الحين»' : '') + '. وإذا تعرف مؤسسة صيانة، قل لها تسجّل في خدماتي 🙏' : 'No company is listed for “' + c + '” in ' + a + ' yet. Try a nearby wilayat' + (f ? ' or turn off “Available now”' : '') + '. Know a maintenance company? Tell them to join Khidmati 🙏',
+  none:(c, a, f) => LANG === 'ar' ? 'ما فيه مؤسسة مسجّلة لـ«' + c + '» في ' + a + ' حاليًا. جرّب ولاية قريبة' + (f ? '، أو شيل فلتر «المتوفرين الحين»' : '') + '. وإذا تعرف مؤسسة صيانة، قل لها تسجّل في خدمة بلس 🙏' : 'No company is listed for “' + c + '” in ' + a + ' yet. Try a nearby wilayat' + (f ? ' or turn off “Available now”' : '') + '. Know a maintenance company? Tell them to join Khidma Plus 🙏',
   cr:['✓ سجل تجاري','✓ CR verified'], avail:['🟢 متوفر الحين','🟢 Available'], busy:['مشغول','Busy'], free:['مجانًا','Free'], omr:[' ر.ع',' OMR'], feeL:['رسوم الفحص','Inspection fee'], freeChk:['الفحص مجانًا ✓','Free inspection ✓'], newP:['جديد','New'],
   ratings:[' تقييم',' ratings'], covers:['يغطي: ','Covers: '], all:['كل ','All '],
   call:['📞 اتصال','📞 Call'], sms:['✉️ رسالة','✉️ SMS'], wa:['💬 واتساب','💬 WhatsApp'], rate:['⭐ قيّم','⭐ Rate'], report:['🚩 إبلاغ','🚩 Report'], hide:['🚫 إخفاء','🚫 Hide'],
@@ -303,13 +303,13 @@ const T = {
   via_call:['اتصال','Call'], via_sms:['رسالة','SMS'], via_wa:['واتساب','WhatsApp'], via_mail:['إيميل','Email'],
   rateQ:n => (LANG === 'ar' ? 'كيف كانت خدمة ' : 'How was ') + n + (LANG === 'ar' ? '؟' : '’s service?'), rateHint:['تقييمك يساعد غيرك يختار صح. قيّم بعد ما تخلص الخدمة.','Your rating helps others choose. Rate after the job is done.'],
   later:['بعدين','Later'], saveRate:['حفظ التقييم','Save rating'], pickStars:['اختار عدد النجوم','Pick the number of stars'], thanksRate:['شكرًا على تقييمك ⭐','Thanks for rating ⭐'],
-  repH:n => (LANG === 'ar' ? 'إبلاغ عن ' : 'Report ') + n, repPh:['مثال: ما التزم بالموعد، سعر مبالغ فيه، رقم غلط…','e.g. missed the appointment, overpriced, wrong number…'], repHint:['البلاغ يوصل لإدارة خدماتي ونراجعه خلال 24 ساعة. وتقدر تخفي المؤسسة عندك بزر «إخفاء».','Reports go to the Khidmati team and are reviewed within 24 hours. You can also hide the company with “Hide”.'],
+  repH:n => (LANG === 'ar' ? 'إبلاغ عن ' : 'Report ') + n, repPh:['مثال: ما التزم بالموعد، سعر مبالغ فيه، رقم غلط…','e.g. missed the appointment, overpriced, wrong number…'], repHint:['البلاغ يوصل لإدارة خدمة بلس ونراجعه خلال 24 ساعة. وتقدر تخفي المؤسسة عندك بزر «إخفاء».','Reports go to the Khidma Plus team and are reviewed within 24 hours. You can also hide the company with “Hide”.'],
   cancel:['إلغاء','Cancel'], send:['أرسل البلاغ','Send report'], repOk:['وصل البلاغ، شكرًا لك 🙏','Report received, thank you 🙏'], noDetails:['بدون تفاصيل','No details'],
-  msgHi:['السلام عليكم، أبي خدمة عن طريق تطبيق خدماتي 🧰','Hello, I need a service via the Khidmati app 🧰'], msgSvc:['• الخدمة: ','• Service: '], msgArea:['• المنطقة: ','• Area: '], msgWhen:['• الوقت: ','• When: '], msgProb:['• المشكلة: ','• Problem: '], msgPic:['• بأرسل لكم صورة العطل الحين 📷','• I’ll send you a photo of the issue now 📷'], msgAsk:['كم رسوم الفحص والوقت المتوقع للوصول؟','What’s the inspection fee and your estimated arrival time?'],
+  msgHi:['السلام عليكم، أبي خدمة عن طريق تطبيق خدمة بلس 🧰','Hello, I need a service via the Khidma Plus app 🧰'], msgSvc:['• الخدمة: ','• Service: '], msgArea:['• المنطقة: ','• Area: '], msgWhen:['• الوقت: ','• When: '], msgProb:['• المشكلة: ','• Problem: '], msgPic:['• بأرسل لكم صورة العطل الحين 📷','• I’ll send you a photo of the issue now 📷'], msgAsk:['كم رسوم الفحص والوقت المتوقع للوصول؟','What’s the inspection fee and your estimated arrival time?'],
   // provider
   pHome:['🧰 حساب الشركات والمسجلين','🧰 Companies & providers'], pHomeP:['سجّل مؤسستك أو نفسك كفني مستقل، ويتصل فيك الزبائن في ولاياتك مباشرة. ','List your company or yourself as an independent pro; customers in your areas call you directly. '],
   pNew:['🏢 سجّل مؤسستك','🏢 List your company'], pLogin:['مسجّل من قبل؟ ادخل','Already listed? Log in'],
-  fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'], fEmail:['الإيميل (اختياري)','Email (optional)'], eEmail:['الإيميل مو صحيح','That email doesn’t look right'], mail:['📧 إيميل','📧 Email'], subj:['طلب خدمة من تطبيق خدماتي','Service request via Khidmati'],
+  fName:['اسم المؤسسة','Company name'], fNamePh:['مثال: مؤسسة البرودة الذهبية','e.g. Golden Cool Est.'], fCr:['السجل التجاري','Commercial Registration'], fCrPh:['رقم السجل التجاري','CR number'], fPhone:['رقم الجوال','Mobile number'], fEmail:['الإيميل (اختياري)','Email (optional)'], eEmail:['الإيميل مو صحيح','That email doesn’t look right'], mail:['📧 إيميل','📧 Email'], subj:['طلب خدمة من تطبيق خدمة بلس','Service request via Khidma Plus'],
   fCats:['الخدمات اللي تقدمونها','Services you offer'], fAreas:['المحافظة والولايات اللي توصلونها (تقدر تختار من أكثر من محافظة)','Governorate and wilayats you cover (you can pick from several governorates)'],
   fFee:['رسوم الفحص (ر.ع)','Inspection fee (OMR)'], fFeePh:['0 = مجانًا','0 = free'], fHours:['أوقات الدوام','Working hours'], fHoursPh:['مثال: 7 الصبح – 10 الليل','e.g. 7am – 10pm'], fNote:['ملاحظة (اختياري)','Note (optional)'], fNotePh:['شو تسوون بالضبط؟','What exactly do you do?'],
   picked:['المختار: ','Selected: '], regH:['🧰 سجّل مؤسستك','🧰 List your company'], editH:['✏️ عدّل بيانات مؤسستك','✏️ Edit your company'],
@@ -321,7 +321,7 @@ const T = {
   copy:['📋 نسخ الرمز','📋 Copy code'], copied:['انسخ الرمز ✅','Code copied ✅'], copyFail:['حدده وانسخه يدوي','Select and copy it manually'], gotIt:['حفظته، كمّل','Saved it, continue'],
   loginH:['🔑 دخول مقدّم الخدمة','🔑 Provider login'], code:['رمز الدخول','Login code'], forgot:['نسيت الرمز؟ راسل الإدارة: ','Forgot your code? Email: '], back:['رجوع','Back'], login:['دخول','Log in'], eLogin:['اكتب الرقم والرمز صح','Enter a valid number and code'],
   stBlocked:['⛔ مؤسستك موقوفة بسبب بلاغات. للمراجعة راسل الإدارة: ','⛔ Your company is suspended due to reports. Contact: '],
-  stExpired:t => LANG === 'ar' ? '⛔ انتهى ' + (t ? 'الشهر المجاني' : 'اشتراكك') + '، ومؤسستك مخفية عن الزبائن. للتجديد تواصل مع إدارة خدماتي: ' : '⛔ Your ' + (t ? 'free month' : 'subscription') + ' has ended and your company is hidden. To renew, contact Khidmati: ',
+  stExpired:t => LANG === 'ar' ? '⛔ انتهى ' + (t ? 'الشهر المجاني' : 'اشتراكك') + '، ومؤسستك مخفية عن الزبائن. للتجديد تواصل مع إدارة خدمة بلس: ' : '⛔ Your ' + (t ? 'free month' : 'subscription') + ' has ended and your company is hidden. To renew, contact Khidma Plus: ',
   stTrial:(d, u) => LANG === 'ar' ? '🎁 شهرك المجاني: باقي ' + d + ' يوم (لين ' + u + ')' : '🎁 Free month: ' + d + ' days left (until ' + u + ')',
   stPaid:(d, u) => LANG === 'ar' ? '✅ اشتراكك فعّال لين ' + u + ' (باقي ' + d + ' يوم)' : '✅ Active until ' + u + ' (' + d + ' days left)',
   stRenew:['. للاستمرار تواصل مع الإدارة: ','. To continue, contact: '],
@@ -632,7 +632,7 @@ async function dashboard(){
   });
 }
 $('joinBtn').onclick = providerHome; $('joinTop').onclick = providerHome;
-// مدخل الإدارة السري: 3 ضغطات سريعة على شعار «خدماتي»
+// مدخل الإدارة السري: 3 ضغطات سريعة على شعار «خدمة بلس»
 (function(){ const lg = document.querySelector('.logo'); if(!lg) return; let n = 0, tm;
   lg.style.cursor = 'pointer'; lg.style.webkitTapHighlightColor = 'transparent'; lg.style.userSelect = 'none'; lg.style.touchAction = 'manipulation'; lg.style.webkitUserSelect = 'none';
   lg.addEventListener('click', () => { n++; clearTimeout(tm); tm = setTimeout(() => n = 0, 1500);
@@ -648,9 +648,9 @@ $('outTop').onclick = () => { ME = null; store.set('kh-me', null); toast(t('logg
 // تحديث القائمة لما يرجع المستخدم للتطبيق (مثلًا من الواتساب) وكل دقيقتين
 document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') refresh(); });
 setInterval(() => { if(document.visibilityState === 'visible') refresh(); }, 120000);
-$('shareApp').onclick = () => shareKit({ title:LANG === 'en' ? 'Share Khidmati' : 'شارك خدماتي', text:LANG === 'en' ? '🛠️ Khidmati: licensed maintenance companies at your door in Oman. AC, plumbing, electrical and more 👇' : '🛠️ خدماتي: فنّي إلى باب بيتك. مكيفات، سباكة، كهرباء وأكثر من مؤسسات مرخّصة في عُمان 👇', url:'https://shmmuh8-design.github.io/Khidmati/' });
+$('shareApp').onclick = () => shareKit({ title:LANG === 'en' ? 'Share Khidma Plus' : 'شارك خدمة بلس', text:LANG === 'en' ? '🛠️ Khidma Plus: licensed maintenance companies at your door in Oman. AC, plumbing, electrical and more 👇' : '🛠️ خدمة بلس: فنّي إلى باب بيتك. مكيفات، سباكة، كهرباء وأكثر من مؤسسات مرخّصة في عُمان 👇', url:'https://shmmuh8-design.github.io/Khidmati/' });
 
-/* ================= خدماتي 2: البيت التفاعلي، الأعراض، جرّب قبل ما تتصل، بيتي، طوارئ ================= */
+/* ================= خدمة بلس 2: البيت التفاعلي، الأعراض، جرّب قبل ما تتصل، بيتي، طوارئ ================= */
 Object.assign(T, {
   vReq:['اطلب فني','Get a pro'], vHome:['بيتي','My home'], vSos:['طوارئ','Emergency'],
   lead2:['اضغط على المكان اللي فيه العطل، وبنطلع لك الخدمات المناسبة.','Tap where the problem is, and we’ll show the right services.'],
