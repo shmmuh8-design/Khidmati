@@ -6,9 +6,6 @@
 <title>خدماتي</title>
 <script src="config.js"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: one narrow column (phone-first) — hero, 3 numbered steps, results list. Cool slate ground, cobalt for action, amber for "available now". */
 :root{
@@ -136,6 +133,80 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media (max-width:520px){.hero{grid-template-columns:1fr}.hero .art{display:none}.row2{grid-template-columns:1fr}.card{grid-template-columns:auto minmax(0,1fr)}.card .av{grid-row:1 / 3;grid-column:1}.card h3{grid-column:2;grid-row:1;min-width:0}.fee{grid-column:2;grid-row:2;text-align:start;display:flex;gap:6px;align-items:baseline}.fee small{display:inline}.fee b{display:inline}.card .meta{grid-column:1 / -1}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== خدماتي 2 — هوية «الورشة»: كريمي دافئ + برتقالي السلامة + فحمي، بيت تفاعلي ===== */
+@font-face{font-family:"KCairo";src:url(fonts/cairo-600.woff) format("woff");font-weight:500 600;font-display:swap}
+@font-face{font-family:"KCairo";src:url(fonts/cairo-800.woff) format("woff");font-weight:700 900;font-display:swap}
+@font-face{font-family:"KTaj";src:url(fonts/tajawal-400.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"KTaj";src:url(fonts/tajawal-500.woff) format("woff");font-weight:500 600;font-display:swap}
+@font-face{font-family:"KTaj";src:url(fonts/tajawal-700.woff) format("woff");font-weight:700 900;font-display:swap}
+:root:root:root{--bg:#fbf4ea;--surface:#fffdf9;--sunk:#f4e9db;--line:#e8d8c4;--fg:#1e2329;--muted:#6f6458;
+  --cobalt:#d9480f;--cobalt-ink:#fff;--cobalt-soft:#fde4d4;--amber:#a15c00;--amber-soft:#fcefd6;--ok:#0f7c6e;--ok-soft:#d9f1ec;
+  --char:#1e2329;--teal:#0f7c6e;--display:"KCairo",Tahoma,sans-serif;--body:"KTaj",Tahoma,system-ui,sans-serif}
+@media (prefers-color-scheme: dark){:root:root:root:not([data-theme="light"]){--bg:#15181c;--surface:#1e2228;--sunk:#262b32;--line:#353c45;--fg:#f3ece3;--muted:#b3a899;
+  --cobalt:#ff7a3d;--cobalt-ink:#1a0e06;--cobalt-soft:#3a2418;--amber:#f0a94a;--amber-soft:#3a2c17;--ok:#3cc9b4;--ok-soft:#173a35;--char:#0e1013}}
+body{background:var(--bg);background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:22px 22px}
+.logo{color:var(--cobalt)}
+.logo span{font-family:var(--display);font-weight:900}
+.seg{position:sticky;top:0;z-index:8;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px;margin:0 0 14px;border-radius:18px;background:var(--char);box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.seg button{border:0;background:transparent;color:#d9cfc3;border-radius:13px;padding:10px 4px;font:700 .95rem var(--display);position:relative}
+.seg button[aria-pressed="true"]{background:var(--cobalt);color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+.seg .bdg{position:absolute;top:2px;inset-inline-end:10px;min-width:18px;height:18px;border-radius:9px;background:#ffb020;color:#1a1405;font:800 .7rem/18px var(--display);padding:0 4px}
+.hero2{background:var(--char);color:#fff;border-radius:26px;padding:18px 16px 14px;position:relative;overflow:hidden;box-shadow:0 8px 0 rgba(0,0,0,.15)}
+.hero2::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
+.hero2>*{position:relative}
+.hero2 h1{font:900 clamp(1.7rem,7vw,2.3rem)/1.25 var(--display);margin:0}
+.hero2 h1 em{font-style:normal;color:#ffb27d}
+.hero2 p{margin:4px 0 10px;color:#d9cfc3;font-size:.95rem}
+.house{width:100%;max-width:420px;margin:0 auto;display:block}
+.house svg{width:100%;height:auto;display:block;overflow:visible}
+.house .rm{cursor:pointer;transition:transform .15s}
+.house .rm rect,.house .rm path.f{fill:#2c333b;stroke:#4a535e;stroke-width:1.5}
+.house .rm text{fill:#f3ece3;font:700 10px var(--display);text-anchor:middle;pointer-events:none}
+.house .rm .em{font-size:17px}
+.house .rm:hover rect,.house .rm:hover path.f{fill:#39414b}
+.house .rm.on rect,.house .rm.on path.f{fill:var(--cobalt);stroke:#ffb27d}
+.house .rm.on text{fill:#fff}
+.hero2 .facts{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.hero2 .facts span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:4px 10px;font-size:.78rem;color:#f3ece3}
+.roomhint{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:-2px 0 10px;font-size:.88rem;color:var(--muted)}
+.cat{border-width:1.5px;box-shadow:0 3px 0 var(--line);border-radius:16px}
+.cat.dim{opacity:.38}
+.cat[aria-pressed="true"]{box-shadow:0 3px 0 var(--cobalt)}
+.sym{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.sym button{border:1.5px dashed var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font:600 .84rem var(--body);color:var(--fg)}
+.sym button.on{border-style:solid;border-color:var(--teal);background:var(--ok-soft);color:var(--teal)}
+.tips{margin-top:10px;background:var(--amber-soft);border:1px solid var(--line);border-radius:16px;padding:10px 14px}
+.tips summary{font:700 .92rem var(--display);cursor:pointer;color:var(--amber)}
+.tips ul{margin:8px 0 2px;padding-inline-start:18px;display:grid;gap:4px;font-size:.9rem}
+.card{border-width:1.5px;border-radius:20px;box-shadow:0 4px 0 var(--line)}
+.step h2 i{border-radius:9px;background:var(--char);color:#fff}
+@media (prefers-color-scheme: dark){.step h2 i{background:var(--cobalt);color:var(--cobalt-ink)}}
+.view[hidden]{display:none!important}
+.hcard{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;box-shadow:0 4px 0 var(--line);padding:14px;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;margin-bottom:12px}
+.hcard .ic{grid-row:1/3;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.5rem;background:var(--sunk)}
+.hcard b{font:800 1.02rem var(--display)}
+.hcard .st{font-size:.85rem;color:var(--muted)}
+.hcard .st.due{color:var(--bad);font-weight:700}
+.hcard .st.soon{color:var(--amber);font-weight:700}
+.hcard .st.ok{color:var(--teal);font-weight:700}
+.hcard .row{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.hsum{background:var(--char);color:#fff;border-radius:22px;padding:16px;margin-bottom:14px;display:flex;gap:14px;align-items:center}
+.hsum .n{font:900 2.2rem/1 var(--display);color:#ffb27d}
+.hsum p{margin:0;color:#d9cfc3;font-size:.9rem}
+.hsum h2{margin:0 0 2px;font:800 1.15rem var(--display)}
+.sos{background:#b4232b;color:#fff;border-radius:24px;padding:18px;text-align:center;box-shadow:0 6px 0 #6f1217;margin-bottom:14px}
+.sos h2{margin:0;font:900 1.3rem var(--display)}
+.sos p{margin:4px 0 12px;color:#ffd9d6;font-size:.9rem}
+.sos a{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#b4232b;border-radius:999px;padding:12px 26px;font:900 1.35rem var(--display);text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.eg{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;box-shadow:0 4px 0 var(--line);margin-bottom:12px;padding:4px 14px}
+.eg summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 0;font:800 1.02rem var(--display);cursor:pointer}
+.eg summary::-webkit-details-marker{display:none}
+.eg summary::after{content:"⌄";margin-inline-start:auto;color:var(--cobalt)}
+.eg[open] summary::after{transform:rotate(180deg)}
+.eg ol{margin:0 0 10px;padding-inline-start:22px;display:grid;gap:6px}
+.eg li::marker{color:var(--cobalt);font-weight:800}
+.eg .btn{margin-bottom:12px}
 </style>
 </head>
 <body>
@@ -155,16 +226,16 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
     <button class="btn ghost sm" id="joinTop" type="button">🧰 حساب الشركات والمسجلين</button>
   </div>
 
-  <section class="hero">
-    <div>
-      <h1 data-t="h1">فنّي إلى باب بيتك</h1>
-      <p data-t="lead">مكيف خربان؟ ماي يسرّب؟ اختار الخدمة ومنطقتك، واتصل بأقرب مؤسسة صيانة مرخّصة مباشرة.</p>
-      <div class="facts"><span data-t="f1">✓ مؤسسات مرخّصة وفنيين عمانيين</span><span data-t="f2">⭐ تقييمات من الزبائن</span><span data-t="f3">💬 بدون وسيط</span></div>
-    </div>
-    <svg class="art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="var(--cobalt-soft)"/><rect x="30" y="38" width="60" height="22" rx="6" fill="var(--surface)" stroke="var(--cobalt)" stroke-width="3"/><path d="M38 52h44" stroke="var(--cobalt)" stroke-width="3" stroke-linecap="round"/><path d="M44 66c0 6-4 8-4 14M60 66c0 6-4 8-4 14M76 66c0 6-4 8-4 14" stroke="var(--cobalt)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/><circle cx="84" cy="44" r="3" fill="var(--amber)"/></svg>
+  <nav class="seg" id="seg" aria-label="الأقسام"><button type="button" data-v="req" aria-pressed="true">🧰 <span data-t="vReq">اطلب فني</span></button><button type="button" data-v="home" aria-pressed="false">🏠 <span data-t="vHome">بيتي</span><i class="bdg" id="homeBdg" hidden></i></button><button type="button" data-v="sos" aria-pressed="false">🚨 <span data-t="vSos">طوارئ</span></button></nav>
+ <div class="view" id="v-req">
+  <section class="hero2">
+    <h1 id="h1x"></h1>
+    <p data-t="lead2">اضغط على المكان اللي فيه العطل، وبنطلع لك الخدمات المناسبة.</p>
+    <div class="house" id="house"></div>
+    <div class="facts"><span data-t="f1">✓ مؤسسات مرخّصة وفنيين عمانيين</span><span data-t="f2">⭐ تقييمات من الزبائن</span><span data-t="f3">💬 بدون وسيط</span></div>
   </section>
 
-  <section class="step"><h2><i>1</i><span data-t="s1">شو تحتاج؟</span></h2><div class="cats" id="cats"></div></section>
+  <section class="step" id="stepCats"><h2><i>1</i><span data-t="s1">شو تحتاج؟</span></h2><div class="roomhint" id="roomHint" hidden></div><div class="cats" id="cats"></div><div class="sym" id="sym"></div><details class="tips" id="tips" hidden><summary data-t="tipsH">💡 جرّب قبل ما تتصل</summary><ul id="tipsL"></ul></details></section>
 
   <section class="step"><h2><i>2</i><span data-t="s2">وين؟</span></h2>
     <div class="row2"><select class="in" id="gov" aria-label="المحافظة"></select><select class="in" id="area" aria-label="الولاية"></select></div>
@@ -180,6 +251,9 @@ footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
   <div class="list" id="list"></div>
 
   <section class="join"><div><h3 data-t="joinH">عندك مؤسسة صيانة؟</h3><p><span data-t="joinP">سجّل مؤسستك ويتصل فيك الزبائن في ولاياتك مباشرة.</span> <b id="trialLine"></b> <span data-t="joinP2">التسجيل للمؤسسات المرخّصة بسجل تجاري.</span></p></div><button class="btn" id="joinBtn" type="button" data-t="joinBtn">سجّل مؤسستك</button></section>
+  </div>
+  <div class="view" id="v-home" hidden><div id="homeBody"></div></div>
+  <div class="view" id="v-sos" hidden><div id="sosBody"></div></div>
   <footer><a href="mailto:design.omani1@gmail.com" style="color:inherit;display:inline-block;margin-bottom:4px" dir="ltr">✉️ design.omani1@gmail.com</a><br><span data-t="foot">خدماتي · سلطنة عُمان · © سالم الجابري</span> — <a href="privacy.html" style="color:inherit" data-t="privacy">الخصوصية والشروط</a><br><a href="https://techlights.app" target="_blank" rel="noopener" dir="ltr" style="color:inherit;font-weight:700">🌐 techlights.app</a></footer>
 </div>
 <div class="toast" id="toast"></div>
@@ -575,6 +649,136 @@ $('outTop').onclick = () => { ME = null; store.set('kh-me', null); toast(t('logg
 document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') refresh(); });
 setInterval(() => { if(document.visibilityState === 'visible') refresh(); }, 120000);
 $('shareApp').onclick = () => shareKit({ title:LANG === 'en' ? 'Share Khidmati' : 'شارك خدماتي', text:LANG === 'en' ? '🛠️ Khidmati: licensed maintenance companies at your door in Oman. AC, plumbing, electrical and more 👇' : '🛠️ خدماتي: فنّي إلى باب بيتك. مكيفات، سباكة، كهرباء وأكثر من مؤسسات مرخّصة في عُمان 👇', url:'https://shmmuh8-design.github.io/Khidmati/' });
+
+/* ================= خدماتي 2: البيت التفاعلي، الأعراض، جرّب قبل ما تتصل، بيتي، طوارئ ================= */
+Object.assign(T, {
+  vReq:['اطلب فني','Get a pro'], vHome:['بيتي','My home'], vSos:['طوارئ','Emergency'],
+  lead2:['اضغط على المكان اللي فيه العطل، وبنطلع لك الخدمات المناسبة.','Tap where the problem is, and we’ll show the right services.'],
+  tipsH:['💡 جرّب قبل ما تتصل','💡 Try this before you call'], allCats:['عرض كل الخدمات','Show all services'],
+  roomIs:['المكان: ','Area: '],
+});
+const H1 = () => LANG === 'ar' ? 'وش اللي <em>خربان</em> في بيتك؟' : 'What’s <em>broken</em> at home?';
+const ROOMS = [
+  { id:'roof', em:'📡', n:['السطح','Roof'], cats:['sat','ac','reno','clean'] },
+  { id:'bed', em:'🛏️', n:['غرفة النوم','Bedroom'], cats:['ac','elec','paint','carp'] },
+  { id:'liv', em:'🛋️', n:['الصالة','Living room'], cats:['ac','sat','elec','paint','clean'] },
+  { id:'kit', em:'🍳', n:['المطبخ','Kitchen'], cats:['plumb','elec','pest','carp','clean'] },
+  { id:'bath', em:'🚿', n:['الحمام','Bathroom'], cats:['plumb','pest','reno'] },
+  { id:'door', em:'🚪', n:['المدخل','Entrance'], cats:['lock','carp','sat','paint'] },
+];
+let ROOM = null;
+const P2 = a => a[LANG === 'ar' ? 0 : 1];
+function drawHouse(){
+  const R = (id, x, y, w, h) => { const r = ROOMS.find(q => q.id === id); return `<g class="rm${ROOM === id ? ' on' : ''}" data-r="${id}" role="button" tabindex="0" aria-label="${P2(r.n)}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6"/><text class="em" x="${x + w / 2}" y="${y + h / 2 - 2}">${r.em}</text><text x="${x + w / 2}" y="${y + h / 2 + 15}">${P2(r.n)}</text></g>`; };
+  const roofOn = ROOM === 'roof', rr = ROOMS[0];
+  $('house').innerHTML = `<svg viewBox="0 0 320 210" aria-label="${LANG === 'ar' ? 'بيتك' : 'Your home'}">
+    <g class="rm${roofOn ? ' on' : ''}" data-r="roof" role="button" tabindex="0" aria-label="${P2(rr.n)}"><path class="f" d="M24 74 160 10l136 64z" stroke-linejoin="round"/><text class="em" x="160" y="48">${rr.em}</text><text x="160" y="64">${P2(rr.n)}</text></g>
+    ${R('bed', 34, 80, 120, 58)}${R('liv', 160, 80, 126, 58)}${R('kit', 34, 144, 96, 58)}${R('bath', 136, 144, 70, 58)}${R('door', 212, 144, 74, 58)}
+    <path d="M14 206h292" stroke="#4a535e" stroke-width="2" stroke-linecap="round"/></svg>`;
+  $('house').querySelectorAll('[data-r]').forEach(g => { const go = () => pickRoom(g.dataset.r); g.onclick = go; g.onkeydown = e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); } }; });
+}
+function pickRoom(id){
+  ROOM = ROOM === id ? null : id;
+  const r = ROOMS.find(q => q.id === ROOM);
+  if(r && !r.cats.includes(S.cat)){ S.cat = r.cats[0]; save(); }
+  drawHouse(); drawCats(); drawList();
+  if(r) $('stepCats').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+const SYM = {
+  ac:[['ما يبرّد','Not cooling'],['يقطّر ماي','Leaking water'],['صوت عالي','Loud noise'],['ريحة غريبة','Strange smell'],['ما يشتغل أبدًا','Won’t turn on']],
+  elec:[['انقطاع في جزء من البيت','Partial power cut'],['القاطع يفصل كل شوي','Breaker keeps tripping'],['فيش محترق','Burnt socket'],['إنارة ما تشتغل','Lights not working']],
+  plumb:[['تسريب ماي','Water leak'],['انسداد مجاري','Blocked drain'],['ضغط الماي ضعيف','Low water pressure'],['السخان ما يسخّن','Heater not heating']],
+  carp:[['باب ما يتسكّر','Door won’t close'],['خزانة مكسورة','Broken cabinet'],['تركيب أثاث','Furniture assembly']],
+  paint:[['تقشّر في الصبغ','Peeling paint'],['رطوبة في الجدار','Damp wall'],['صبغ غرفة كاملة','Paint a whole room']],
+  clean:[['تنظيف شامل للبيت','Full home cleaning'],['تنظيف كنب وسجاد','Sofa & carpet cleaning'],['تنظيف خزان الماي','Water tank cleaning']],
+  pest:[['صراصير','Cockroaches'],['نمل أبيض','Termites'],['بق الفراش','Bed bugs'],['فئران','Rodents']],
+  sat:[['ما فيه إشارة','No signal'],['تركيب كاميرات','Install cameras'],['ضبط القنوات','Tune channels']],
+  lock:[['مقفول برا البيت','Locked out'],['تغيير قفل','Change a lock'],['قفل إلكتروني','Smart lock']],
+  reno:[['تشقق في الجدران','Wall cracks'],['تبليط','Tiling'],['عزل السطح','Roof insulation']],
+};
+const TIPS = {
+  ac:[['تأكد إن الريموت على وضع التبريد ❄️، والحرارة أقل من حرارة الغرفة.','Check the remote is on cool ❄️ and set below room temperature.'],['إذا الفلتر مليان غبار، نظّفه بالماي وخلّه ينشف.','If the filter is dusty, rinse it and let it dry.'],['شيك قاطع المكيف في الطبلون.','Check the AC breaker in the panel.']],
+  elec:[['شيك إذا القاطع نازل في الطبلون، ورجّعه مرة وحدة بس.','Check if a breaker has tripped and reset it once only.'],['إذا رجع فصل، لا تعيده واطلب فني.','If it trips again, don’t retry — call a pro.'],['لا تلمس أي فيش أو مفتاح ويدك مبلولة.','Never touch sockets or switches with wet hands.']],
+  plumb:[['إذا التسريب قوي، سكّر محبس الماي الرئيسي.','If the leak is strong, shut the main water valve.'],['شيك إذا ضعف الماي عند الجيران بعد، يمكن من الشبكة.','Check if neighbours have low pressure too — it may be the network.']],
+  pest:[['نظّف بقايا الأكل وسكّر الفتحات والشقوق.','Clear food crumbs and seal gaps and cracks.'],['لا تخلط أكثر من مبيد مع بعض.','Never mix different pesticides.']],
+  sat:[['شيك إذا السلك مفصول، وطفّ الرسيفر وشغّله من جديد.','Check the cable is connected, then restart the receiver.']],
+  lock:[['شيك إذا عند أحد من أهلك مفتاح احتياطي.','Check if a family member has a spare key.']],
+};
+const _drawCats = drawCats;
+drawCats = function(){
+  const r = ROOMS.find(q => q.id === ROOM);
+  $('cats').replaceChildren(...CATS.map(([id, ic]) => el('button', { class:'cat' + (r && !r.cats.includes(id) ? ' dim' : ''), type:'button', 'aria-pressed':String(S.cat === id), onclick:() => { S.cat = id; save(); drawCats(); drawList(); } }, el('span', { text:ic }), catName(id))));
+  const rh = $('roomHint'); rh.hidden = !r;
+  if(r) rh.replaceChildren(el('span', { text:t('roomIs') + r.em + ' ' + P2(r.n) }), el('button', { class:'linkb', type:'button', text:t('allCats'), onclick:() => pickRoom(ROOM) }));
+  const used = new Set(($('desc').value || '').split(/[،,]\s*/).map(x => x.trim()));
+  $('sym').replaceChildren(...(SYM[S.cat] || []).map(sy => { const txt = P2(sy); return el('button', { type:'button', class:used.has(txt) ? 'on' : '', text:txt, onclick:() => {
+    const parts = ($('desc').value || '').split(/[،,]\s*/).map(x => x.trim()).filter(Boolean), k = parts.indexOf(txt);
+    if(k >= 0) parts.splice(k, 1); else parts.push(txt);
+    $('desc').value = parts.join(LANG === 'ar' ? '، ' : ', '); drawCats(); } }); }));
+  const tp = TIPS[S.cat]; $('tips').hidden = !tp;
+  if(tp) $('tipsL').replaceChildren(...tp.map(x => el('li', { text:P2(x) })));
+};
+/* ---------- بيتي: الصيانة الدورية ---------- */
+const TASKS = [
+  { id:'acf', em:'❄️', n:['تنظيف فلاتر المكيفات','Clean AC filters'], d:90, cat:'ac' },
+  { id:'acs', em:'🌬️', n:['صيانة المكيفات قبل الصيف','Pre-summer AC service'], d:365, cat:'ac' },
+  { id:'tank', em:'💧', n:['تنظيف خزان الماي','Clean the water tank'], d:180, cat:'clean' },
+  { id:'heat', em:'🔥', n:['فحص سخان الماي','Check the water heater'], d:365, cat:'plumb' },
+  { id:'pest', em:'🐜', n:['رش وقائي للحشرات','Preventive pest control'], d:180, cat:'pest' },
+  { id:'panel', em:'⚡', n:['فحص الطبلون والقواطع','Check the electrical panel'], d:365, cat:'elec' },
+  { id:'fire', em:'🧯', n:['فحص طفاية الحريق','Check the fire extinguisher'], d:365, cat:null },
+];
+const DAY = 864e5;
+const homeLog = () => store.get('kh-home', {});
+const taskState = k => { const last = homeLog()[k.id]; if(!last) return { s:'new', left:null }; const left = Math.ceil((last + k.d * DAY - Date.now()) / DAY); return { s:left < 0 ? 'due' : left <= 14 ? 'soon' : 'ok', left, last }; };
+function homeBadge(){ const n = TASKS.filter(k => taskState(k).s === 'due').length; const b = $('homeBdg'); b.hidden = !n; b.textContent = n; }
+function drawHome(){
+  const st = TASKS.map(k => [k, taskState(k)]), due = st.filter(([, x]) => x.s === 'due').length, never = st.filter(([, x]) => x.s === 'new').length;
+  const box = $('homeBody'); box.replaceChildren(
+    el('div', { class:'hsum' }, el('div', { class:'n num', text:String(due) }), el('div', {}, el('h2', { text:LANG === 'ar' ? 'صيانة بيتك الدورية' : 'Your home maintenance' }),
+      el('p', { text:LANG === 'ar' ? (due ? due + ' مهمة فات موعدها. ' : 'ما فيه شي متأخر 👍 ') + (never ? 'سجّل آخر مرة سويت فيها المهام عشان نذكّرك.' : '') : (due ? due + ' overdue. ' : 'Nothing overdue 👍 ') + (never ? 'Log when you last did each task so we can remind you.' : '') }))));
+  st.forEach(([k, x]) => {
+    const when = x.s === 'new' ? (LANG === 'ar' ? 'ما سجّلتها للحين' : 'Not logged yet')
+      : x.s === 'due' ? (LANG === 'ar' ? 'متأخرة ' + (-x.left) + ' يوم' : (-x.left) + ' days overdue')
+      : (LANG === 'ar' ? 'الموعد الجاي بعد ' + x.left + ' يوم' : 'Next in ' + x.left + ' days');
+    box.append(el('article', { class:'hcard' }, el('span', { class:'ic', text:k.em }), el('b', { text:P2(k.n) }),
+      el('span', { class:'st ' + (x.s === 'new' ? '' : x.s), text:when + (LANG === 'ar' ? ' · كل ' + (k.d >= 365 ? 'سنة' : Math.round(k.d / 30) + ' شهور') : ' · every ' + (k.d >= 365 ? 'year' : Math.round(k.d / 30) + ' months')) }),
+      el('div', { class:'row' },
+        el('button', { class:'btn soft sm', type:'button', text:LANG === 'ar' ? '✓ سويتها اليوم' : '✓ Done today', onclick:() => { const h = homeLog(); h[k.id] = Date.now(); store.set('kh-home', h); toast(LANG === 'ar' ? 'انحفظ ✅ بنذكّرك بالموعد الجاي' : 'Saved ✅ We’ll remind you next time'); drawHome(); homeBadge(); } }),
+        k.cat ? el('button', { class:'btn sm', type:'button', text:LANG === 'ar' ? '🧰 اطلب فني' : '🧰 Get a pro', onclick:() => goCat(k.cat) }) : null)));
+  });
+  box.append(el('p', { class:'hint', style:'text-align:center', text:LANG === 'ar' ? 'سجل الصيانة محفوظ في جوالك بس.' : 'Your log is saved on this phone only.' }));
+}
+/* ---------- طوارئ ---------- */
+const SOS = [
+  { em:'💧', n:['تسريب ماي قوي','Major water leak'], cat:'plumb', s:[['سكّر محبس الماي الرئيسي للبيت.','Shut the main water valve.'],['إذا الماي قريب من الأفياش أو الأجهزة، فصّل الطبلون إذا تقدر توصله بأمان.','If water is near sockets or appliances, switch off the panel if you can reach it safely.'],['شيل الأغراض والأجهزة الكهربائية من مكان الماي.','Move belongings and electrical items away from the water.'],['اطلب سبّاك.','Call a plumber.']] },
+  { em:'⚡', n:['شرارة أو ريحة احتراق كهرباء','Sparks or burning smell'], cat:'elec', s:[['لا تلمس المكان، وفصّل القاطع الرئيسي إذا تقدر بأمان.','Don’t touch it; switch off the main breaker if safe.'],['لا تستخدم الماي على أي حريق كهربائي.','Never use water on an electrical fire.'],['إذا فيه دخان أو نار، اطلع من البيت واتصل 9999.','If there is smoke or fire, get out and call 9999.']] },
+  { em:'🔥', n:['ريحة غاز','Gas smell'], cat:null, s:[['لا تشغّل ولا تطفّي أي مفتاح كهرباء، ولا تولّع أي شي.','Don’t switch any lights on or off, and don’t light anything.'],['افتح الدرايش والأبواب.','Open the windows and doors.'],['سكّر صمام الأسطوانة أو الغاز إذا تقدر.','Close the gas cylinder or supply valve if you can.'],['اطلع من البيت، واتصل 9999 من برا.','Leave the house and call 9999 from outside.']] },
+  { em:'🚪', n:['مقفول برا البيت','Locked out'], cat:'lock', s:[['إذا داخل البيت طفل أو أحد يحتاج مساعدة، اتصل 9999 على طول.','If a child or someone who needs help is inside, call 9999 now.'],['وإلا شيك إذا عند أحد من أهلك مفتاح احتياطي، أو اطلب فني أقفال.','Otherwise check for a spare key, or call a locksmith.']] },
+];
+function drawSos(){
+  $('sosBody').replaceChildren(
+    el('div', { class:'sos' }, el('h2', { text:LANG === 'ar' ? 'في أي خطر على حياة أحد' : 'If anyone’s life is in danger' }), el('p', { text:LANG === 'ar' ? 'اتصل على طوارئ سلطنة عُمان' : 'Call Oman emergency services' }), el('a', { href:'tel:9999', dir:'ltr' }, '📞 9999')),
+    ...SOS.map((g, i) => { const d = el('details', { class:'eg' }); if(i === 0) d.open = true;
+      d.append(el('summary', {}, el('span', { text:g.em }), P2(g.n)), el('ol', {}, ...g.s.map(x => el('li', { text:P2(x) }))),
+        g.cat ? el('button', { class:'btn sm', type:'button', text:(LANG === 'ar' ? '🧰 اطلب ' : '🧰 Get ') + catName(g.cat), onclick:() => { S.when = 'now'; save(); drawWhen(); goCat(g.cat); } }) : null);
+      return d; }),
+    el('p', { class:'hint', style:'text-align:center', text:LANG === 'ar' ? 'معلومات توعوية عامة. سلامتك أهم شي، وفي أي خطر اتصل 9999.' : 'General safety guidance. Your safety comes first; in any danger call 9999.' }));
+}
+/* ---------- التنقل ---------- */
+let VIEW = 'req';
+function showView(v){
+  VIEW = v;
+  document.querySelectorAll('#seg [data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+  ['req','home','sos'].forEach(k => $('v-' + k).hidden = k !== v);
+  if(v === 'home') drawHome(); if(v === 'sos') drawSos();
+  window.scrollTo({ top:0 });
+}
+function goCat(c){ S.cat = c; ROOM = null; save(); showView('req'); drawHouse(); drawCats(); drawList(); setTimeout(() => $('resTitle').scrollIntoView({ behavior:'smooth', block:'start' }), 80); }
+document.querySelectorAll('#seg [data-v]').forEach(b => b.onclick = () => showView(b.dataset.v));
+const _applyLang = applyLang;
+applyLang = function(){ _applyLang(); $('h1x').innerHTML = H1(); drawHouse(); if(VIEW === 'home') drawHome(); if(VIEW === 'sos') drawSos(); };
+homeBadge();
 
 drawCounts(); applyLang(); refresh();
 /* تطبيق الآيفون: طلب تقييم أبل الرسمي بعد 3 تواصلات (أبل تقرر تظهره، بحد أقصى 3 مرات بالسنة) */
